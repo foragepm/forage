@@ -1,0 +1,20 @@
+{
+  "main": "main.js",
+  "build": {
+    "mac": {
+      "icon": "./assets/forest.icns"
+    }
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron-store": "^6.0.1",
+    "http-proxy": "^1.18.1",
+    "ipfs-http-client": "^48.1.3",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron": "^11.1.1"
+  }
+}
