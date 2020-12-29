@@ -12,7 +12,7 @@ Forest trusts other instances but also verifies that the packages downloaded fro
 
 Package metadata is also cached locally so you can use your package manager whilst offline too.
 
-## Features
+## Features (coming soon)
 
 Headless CLI - run forest as a daemon, ideal for usage on a server or in CI
 
@@ -25,6 +25,32 @@ Packrat mode - download all packages and their dependencies found in local metad
 Export/import - easily share multiple packages cached instantly with other instances via IPFS
 
 Omninet mode - Attempt to import all packages announced on the IPFS public DHT
+
+## Setup
+
+Build from source on mac:
+
+```shell
+git clone http://github.com/forestpm/forest
+cd forest
+npm install
+npm start
+```
+
+Configure npm to use forest as a proxy:
+
+```shell
+npm config add proxy http://0.0.0.0:8005/
+npm config add https-proxy http://0.0.0.0:8005/
+npm config add registry http://registry.npmjs.org/
+npm config add strict-ssl false
+```
+
+Ensure IPFS is running locally with pubsub enabled:
+
+```shell
+ipfs daemon --enable-pubsub-experiment
+```
 
 ## TODO
 
@@ -46,3 +72,9 @@ Omninet mode - Attempt to import all packages announced on the IPFS public DHT
 - package search
 - packrat mode
 - omninet mode
+- count how many nodes are
+
+## BUGS
+
+- node-gyp http requests not proxied (node-sass install)
+- breaks if IPFS isn't running

@@ -4,15 +4,36 @@ const Store = require('electron-store');
 
 const store = new Store({accessPropertiesByDotNotation: false});
 
+const uint8ArrayToString = require('uint8arrays/to-string')
+
 var httpProxy = require('http-proxy');
 
-var proxy = httpProxy.createServer({
-  target: 'https://registry.npmjs.org/'
-});
+var proxy = httpProxy.createProxy({secure: false});
+var url = require('url');
+var http = require('http')
+const toStream = require('it-to-stream')
 
-proxy.on('error', function (err, req, res) {
-  console.log('ERROR', err)
-});
+const IpfsHttpClient = require('ipfs-http-client')
+const { urlSource } = IpfsHttpClient
+const ipfs = IpfsHttpClient()
+const detectContentType = require('ipfs-http-response/src/utils/content-type')
+
+async function loadIPFS() {
+  const id = await ipfs.id()
+
+  console.log(id.id)
+}
+
+async function watchForPackages() {
+  const topic = 'forest'
+  const receiveMsg = (msg) => console.log(msg.from, JSON.stringify(uint8ArrayToString(msg.data), null, 2))
+
+  await ipfs.pubsub.subscribe(topic, receiveMsg)
+  console.log(`subscribed to ${topic}`)
+}
+
+loadIPFS()
+watchForPackages()
 
 function isMetadataRequest(path) {
   parts = path.split("/")
@@ -41,9 +62,15 @@ function isTarballRequest(path) {
   }
 }
 
-// TODO replace with selfHandleResponse
-proxy.on('proxyReq', function (proxyReq, req, res) {
-  if (name = isMetadataRequest(proxyReq.path)) {
+function returnTarballEarly(path) {
+  name = isTarballRequest(path)
+  if (name && store.get(name)) { return name }
+}
+
+var server = http.createServer(function(req, res) {
+  path = req.url.replace('http://registry.npmjs.org', '')
+
+  if (name = isMetadataRequest(path)) {
     // request for metadata - check to see if we already have it and return if we do (low priority)
     console.log('metadata request:', name)
     if (store.get(name)) {
@@ -51,16 +78,54 @@ proxy.on('proxyReq', function (proxyReq, req, res) {
     } else {
       console.log('  miss')
     }
-  } else if(name = isTarballRequest(proxyReq.path)) {
+  } else if(name = isTarballRequest(path)) {
     // request for tarball - check to see if we already have it and return if we do
     console.log('tarball request:', name)
-    if (store.get(name)) {
-      console.log('  hit')
-    } else {
-      console.log('  miss')
-    }
+  }
+
+  if(name = returnTarballEarly(path)) {
+    console.log(name, 'Available in IPFS')
+    tarballHandler(name, req, res)
+  } else {
+    proxy.web(req, res, {
+      target: 'http://registry.npmjs.org/',
+      changeOrigin: true
+    })
   }
 });
+
+async function tarballHandler(name, req, res) {
+  var cid = store.get(name)
+
+  const { size } = await ipfs.files.stat(`/ipfs/${cid}`)
+  const { source, contentType } = await detectContentType(name+'.tgz', ipfs.cat(cid))
+  const responseStream = toStream.readable((async function * () {
+    for await (const chunk of source) {
+      yield chunk.slice()
+    }
+  })())
+  res.writeHead(200, { 'Content-Type': contentType, 'Content-Length': size });
+  responseStream.pipe(res)
+}
+
+proxy.on('error', function (err, req, res) {
+  console.log('ERROR', err)
+});
+
+async function addUrltoIPFS(name, url){
+  if (store.get(name)) { return }
+  // TODO use the response body we just downloaded rather than downloading again
+  for await (const file of ipfs.addAll(urlSource(url))) {
+    console.log('IPFS add: ', file.path, file.cid.toString())
+    store.set(name, file.cid.toString())
+    ipfs.pubsub.publish('forest', JSON.stringify({
+      url: url,
+      name: name,
+      path: file.path,
+      cid: file.cid.toString()
+    }))
+  }
+}
 
 proxy.on('proxyRes', function (proxyRes, req, res) {
   path = req.url.replace('http://registry.npmjs.org', '')
@@ -68,12 +133,13 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
   if (name = isMetadataRequest(path)) {
     // cache metadata and send on response i.e. store/update json for package
     console.log('metadata response:', name)
-    store.set(name, true)
+    store.set(name, true) // TODO only store if response is successful
   } else if(name = isTarballRequest(path)) {
     // cache tarball and send on response i.e. add to ipfs and store the CID
     console.log('tarball response:', name)
-    store.set(name, true)
+
+    addUrltoIPFS(name, req.url)
   }
 });
 
-module.exports = proxy
+module.exports = server
