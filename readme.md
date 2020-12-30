@@ -20,7 +20,7 @@ Package index UI - see which packages have been proxied, cached and stored on IP
 
 Local package search - search through locally available packages
 
-Packrat mode - download all packages and their dependencies found in local metadata for resilient offline usage
+Seeding mode - download all packages and their dependencies found in local metadata for resilient offline usage
 
 Export/import - easily share multiple packages cached instantly with other instances via IPFS
 
@@ -40,10 +40,10 @@ npm start
 Configure npm to use forest as a proxy:
 
 ```shell
-npm config add proxy http://0.0.0.0:8005/
-npm config add https-proxy http://0.0.0.0:8005/
-npm config add registry http://registry.npmjs.org/
-npm config add strict-ssl false
+npm config set proxy http://0.0.0.0:8005/
+npm config set https-proxy http://0.0.0.0:8005/
+npm config set registry http://registry.npmjs.org/
+npm config set strict-ssl false
 ```
 
 Ensure IPFS is running locally with pubsub enabled:
@@ -71,7 +71,7 @@ ipfs daemon --enable-pubsub-experiment
 - CLI
 - http api
 - package search
-- packrat mode
+- seeding mode
 - omninet mode
 - count how many nodes have a package
 - announce/share full package list periodically
@@ -82,3 +82,8 @@ ipfs daemon --enable-pubsub-experiment
 
 - node-gyp http requests not proxied (node-sass install)
 - breaks if IPFS isn't running
+
+## IPFS notes
+
+- starting ipfs desktop with pubsub enabled is hard
+- pubsub can only be enabled with flag, not in config
