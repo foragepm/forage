@@ -34,7 +34,6 @@ Build from source on mac:
 git clone http://github.com/forestpm/forest
 cd forest
 npm install
-npm start
 ```
 
 Configure npm to use forest as a proxy:
@@ -50,6 +49,18 @@ Ensure IPFS is running locally with pubsub enabled:
 
 ```shell
 ipfs daemon --enable-pubsub-experiment
+```
+
+Start the electon app:
+
+```shell
+npm start
+```
+
+or run just the proxy server directly in the command line:
+
+```shell
+npm run daemon
 ```
 
 ## TODO

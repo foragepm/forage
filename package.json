@@ -6,7 +6,8 @@
     }
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "daemon": "node daemon.js"
   },
   "dependencies": {
     "conf": "^7.1.2",
