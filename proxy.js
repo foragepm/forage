@@ -18,15 +18,22 @@ const { urlSource } = IpfsHttpClient
 const ipfs = IpfsHttpClient()
 const detectContentType = require('ipfs-http-response/src/utils/content-type')
 
-async function loadIPFS() {
-  const id = await ipfs.id()
+var ipfsId;
 
-  console.log(id.id)
+async function loadIPFS() {
+  const ipfsId = await ipfs.id()
+
+  console.log("IPFS peer id:", ipfsId.id)
 }
 
 async function watchForPackages() {
   const topic = 'forest'
-  const receiveMsg = (msg) => console.log(msg.from, JSON.stringify(uint8ArrayToString(msg.data), null, 2))
+  const receiveMsg = function(msg){
+    if(ipfsId.id != msg.from){
+      json = JSON.parse(uint8ArrayToString(msg.data))
+      console.log(msg.from, "republished", json.name)
+    }
+  }
 
   await ipfs.pubsub.subscribe(topic, receiveMsg)
   console.log(`subscribed to ${topic}`)
@@ -118,7 +125,7 @@ async function addUrltoIPFS(name, url){
   for await (const file of ipfs.addAll(urlSource(url))) {
     console.log('IPFS add: ', file.path, file.cid.toString())
     store.set(name, file.cid.toString())
-    ipfs.pubsub.publish('forest', JSON.stringify({
+    ipfs.pubsub.publish('forest', JSON.stringify({ // TODO seperate out name and version here
       url: url,
       name: name,
       path: file.path,

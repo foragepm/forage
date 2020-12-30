@@ -54,25 +54,29 @@ ipfs daemon --enable-pubsub-experiment
 
 ## TODO
 
-- tray menu (start, stop, about etc)
-- connect to IPFS on startup
+- ~tray menu (start, stop, about etc)~
+- ~connect to IPFS on startup~
+- ~store package tarballs in ipfs~
+- ~announce stored packages on DHT (pubsub)~
+- ~listen for package announcements on DHT (pubsub)~
+- extract core proxy server as separate module
+- download and verify announced package versions (options for what to download and what to ignore)
 - cache downloaded package metadata
-- store package tarballs in ipfs
-- announce stored packages on DHT (pubsub)
-- listed for package announcements on DHT (pubsub)
-- store package data in a database
+- store package metadata in a database
 - package list UI
 - show how much bandwidth saved overall (keep a record of ever request proxied)
 - check for new versions from upstream (on demand or periodically)
 - search
 - export/import
-- extract core proxy server as separate module
 - CLI
 - http api
 - package search
 - packrat mode
 - omninet mode
-- count how many nodes are
+- count how many nodes have a package
+- announce/share full package list periodically
+- support for proxying go modules
+- try to discover other forest nodes (pubsub discovery)
 
 ## BUGS
 
