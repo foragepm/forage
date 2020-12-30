@@ -1,6 +1,7 @@
 const {app, Menu, Tray} = require('electron')
 const path = require('path')
 const proxy = require('./proxy')
+const forest = require('./forest')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
@@ -28,12 +29,14 @@ app.on('ready', () => {
 
 function startServer() {
   proxy.listen(8005);
+  forest.subscribePackageAnnoucements()
   started = true
   updateStatusMenu()
 }
 
 function stopServer() {
   proxy.close();
+  forest.unsubscribePackageAnnoucements()
   started = false
   updateStatusMenu()
 }
