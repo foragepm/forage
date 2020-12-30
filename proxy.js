@@ -1,8 +1,9 @@
 var validateNpmPackageName = require("validate-npm-package-name")
 
-const Store = require('electron-store');
 
-const store = new Store({accessPropertiesByDotNotation: false});
+const Conf = require('conf');
+// TODO path needs to work outside of electron and on mac (maybe ~/.forest)
+const store = new Conf({accessPropertiesByDotNotation: false, cwd: '~/Library/Application Support/Electron'});
 
 const uint8ArrayToString = require('uint8arrays/to-string')
 
