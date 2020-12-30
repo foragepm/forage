@@ -29,10 +29,8 @@ async function loadIPFS() {
 async function watchForPackages() {
   const topic = 'forest'
   const receiveMsg = function(msg){
-    if(ipfsId.id != msg.from){
-      json = JSON.parse(uint8ArrayToString(msg.data))
-      console.log(msg.from, "republished", json.name)
-    }
+    json = JSON.parse(uint8ArrayToString(msg.data))
+    console.log(msg.from, "republished", json.name)
   }
 
   await ipfs.pubsub.subscribe(topic, receiveMsg)
