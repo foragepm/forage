@@ -29,6 +29,7 @@ app.on('ready', () => {
 
 function startServer() {
   proxy.listen(8005);
+  // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
   forest.subscribePackageAnnoucements()
   started = true
   updateStatusMenu()

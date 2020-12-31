@@ -77,7 +77,8 @@ npm run seed
 - ~announce stored packages on DHT (pubsub)~
 - ~listen for package announcements on DHT (pubsub)~
 - ~extract core proxy server as separate module~
-- download and verify announced package versions via IPFS (options for what to download and what to ignore TBD)
+- ~download and verify announced package versions via IPFS~
+- automatically downloaded new versions of announced package if already have one or more versions downloaded locally (in main.js and daemon.js)
 - cache downloaded package metadata
 - store package metadata in a database
 - package list UI

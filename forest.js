@@ -134,6 +134,7 @@ async function downloadPackageFromIPFS(name, version, cid) {
 }
 
 async function loadMetadata(name) {
+  // TODO use same shared metadata cache as proxy server (once implemented)
   url = "http://registry.npmjs.org/" + name
   const response = await fetch(url);
   const json = await response.json();
