@@ -9,12 +9,12 @@ const store = new Conf({accessPropertiesByDotNotation: false, projectName: 'fore
 
 const packageAnnoucementsTopic = 'forest'
 
-async function subscribePackageAnnoucements() {
-  const receiveMsg = function(msg){
-    json = JSON.parse(uint8ArrayToString(msg.data))
-    console.log(msg.from, "republished", json.name)
-  }
+function defaultAnnounceCb(msg) {
+  json = JSON.parse(uint8ArrayToString(msg.data))
+  console.log(msg.from, "republished", json.name)
+}
 
+async function subscribePackageAnnoucements(receiveMsg = defaultAnnounceCb) {
   await ipfs.pubsub.subscribe(packageAnnoucementsTopic, receiveMsg)
   console.log(`subscribed to ${packageAnnoucementsTopic}`)
 }
