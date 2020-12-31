@@ -4,6 +4,7 @@ const IpfsHttpClient = require('ipfs-http-client')
 const { urlSource } = IpfsHttpClient
 const ipfs = IpfsHttpClient()
 const toStream = require('it-to-stream')
+const fetch = require('node-fetch')
 
 const Conf = require('conf');
 const store = new Conf({accessPropertiesByDotNotation: false, projectName: 'forest'});
@@ -64,6 +65,8 @@ async function addUrltoIPFS(name, url){
   // TODO maybe use the response body we just downloaded rather than downloading again (when used in proxy)
   for await (const file of ipfs.addAll(urlSource(url))) {
     console.log('IPFS add: ', file.path, file.cid.toString())
+
+    // TODO extract into announce method
     store.set(name, file.cid.toString())
     ipfs.pubsub.publish('forest', JSON.stringify({ // TODO seperate out name and version here
       url: url,
@@ -71,6 +74,7 @@ async function addUrltoIPFS(name, url){
       path: file.path,
       cid: file.cid.toString()
     }))
+
   }
 }
 
@@ -107,6 +111,35 @@ function listVersions(packageName) {
   return [...new Set(versionNames)].sort()
 }
 
+function getVersion(name, version) {
+  return store.get(name+'@'+version)
+}
+
+async function downloadPackageFromIPFS(name, version, cid) {
+  if (store.get(name+'@'+version) === cid){
+    console.log('Already downloaded', name+'@'+version, 'from IPFS')
+    return
+  }
+  const metadata = await loadMetadata(name)
+  const verionData = metadata.versions[version]
+  const integrity = verionData.dist.integrity
+  const res = await checkIntegrity(cid, integrity)
+  if (res){
+    console.log('Downloaded', name+'@'+version, 'from IPFS')
+    store.set(name+'@'+version, cid)
+    // TODO announce on pubsub (maybe?)
+  } else {
+    console.log('Failed to download', name+'@'+version, 'from IPFS')
+  }
+}
+
+async function loadMetadata(name) {
+  url = "http://registry.npmjs.org/" + name
+  const response = await fetch(url);
+  const json = await response.json();
+  return json
+}
+
 async function checkIntegrity(cid, integrity) {
   const responseStream = toStream.readable((async function * () {
     for await (const chunk of ipfs.cat(cid)) {
@@ -126,7 +159,10 @@ module.exports = {
   isTarballRequest,
   returnTarballEarly,
   addUrltoIPFS,
+  downloadPackageFromIPFS,
   listPackages,
   listVersions,
-  checkIntegrity
+  getVersion,
+  checkIntegrity,
+  loadMetadata
 }
