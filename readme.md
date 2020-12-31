@@ -1,6 +1,6 @@
 # Forest
 
-A package manager ipfs proxy cache packaged up as an electron menu bar app.
+An IPFS-backed package manager proxy cache, packaged up as an electron menu bar app.
 
 ## How it works
 
@@ -57,6 +57,12 @@ Start the electon app:
 npm start
 ```
 
+or compile the electron app into `./dist`:
+
+```shell
+npm run pack
+```
+
 or run just the proxy server directly in the command line:
 
 ```shell
@@ -86,6 +92,7 @@ npm run omninet
 - ~download and verify announced package versions via IPFS~
 - automatically downloaded new versions of announced package if already have one or more versions downloaded locally (in main.js and daemon.js)
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
+- test with yarn + proxy setup instructions for yarn
 - cache downloaded package metadata
 - store package metadata in a database
 - package list UI
@@ -107,7 +114,8 @@ npm run omninet
 
 ## BUGS
 
-- node-gyp http requests not proxied (node-sass install)
+- broken: node-gyp http requests not proxied (node-sass install)
+- broken: electron-builder - requests incorrectly proxied
 - breaks if IPFS isn't running
 
 ## IPFS notes

@@ -1,16 +1,23 @@
 {
   "name": "forest",
+  "description": "An IPFS-backed package manager proxy cache",
   "main": "main.js",
+  "version": "0.0.1",
+  "author": "Andrew Nesbitt",
   "build": {
     "mac": {
-      "icon": "./assets/forest.icns"
+      "icon": "./assets/forest.icns",
+      "category": "your.app.category.type"
     }
   },
   "scripts": {
     "start": "electron .",
     "daemon": "node daemon.js",
     "seed": "node seed.js",
-    "omninet": "node omninet.js"
+    "omninet": "node omninet.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "changes-stream": "^2.2.0",
@@ -25,6 +32,7 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "electron": "^11.1.1"
+    "electron": "^11.1.1",
+    "electron-builder": "22.10.4"
   }
 }
