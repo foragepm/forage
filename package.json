@@ -9,9 +9,11 @@
   "scripts": {
     "start": "electron .",
     "daemon": "node daemon.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "omninet": "node omninet.js"
   },
   "dependencies": {
+    "changes-stream": "^2.2.0",
     "conf": "^7.1.2",
     "http-proxy": "^1.18.1",
     "ipfs-http-client": "^48.1.3",

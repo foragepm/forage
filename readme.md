@@ -69,6 +69,12 @@ Or you can help seed packages without running a proxy:
 npm run seed
 ```
 
+Or you can watch for all new packages and publish them to IPFS without running a proxy:
+
+```shell
+npm run omninet
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
@@ -87,15 +93,16 @@ npm run seed
 - search
 - export/import
 - CLI
-- http api
 - package search
-- ~seeding mode~
-- omninet mode
+- ~seeding mode~ (incorrectly named right now)
+- ~omninet mode~ (incorrectly named right now)
 - count how many nodes have a package
 - announce/share full package list periodically
 - support for proxying go modules
 - try to discover other forest nodes (pubsub discovery)
 - preload function (search for locally installed packages and load them into ipfs)
+- http api
+- configure trusted forest instances to connect to on startup (ipfs peer id)
 
 ## BUGS
 
