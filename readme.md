@@ -63,6 +63,12 @@ or run just the proxy server directly in the command line:
 npm run daemon
 ```
 
+Or you can help seed packages without running a proxy:
+
+```shell
+npm run seed
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
@@ -82,7 +88,7 @@ npm run daemon
 - CLI
 - http api
 - package search
-- seeding mode
+- ~seeding mode~
 - omninet mode
 - count how many nodes have a package
 - announce/share full package list periodically
