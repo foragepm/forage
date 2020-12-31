@@ -85,6 +85,7 @@ npm run omninet
 - ~extract core proxy server as separate module~
 - ~download and verify announced package versions via IPFS~
 - automatically downloaded new versions of announced package if already have one or more versions downloaded locally (in main.js and daemon.js)
+- record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
 - package list UI
