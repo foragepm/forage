@@ -70,7 +70,7 @@ npm run daemon
 - ~store package tarballs in ipfs~
 - ~announce stored packages on DHT (pubsub)~
 - ~listen for package announcements on DHT (pubsub)~
-- extract core proxy server as separate module
+- ~extract core proxy server as separate module~
 - download and verify announced package versions (options for what to download and what to ignore)
 - cache downloaded package metadata
 - store package metadata in a database

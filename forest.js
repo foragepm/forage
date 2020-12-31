@@ -71,11 +71,20 @@ async function addUrltoIPFS(name, url){
   }
 }
 
+function listPackages() {
+  var packageNames = []
+  for (const element of store) {
+    packageNames.push(element[0].split('@')[0])
+  }
+  return [...new Set(packageNames)].sort()
+}
+
 module.exports = {
-  subscribePackageAnnoucements: subscribePackageAnnoucements,
-  unsubscribePackageAnnoucements: unsubscribePackageAnnoucements,
-  isMetadataRequest: isMetadataRequest,
-  isTarballRequest: isTarballRequest,
-  returnTarballEarly: returnTarballEarly,
-  addUrltoIPFS: addUrltoIPFS
+  subscribePackageAnnoucements,
+  unsubscribePackageAnnoucements,
+  isMetadataRequest,
+  isTarballRequest,
+  returnTarballEarly,
+  addUrltoIPFS,
+  listPackages
 }
