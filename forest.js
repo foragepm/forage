@@ -3,9 +3,12 @@ const uint8ArrayToString = require('uint8arrays/to-string')
 const IpfsHttpClient = require('ipfs-http-client')
 const { urlSource } = IpfsHttpClient
 const ipfs = IpfsHttpClient()
+const toStream = require('it-to-stream')
 
 const Conf = require('conf');
 const store = new Conf({accessPropertiesByDotNotation: false, projectName: 'forest'});
+
+const ssri = require('ssri')
 
 const packageAnnoucementsTopic = 'forest'
 
@@ -74,9 +77,46 @@ async function addUrltoIPFS(name, url){
 function listPackages() {
   var packageNames = []
   for (const element of store) {
-    packageNames.push(element[0].split('@')[0])
+    parts = element[0].split('@')
+    if (element[0].startsWith('@')) {
+      name = '@'+parts[1]
+    } else {
+      name = parts[0]
+    }
+
+    packageNames.push(name)
   }
   return [...new Set(packageNames)].sort()
+}
+
+function listVersions(packageName) {
+  var versionNames = []
+  for (const element of store) {
+    parts = element[0].split('@')
+    if (element[0].startsWith('@')) {
+      name = '@'+parts[1]
+      version = parts[2]
+    } else {
+      name = parts[0]
+      version = parts[1]
+    }
+    if (name === packageName && version) {
+      versionNames.push(version)
+    }
+  }
+  return [...new Set(versionNames)].sort()
+}
+
+async function checkIntegrity(cid, integrity) {
+  const responseStream = toStream.readable((async function * () {
+    for await (const chunk of ipfs.cat(cid)) {
+      yield chunk.slice()
+    }
+  })())
+
+  return ssri.fromStream(responseStream).then(sri => {
+    return sri.toString() === integrity
+  })
 }
 
 module.exports = {
@@ -86,5 +126,7 @@ module.exports = {
   isTarballRequest,
   returnTarballEarly,
   addUrltoIPFS,
-  listPackages
+  listPackages,
+  listVersions,
+  checkIntegrity
 }

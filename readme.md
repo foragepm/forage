@@ -77,7 +77,7 @@ npm run seed
 - ~announce stored packages on DHT (pubsub)~
 - ~listen for package announcements on DHT (pubsub)~
 - ~extract core proxy server as separate module~
-- download and verify announced package versions (options for what to download and what to ignore)
+- download and verify announced package versions via IPFS (options for what to download and what to ignore TBD)
 - cache downloaded package metadata
 - store package metadata in a database
 - package list UI
@@ -94,6 +94,7 @@ npm run seed
 - announce/share full package list periodically
 - support for proxying go modules
 - try to discover other forest nodes (pubsub discovery)
+- preload function (search for locally installed packages and load them into ipfs)
 
 ## BUGS
 
