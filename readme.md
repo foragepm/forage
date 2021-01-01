@@ -90,9 +90,8 @@ npm run omninet
 - ~listen for package announcements on DHT (pubsub)~
 - ~extract core proxy server as separate module~
 - ~download and verify announced package versions via IPFS~
-- automatically downloaded new versions of announced package if already have one or more versions downloaded locally (in main.js and daemon.js)
+- ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
-- test with yarn + proxy setup instructions for yarn
 - cache downloaded package metadata
 - store package metadata in a database
 - package list UI
@@ -107,7 +106,7 @@ npm run omninet
 - count how many nodes have a package
 - announce/share full package list periodically
 - support for proxying go modules
-- try to discover other forest nodes (pubsub discovery)
+- test with yarn + proxy setup instructions for yarn (currently broken)
 - preload function (search for locally installed packages and load them into ipfs)
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
