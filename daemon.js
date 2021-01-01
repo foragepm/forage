@@ -1,5 +1,5 @@
 const proxy = require('./proxy')
-const forest = require('./forest')
+const forest = require('./lib/forest')
 
 proxy.listen(8005)
 forest.subscribePackageAnnoucements()

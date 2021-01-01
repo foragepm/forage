@@ -1,4 +1,4 @@
-const forest = require('./forest')
+const forest = require('./lib/forest')
 
 const Conf = require('conf');
 const store = new Conf({accessPropertiesByDotNotation: false, projectName: 'forest'});

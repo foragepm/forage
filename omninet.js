@@ -1,5 +1,5 @@
 var ChangesStream = require('changes-stream');
-var forest = require('./forest');
+var forest = require('./lib/forest');
 
 var changes = new ChangesStream({
   db: 'https://replicate.npmjs.com/registry',

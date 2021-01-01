@@ -1,7 +1,7 @@
 const {app, Menu, Tray} = require('electron')
 const path = require('path')
 const proxy = require('./proxy')
-const forest = require('./forest')
+const forest = require('./lib/forest')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 

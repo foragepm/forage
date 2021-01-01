@@ -1,4 +1,4 @@
-const forest = require('./forest')
+const forest = require('./lib/forest')
 const uint8ArrayToString = require('uint8arrays/to-string')
 
 const receiveMsg = function(msg){
