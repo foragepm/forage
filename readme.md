@@ -117,6 +117,8 @@ npm run omninet
 - broken: node-gyp http requests not proxied (node-sass install)
 - broken: electron-builder - requests incorrectly proxied
 - breaks if IPFS isn't running
+- silently fails if something is already running on port 8005
+- yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
 
 ## IPFS notes
 
