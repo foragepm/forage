@@ -123,6 +123,7 @@ npm run omninet
 - breaks if IPFS isn't running
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
+- gets stuck when download modules with very large dependency trees
 
 ## IPFS notes
 
