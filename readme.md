@@ -20,11 +20,13 @@ Package index UI - see which packages have been proxied, cached and stored on IP
 
 Local package search - search through locally available packages
 
-Seeding mode - download all packages and their dependencies found in local metadata for resilient offline usage
+Republish local packages - republish all packages and their dependencies found in local metadata for resilient offline usage
+
+Seeding mode - Republish copies of all packages announced on the IPFS public DHT
 
 Export/import - easily share multiple packages cached instantly with other instances via IPFS
 
-Omninet mode - Attempt to import all packages announced on the IPFS public DHT
+Omninet mode - watch for new package releases and seed each one to IPFS
 
 ## Setup
 
@@ -91,6 +93,8 @@ npm run omninet
 - ~extract core proxy server as separate module~
 - ~download and verify announced package versions via IPFS~
 - ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
+- ~seeding mode~
+- ~omninet mode~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
@@ -100,9 +104,9 @@ npm run omninet
 - search
 - export/import
 - CLI
+- keep a list of ipfs peers who republish packages that fail integrity checks, block after X fails
+- cleanup command that removes old packages from local IPFS (keep CID in db incase needed later)
 - package search
-- ~seeding mode~ (incorrectly named right now)
-- ~omninet mode~ (incorrectly named right now)
 - count how many nodes have a package
 - announce/share full package list periodically
 - support for proxying go modules
