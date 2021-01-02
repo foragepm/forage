@@ -26,7 +26,7 @@ Seeding mode - Republish copies of all packages announced on the IPFS public DHT
 
 Export/import - easily share multiple packages cached instantly with other instances via IPFS
 
-Omninet mode - watch for new package releases and seed each one to IPFS
+Watch mode - watch for new package releases and seed each one to IPFS
 
 ## Setup
 
@@ -89,12 +89,12 @@ You can help seed packages without running a proxy:
 forest seed
 ```
 
-### Omninet
+### watch
 
 You can watch for all new packages and publish them to IPFS without running a proxy:
 
 ```shell
-forest omninet
+forest watch
 ```
 
 ### Republish
@@ -124,7 +124,7 @@ forest import
 - ~download and verify announced package versions via IPFS~
 - ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
 - ~seeding mode~
-- ~omninet mode~
+- ~watch mode~
 - ~export/import~
 - ~CLI~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)

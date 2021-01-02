@@ -15,7 +15,7 @@ yargs(hideBin(process.argv))
   .command('republish', 'the default command', () => {}, (argv) => {
     require('./republish')
   })
-  .command('omninet', 'the default command', () => {}, (argv) => {
-    require('./omninet')
+  .command('watch', 'the default command', () => {}, (argv) => {
+    require('./watch')
   })
   .argv
