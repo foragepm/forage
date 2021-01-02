@@ -127,7 +127,7 @@ npm run import
 - show how much bandwidth saved overall (keep a record of ever request proxied)
 - check for new versions from upstream (on demand or periodically)
 - search
-- export/import
+- ~export/import~
 - CLI
 - keep a list of ipfs peers who republish packages that fail integrity checks, block after X fails
 - cleanup command that removes old packages from local IPFS (keep CID in db incase needed later)
@@ -136,7 +136,7 @@ npm run import
 - announce/share full package list periodically
 - support for proxying go modules
 - test with yarn + proxy setup instructions for yarn (currently broken)
-- preload function (search for locally installed packages and load them into ipfs)
+- preload function - search for locally installed packages and load them into ipfs (republish does this for a single package-lock.json)
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
 
