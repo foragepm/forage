@@ -65,6 +65,12 @@ or compile the electron app into `./dist`:
 npm run pack
 ```
 
+and link the command line interface:
+
+```shell
+npm link
+```
+
 ## Commands
 
 ### Daemon
@@ -72,7 +78,7 @@ npm run pack
 Run just the proxy server directly in the command line:
 
 ```shell
-npm run daemon
+forest daemon
 ```
 
 ### Seed
@@ -80,7 +86,7 @@ npm run daemon
 You can help seed packages without running a proxy:
 
 ```shell
-npm run seed
+forest seed
 ```
 
 ### Omninet
@@ -88,7 +94,7 @@ npm run seed
 You can watch for all new packages and publish them to IPFS without running a proxy:
 
 ```shell
-npm run omninet
+forest omninet
 ```
 
 ### Republish
@@ -96,7 +102,7 @@ npm run omninet
 Import all packages from a package-lock.json file and import and record in a forest.lock file:
 
 ```shell
-npm run republish
+forest republish
 ```
 
 ### Import
@@ -104,7 +110,7 @@ npm run republish
 Read a forest.lock file and download+verify each package via IPFS:
 
 ```shell
-npm run import
+forest import
 ```
 
 ## TODO
@@ -119,6 +125,8 @@ npm run import
 - ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
 - ~seeding mode~
 - ~omninet mode~
+- ~export/import~
+- ~CLI~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
@@ -127,8 +135,6 @@ npm run import
 - show how much bandwidth saved overall (keep a record of ever request proxied)
 - check for new versions from upstream (on demand or periodically)
 - search
-- ~export/import~
-- CLI
 - keep a list of ipfs peers who republish packages that fail integrity checks, block after X fails
 - cleanup command that removes old packages from local IPFS (keep CID in db incase needed later)
 - package search

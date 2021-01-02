@@ -4,6 +4,9 @@
   "main": "main.js",
   "version": "0.0.1",
   "author": "Andrew Nesbitt",
+  "bin": {
+    "forest": "./cli.js"
+  },
   "build": {
     "mac": {
       "icon": "./assets/forest.icns",
@@ -31,7 +34,8 @@
     "node-fetch": "^2.6.1",
     "ssri": "^8.0.0",
     "uint8arrays": "^1.1.0",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^3.0.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "electron": "^11.1.1",
