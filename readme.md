@@ -145,6 +145,7 @@ forest import
 - preload function - search for locally installed packages and load them into ipfs (republish does this for a single package-lock.json)
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
+- option to start app on boot (https://www.electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows)
 
 ## BUGS
 
