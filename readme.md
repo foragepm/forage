@@ -65,22 +65,46 @@ or compile the electron app into `./dist`:
 npm run pack
 ```
 
-or run just the proxy server directly in the command line:
+## Commands
+
+### Daemon
+
+Run just the proxy server directly in the command line:
 
 ```shell
 npm run daemon
 ```
 
-Or you can help seed packages without running a proxy:
+### Seed
+
+You can help seed packages without running a proxy:
 
 ```shell
 npm run seed
 ```
 
-Or you can watch for all new packages and publish them to IPFS without running a proxy:
+### Omninet
+
+You can watch for all new packages and publish them to IPFS without running a proxy:
 
 ```shell
 npm run omninet
+```
+
+### Republish
+
+Import all packages from a package-lock.json file and import and record in a forest.lock file:
+
+```shell
+npm run republish
+```
+
+### Import
+
+Read a forest.lock file and download+verify each package via IPFS:
+
+```shell
+npm run import
 ```
 
 ## TODO

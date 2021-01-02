@@ -15,6 +15,8 @@
     "daemon": "node daemon.js",
     "seed": "node seed.js",
     "omninet": "node omninet.js",
+    "republish": "node republish.js",
+    "import": "node import.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps"
