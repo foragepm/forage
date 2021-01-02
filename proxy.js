@@ -19,11 +19,10 @@ var server = http.createServer(function(req, res) {
 
   if (name = forest.isMetadataRequest(path)) {
     // request for metadata - check to see if we already have it and return if we do (low priority)
-    console.log('metadata request:', name)
     if (store.get(name)) {
-      console.log('  hit')
+      console.log('metadata request:', name, '(hit)')
     } else {
-      console.log('  miss')
+      console.log('metadata request:', name, '(miss)')
     }
   } else if(name = forest.isTarballRequest(path)) {
     // request for tarball - check to see if we already have it and return if we do
