@@ -18,4 +18,7 @@ yargs(hideBin(process.argv))
   .command('watch', 'watch for newly published packages', () => {}, (argv) => {
     require('./lib/commands/watch')
   })
+  .command('packages', 'list all packages', () => {}, (argv) => {
+    require('./lib/commands/packages')
+  })
   .argv
