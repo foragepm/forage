@@ -5,14 +5,7 @@ const receiveMsg = function(msg){
   json = JSON.parse(uint8ArrayToString(msg.data))
   console.log(msg.from, "republished", json.name, "... seeding")
 
-  parts = json.name.split('@')
-  if (json.name.startsWith('@')) {
-    name = '@'+parts[1]
-    version = parts[2]
-  } else {
-    name = parts[0]
-    version = parts[1]
-  }
+  const {name, version} = forest.splitKey(json.name)
 
   // TODO fallback to http if download from IPFS fails or times out
   forest.downloadPackageFromIPFS(name, version, json.cid)

@@ -11,14 +11,7 @@ const forest = require('./lib/forest');
   for (const key in forestLock) {
     const cid = forestLock[key]
 
-    parts = key.split('@')
-    if (key.startsWith('@')) {
-      name = '@'+parts[1]
-      version = parts[2]
-    } else {
-      name = parts[0]
-      version = parts[1]
-    }
+    const {name, version} = forest.splitKey(key)
 
     await forest.downloadPackageFromIPFS(name, version, cid) // TODO do it async (faster)
   }
