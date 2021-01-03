@@ -3,19 +3,19 @@ const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
 yargs(hideBin(process.argv))
-  .command(['daemon', '$0'], 'the default command', () => {}, (argv) => {
-    require('./daemon')
+  .command(['daemon', '$0'], 'run the forest proxy server', () => {}, (argv) => {
+    require('./lib/commands/daemon')
   })
-  .command('seed', 'the default command', () => {}, (argv) => {
-    require('./seed')
+  .command('seed', 'Download any packages republished to IPFS', () => {}, (argv) => {
+    require('./lib/commands/seed')
   })
-  .command('import', 'the default command', () => {}, (argv) => {
-    require('./import')
+  .command('import', 'load packages in forest.lock from IPFS', () => {}, (argv) => {
+    require('./lib/commands/import')
   })
-  .command('republish', 'the default command', () => {}, (argv) => {
-    require('./republish')
+  .command('republish', 'add local packages to IPFS', () => {}, (argv) => {
+    require('./lib/commands/republish')
   })
-  .command('watch', 'the default command', () => {}, (argv) => {
-    require('./watch')
+  .command('watch', 'watch for newly published packages', () => {}, (argv) => {
+    require('./lib/commands/watch')
   })
   .argv
