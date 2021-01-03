@@ -136,6 +136,7 @@ forest packages
 - ~export/import~
 - ~CLI~
 - add goals of the project to readme
+- don't double log announcements of your own republishes
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
