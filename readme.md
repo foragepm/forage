@@ -135,6 +135,7 @@ forest packages
 - ~watch mode~
 - ~export/import~
 - ~CLI~
+- add goals of the project to readme
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
