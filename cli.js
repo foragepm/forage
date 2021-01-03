@@ -6,7 +6,7 @@ yargs(hideBin(process.argv))
   .command(['daemon', '$0'], 'run the forest proxy server', () => {}, (argv) => {
     require('./lib/commands/daemon')
   })
-  .command('seed', 'Download any packages republished to IPFS', () => {}, (argv) => {
+  .command('seed', 'download any packages republished to IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')
   })
   .command('import', 'load packages in forest.lock from IPFS', () => {}, (argv) => {
