@@ -113,6 +113,14 @@ Read a forest.lock file and download+verify each package via IPFS:
 forest import
 ```
 
+### List packages
+
+List all the packages and versions that forest has cached locally:
+
+```shell
+forest packages
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
