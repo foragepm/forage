@@ -145,6 +145,7 @@ forest packages
 - store package metadata in a database
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
+- lots more error handling
 - show how much bandwidth saved overall (keep a record of ever request proxied)
 - check for new versions from upstream (on demand or periodically)
 - search
