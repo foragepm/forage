@@ -3,8 +3,8 @@ const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
 yargs(hideBin(process.argv))
-  .command(['daemon', '$0'], 'run the forest proxy server', () => {}, (argv) => {
-    require('./lib/commands/daemon')
+  .command(['server', '$0'], 'run the forest server', () => {}, (argv) => {
+    require('./lib/commands/server')
   })
   .command('seed', 'download any packages republished to IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')

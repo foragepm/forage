@@ -1,6 +1,6 @@
 const {app, Menu, Tray} = require('electron')
 const path = require('path')
-const proxy = require('./lib/proxy')
+const server = require('./lib/server')
 const forest = require('./lib/forest')
 
 const assetsDirectory = path.join(__dirname, 'assets')
@@ -28,7 +28,7 @@ app.on('ready', () => {
 })
 
 function startServer() {
-  proxy.listen(8005);
+  server.listen(8005);
   // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
   forest.subscribePackageAnnoucements()
   started = true
@@ -36,7 +36,7 @@ function startServer() {
 }
 
 function stopServer() {
-  proxy.close();
+  server.close();
   forest.unsubscribePackageAnnoucements()
   started = false
   updateStatusMenu()

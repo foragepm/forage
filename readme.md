@@ -73,12 +73,12 @@ npm link
 
 ## Commands
 
-### Daemon
+### Server
 
-Run just the proxy server directly in the command line:
+Run just the http server directly in the command line:
 
 ```shell
-forest daemon
+forest server
 ```
 
 ### Seed
@@ -91,7 +91,7 @@ forest seed
 
 ### watch
 
-You can watch for all new packages and publish them to IPFS without running a proxy:
+You can watch for all new packages and publish them to IPFS:
 
 ```shell
 forest watch
