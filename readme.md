@@ -28,6 +28,10 @@ Export/import - easily share multiple packages cached instantly with other insta
 
 Watch mode - watch for new package releases and seed each one to IPFS
 
+HTTP API - control forest over http
+
+Javascript API - integrate forest into other javascript applications
+
 ## Setup
 
 Build from source on mac:
@@ -136,7 +140,6 @@ forest packages
 - ~export/import~
 - ~CLI~
 - add goals of the project to readme
-- don't double log announcements of your own republishes
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - cache downloaded package metadata
 - store package metadata in a database
