@@ -14,6 +14,7 @@
     }
   },
   "scripts": {
+    "test": "node cli.js packages",
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
