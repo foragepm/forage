@@ -1,0 +1,5 @@
+assets
+Dockerfile
+.dockerignore
+forest.lock
+main.js
