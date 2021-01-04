@@ -63,7 +63,7 @@ const contextMenu = Menu.buildFromTemplate([
 const createTray = () => {
   tray = new Tray(path.join(assetsDirectory, 'forestTemplate.png'))
 
-  tray.setToolTip('This is my application.')
+  tray.setToolTip('Forest Package Manager Proxy')
   tray.setContextMenu(contextMenu)
 }
 
