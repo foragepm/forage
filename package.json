@@ -17,7 +17,10 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "ipfs": "ipfs daemon --enable-pubsub-experiment",
+    "config": "npm config set proxy=http://0.0.0.0:8005/ https-proxy=http://0.0.0.0:8005/ registry=http://registry.npmjs.org/ strict-ssl=false",
+    "unconfig": "npm config delete proxy https-proxy registry strict-ssl"
   },
   "dependencies": {
     "changes-stream": "^2.2.0",
