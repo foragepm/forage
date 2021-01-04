@@ -21,4 +21,10 @@ yargs(hideBin(process.argv))
   .command('packages', 'list all packages', () => {}, (argv) => {
     require('./lib/commands/packages')
   })
+  .command('config', 'configure package managers', () => {}, (argv) => {
+    require('./lib/commands/config')
+  })
+  .command('unconfig', 'remove package managers config', () => {}, (argv) => {
+    require('./lib/commands/unconfig')
+  })
   .argv

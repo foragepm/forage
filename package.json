@@ -20,8 +20,8 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "ipfs": "ipfs daemon --enable-pubsub-experiment",
-    "config": "npm config set proxy=http://0.0.0.0:8005/ https-proxy=http://0.0.0.0:8005/ registry=http://registry.npmjs.org/ strict-ssl=false",
-    "unconfig": "npm config delete proxy https-proxy registry strict-ssl"
+    "config": "node cli.js config",
+    "unconfig": "node cli.js unconfig"
   },
   "dependencies": {
     "changes-stream": "^2.2.0",
