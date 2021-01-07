@@ -27,15 +27,19 @@ app.on('ready', () => {
   startServer()
 })
 
-function startServer() {
-  server.listen(8005);
-  // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
-  forest.subscribePackageAnnoucements()
-  started = true
-  updateStatusMenu()
+async function startServer() {
+  var ipfsID = await forest.connectIPFS();
+  if (ipfsID) {
+    server.listen(8005);
+    // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
+    forest.subscribePackageAnnoucements()
+    started = true
+    updateStatusMenu()
+  }
 }
 
 function stopServer() {
+  console.log('stopping')
   server.close();
   forest.unsubscribePackageAnnoucements()
   started = false
@@ -47,7 +51,6 @@ function updateStatusMenu() {
   contextMenu.getMenuItemById('stop').visible = started
   contextMenu.getMenuItemById('stopped').visible = !started
   contextMenu.getMenuItemById('start').visible = !started
-  console.log('started:', started)
 }
 
 const contextMenu = Menu.buildFromTemplate([
