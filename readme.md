@@ -12,6 +12,15 @@ Forest trusts other instances but also verifies that the packages downloaded fro
 
 Package metadata is also cached locally so you can use your package manager whilst offline too.
 
+Currently npm is the only supported package manager but support for others like Go, Rubygems and Homebrew are planned for the future.
+
+## Project goals
+
+- Smooth user experience
+- Don't mess with lockfiles
+- No extra infrastructure required
+- Get people dogfooding IPFS as part of their regular workflows
+
 ## Features (coming soon)
 
 Headless CLI - run forest as a daemon, ideal for usage on a server or in CI
@@ -160,7 +169,7 @@ forest preload
 - ~cache downloaded package metadata~
 - ~store package metadata in a database~
 - ~preload function - search for locally installed packages and load them into ipfs~
-- add goals of the project to readme
+- ~add goals of the project to readme~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
