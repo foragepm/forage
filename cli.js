@@ -27,4 +27,7 @@ yargs(hideBin(process.argv))
   .command('unconfig', 'remove package managers config', () => {}, (argv) => {
     require('./lib/commands/unconfig')
   })
+  .command('preload', 'import all package-lock.json files', () => {}, (argv) => {
+    require('./lib/commands/preload')
+  })
   .argv

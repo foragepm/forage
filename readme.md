@@ -62,7 +62,7 @@ Ensure IPFS is running locally with pubsub enabled:
 ```shell
 npm run ipfs
 
-# or 
+# or
 ipfs daemon --enable-pubsub-experiment
 ```
 
@@ -134,6 +134,14 @@ List all the packages and versions that forest has cached locally:
 forest packages
 ```
 
+### Import all packages
+
+Search the current directory for package-lock.json files and import all packages listed:
+
+```shell
+forest preload
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
@@ -148,15 +156,16 @@ forest packages
 - ~watch mode~
 - ~export/import~
 - ~CLI~
+- ~check for new versions from upstream~
+- ~cache downloaded package metadata~
+- ~store package metadata in a database~
+- ~preload function - search for locally installed packages and load them into ipfs~
 - add goals of the project to readme
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
-- cache downloaded package metadata
-- store package metadata in a database
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
 - lots more error handling
 - show how much bandwidth saved overall (keep a record of ever request proxied)
-- check for new versions from upstream (on demand or periodically)
 - search
 - keep a list of ipfs peers who republish packages that fail integrity checks, block after X fails
 - cleanup command that removes old packages from local IPFS (keep CID in db incase needed later)
@@ -165,7 +174,6 @@ forest packages
 - announce/share full package list periodically
 - support for proxying go modules
 - test with yarn + proxy setup instructions for yarn (currently broken)
-- preload function - search for locally installed packages and load them into ipfs (republish does this for a single package-lock.json)
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
 - option to start app on boot (https://www.electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows)
