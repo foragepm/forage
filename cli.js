@@ -30,4 +30,7 @@ yargs(hideBin(process.argv))
   .command('preload', 'import all package-lock.json files', () => {}, (argv) => {
     require('./lib/commands/preload')
   })
+  .command('update', 'check for updates to all cached packages', () => {}, (argv) => {
+    require('./lib/commands/update')
+  })
   .argv

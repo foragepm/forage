@@ -151,6 +151,14 @@ Search the current directory for package-lock.json files and import all packages
 forest preload
 ```
 
+### Update all packages
+
+Check for updates to all cached packages and download any missing ones:
+
+```shell
+forest update
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
@@ -170,6 +178,7 @@ forest preload
 - ~store package metadata in a database~
 - ~preload function - search for locally installed packages and load them into ipfs~
 - ~add goals of the project to readme~
+- ~command to check for updates to all cached packages~
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
