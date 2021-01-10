@@ -21,7 +21,7 @@ Currently npm is the only supported package manager but support for others like 
 - No extra infrastructure required
 - Get people dogfooding IPFS as part of their regular workflows
 
-## Features (coming soon)
+## Features
 
 Headless CLI - run forest as a daemon, ideal for usage on a server or in CI
 
