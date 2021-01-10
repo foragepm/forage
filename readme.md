@@ -179,9 +179,10 @@ forest update
 - ~preload function - search for locally installed packages and load them into ipfs~
 - ~add goals of the project to readme~
 - ~command to check for updates to all cached packages~
+- ~use https://github.com/Level/party to allow cli usage whilst server is running~
+- verify command to check stored cids
 - republish command should use `async.queue`
 - import command should use `async.queue`
-- use https://github.com/Level/party to allow cli usage whilst server is running
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
