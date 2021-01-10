@@ -33,4 +33,7 @@ yargs(hideBin(process.argv))
   .command('update', 'check for updates to all cached packages', () => {}, (argv) => {
     require('./lib/commands/update')
   })
+  .command('verify', 'validate cids of all existing cached packages', () => {}, (argv) => {
+    require('./lib/commands/verify')
+  })
   .argv

@@ -159,6 +159,14 @@ Check for updates to all cached packages and download any missing ones:
 forest update
 ```
 
+### Verify all packages
+
+Validate the CID of each cached package version:
+
+```shell
+forest verify
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
@@ -180,7 +188,7 @@ forest update
 - ~add goals of the project to readme~
 - ~command to check for updates to all cached packages~
 - ~use https://github.com/Level/party to allow cli usage whilst server is running~
-- verify command to check stored cids
+- ~verify command to check stored cids~
 - republish command should use `async.queue`
 - import command should use `async.queue`
 - record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
