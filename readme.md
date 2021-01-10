@@ -25,10 +25,6 @@ Currently npm is the only supported package manager but support for others like 
 
 Headless CLI - run forest as a daemon, ideal for usage on a server or in CI
 
-Package index UI - see which packages have been proxied, cached and stored on IPFS
-
-Local package search - search through locally available packages
-
 Republish local packages - republish all packages and their dependencies found in local metadata for resilient offline usage
 
 Seeding mode - Republish copies of all packages announced on the IPFS public DHT
@@ -36,6 +32,12 @@ Seeding mode - Republish copies of all packages announced on the IPFS public DHT
 Export/import - easily share multiple packages cached instantly with other instances via IPFS
 
 Watch mode - watch for new package releases and seed each one to IPFS
+
+## Coming soon
+
+Package index UI - see which packages have been proxied, cached and stored on IPFS
+
+Local package search - search through locally available packages
 
 HTTP API - control forest over http
 
@@ -216,6 +218,7 @@ forest verify
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
 - republish doesn't work with git dependencies
+- forest blocks `npm publish`
 
 ## IPFS notes
 
