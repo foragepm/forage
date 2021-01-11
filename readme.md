@@ -198,7 +198,6 @@ forest verify
 - package list UI
 - lots more error handling
 - show how much bandwidth saved overall (keep a record of ever request proxied)
-- search
 - keep a list of ipfs peers who republish packages that fail integrity checks, block after X fails
 - cleanup command that removes old packages from local IPFS (keep CID in db incase needed later)
 - package search
