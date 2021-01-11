@@ -191,9 +191,9 @@ forest verify
 - ~command to check for updates to all cached packages~
 - ~use https://github.com/Level/party to allow cli usage whilst server is running~
 - ~verify command to check stored cids~
+- ~record all announced package cids~
 - republish command should use `async.queue`
 - import command should use `async.queue`
-- record all announced package cids without downloading/verifying (for downloading via ipfs later if requested)
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
 - lots more error handling
@@ -217,7 +217,6 @@ forest verify
 - breaks if IPFS isn't running
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
-- republish doesn't work with git dependencies
 - forest blocks `npm publish`
 
 ## IPFS notes
