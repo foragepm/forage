@@ -36,6 +36,7 @@ async function startServer() {
     forest.watchKnown();
     started = true
     updateStatusMenu()
+    tray.setImage(path.join(assetsDirectory, 'forestTemplate.png'))
   }
 }
 
@@ -45,6 +46,7 @@ function stopServer() {
   forest.unsubscribePackageAnnoucements()
   started = false
   updateStatusMenu()
+  tray.setImage(path.join(assetsDirectory, 'forestoffTemplate.png'))
 }
 
 function updateStatusMenu() {
@@ -65,7 +67,7 @@ const contextMenu = Menu.buildFromTemplate([
 ])
 
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'forestTemplate.png'))
+  tray = new Tray(path.join(assetsDirectory, 'forestoffTemplate.png'))
 
   tray.setToolTip('Forest Package Manager Proxy')
   tray.setContextMenu(contextMenu)
