@@ -62,6 +62,10 @@ const contextMenu = Menu.buildFromTemplate([
   { label: 'Port: 8005', type: 'normal', enabled: false, },
   { id: 'start', label: 'Start', type: 'normal', click: startServer },
   { id: 'stop', label: 'Stop', type: 'normal', click: stopServer },
+  { label: 'Settings', submenu: [
+    { id: 'config', label: 'Set config', type: 'normal', click: forest.setConfig },
+    { id: 'unconfig', label: 'Remove config', type: 'normal', click: forest.removeConfig }
+  ] },
   { label: 'About', type: 'normal', role: 'about' },
   { label: 'Quit', type: 'normal', role: 'quit', accelerator: 'Command+Q' } // TODO no accelerator on windows/linux
 ])
