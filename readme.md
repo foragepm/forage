@@ -192,7 +192,7 @@ forest verify
 - ~use https://github.com/Level/party to allow cli usage whilst server is running~
 - ~verify command to check stored cids~
 - ~record all announced package cids~
-- republish command should use `async.queue`
+- ~republish command should use `async.queue`~
 - import command should use `async.queue`
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
