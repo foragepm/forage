@@ -208,6 +208,7 @@ forest verify
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
 - option to start app on boot (https://www.electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows)
+- allow opening the electron app from the CLI
 
 ## BUGS
 
