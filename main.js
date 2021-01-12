@@ -1,3 +1,4 @@
+const os = require('os')
 const {app, Menu, Tray} = require('electron')
 const path = require('path')
 const server = require('./lib/server')
@@ -18,8 +19,10 @@ let tray = undefined
 let win = undefined
 let started = false
 
-// Don't show the app in the doc
-app.dock.hide()
+if(os.platform() === 'darwin'){
+  // Don't show the app in the doc
+  app.dock.hide()
+}
 
 app.on('ready', () => {
   console.log('ready')
