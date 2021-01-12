@@ -193,7 +193,7 @@ forest verify
 - ~verify command to check stored cids~
 - ~record all announced package cids~
 - ~republish command should use `async.queue`~
-- import command should use `async.queue`
+- ~import command should use `async.queue`~
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
 - lots more error handling
