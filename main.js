@@ -70,6 +70,7 @@ const contextMenu = Menu.buildFromTemplate([
     { id: 'unconfig', label: 'Remove proxy config', type: 'normal', click: forest.removeConfig }
   ] },
   { label: 'About', type: 'normal', role: 'about' },
+  { label: 'Help', type: 'normal', click: openGitHub },
   { label: 'Quit', type: 'normal', role: 'quit', accelerator: 'Command+Q' } // TODO no accelerator on windows/linux
 ])
 
@@ -78,6 +79,10 @@ const createTray = () => {
 
   tray.setToolTip('Forest Package Manager Proxy')
   tray.setContextMenu(contextMenu)
+}
+
+function openGitHub() {
+  shell.openExternal('https://github.com/forestpm/forest')
 }
 
 // function createWindow () {
