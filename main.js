@@ -1,5 +1,5 @@
 const os = require('os')
-const {app, Menu, Tray} = require('electron')
+const {app, Menu, Tray, shell} = require('electron')
 const path = require('path')
 const server = require('./lib/server')
 const forest = require('./lib/forest')
@@ -8,9 +8,9 @@ const assetsDirectory = path.join(__dirname, 'assets')
 
 app.setAboutPanelOptions({
   applicationName: 'Forest',
-  applicationVersion: '0.0.1',
+  applicationVersion: forest.version(),
   copyright: 'Andrew Nesbitt',
-  version: '0.0.1',
+  version: forest.version(),
   website: 'http://forest.pm',
   iconPath: path.join(assetsDirectory, 'forest.png')
 })
