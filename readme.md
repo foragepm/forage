@@ -204,6 +204,8 @@ forest verify
 - count how many nodes have a package
 - announce/share full package list periodically
 - support for proxying go modules
+- support alternative registries
+- allow configuring a different port to run the proxy server on
 - test with yarn + proxy setup instructions for yarn (currently broken)
 - http api
 - configure trusted forest instances to connect to on startup (ipfs peer id)
