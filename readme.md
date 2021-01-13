@@ -219,9 +219,9 @@ forest verify
 - breaks if IPFS isn't running
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
-- forest blocks `npm publish`
 
 ## IPFS notes
 
 - starting ipfs desktop with pubsub enabled is hard
 - pubsub can only be enabled with flag, not in config
+- adding js-ipfs as a dependency adds 500 extra dependencies
