@@ -3,3 +3,4 @@ Dockerfile
 .dockerignore
 forest.lock
 main.js
+dist
