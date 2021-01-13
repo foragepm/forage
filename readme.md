@@ -48,7 +48,7 @@ Javascript API - integrate forest into other javascript applications
 Build from source on mac:
 
 ```shell
-git clone http://github.com/forestpm/forest
+git clone https://github.com/forestpm/forest.git
 cd forest
 npm install
 ```
