@@ -3,37 +3,37 @@ const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
 yargs(hideBin(process.argv))
-  .command(['server', '$0'], 'run the forest server', () => {}, (argv) => {
+  .command(['server'], 'start the forest proxy server', () => {}, (argv) => {
     require('./lib/commands/server')
   })
-  .command('seed', 'download any packages republished to IPFS', () => {}, (argv) => {
+  .command('seed', 'reseed any packages announced on IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')
   })
-  .command('import', 'load packages in forest.lock from IPFS', () => {}, (argv) => {
+  .command('import', 'load packages listed in forest.lock from IPFS', () => {}, (argv) => {
     require('./lib/commands/import')
   })
-  .command('republish', 'add local packages to IPFS', () => {}, (argv) => {
+  .command('republish', 'add local packages to IPFS and write to forest.lock', () => {}, (argv) => {
     require('./lib/commands/republish')
   })
-  .command('watch', 'watch for newly published packages', () => {}, (argv) => {
+  .command('watch', 'watch for new packages published upstream', () => {}, (argv) => {
     require('./lib/commands/watch')
   })
-  .command('packages', 'list all packages', () => {}, (argv) => {
+  .command('packages', 'list all cached packages', () => {}, (argv) => {
     require('./lib/commands/packages')
   })
-  .command('config', 'configure package managers', () => {}, (argv) => {
+  .command('config', 'set package managers proxy config', () => {}, (argv) => {
     require('./lib/commands/config')
   })
-  .command('unconfig', 'remove package managers config', () => {}, (argv) => {
+  .command('unconfig', 'remove package managers proxy config', () => {}, (argv) => {
     require('./lib/commands/unconfig')
   })
-  .command('preload', 'import all package-lock.json files', () => {}, (argv) => {
+  .command('preload', 'import packages from all package-lock.json files', () => {}, (argv) => {
     require('./lib/commands/preload')
   })
   .command('update', 'check for updates to all cached packages', () => {}, (argv) => {
     require('./lib/commands/update')
   })
-  .command('verify', 'validate cids of all existing cached packages', () => {}, (argv) => {
+  .command('verify', 'validate cids of all cached packages', () => {}, (argv) => {
     require('./lib/commands/verify')
   })
   .command('reset', 'empty the forest database', () => {}, (argv) => {
