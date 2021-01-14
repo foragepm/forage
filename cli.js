@@ -36,4 +36,7 @@ yargs(hideBin(process.argv))
   .command('verify', 'validate cids of all existing cached packages', () => {}, (argv) => {
     require('./lib/commands/verify')
   })
+  .command('reset', 'empty the forest database', () => {}, (argv) => {
+    require('./lib/commands/reset')
+  })
   .argv

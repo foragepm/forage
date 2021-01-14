@@ -169,6 +169,14 @@ Validate the CID of each cached package version:
 forest verify
 ```
 
+### Reset forest
+
+Empty the forest database and remove all cached packages:
+
+```shell
+forest reset
+```
+
 ## TODO
 
 - ~tray menu (start, stop, about etc)~
