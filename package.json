@@ -2,7 +2,7 @@
   "name": "forestpm",
   "description": "An IPFS-backed package manager proxy cache",
   "main": "main.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Andrew Nesbitt",
   "bin": {
     "forest": "cli.js"
