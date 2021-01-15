@@ -2,6 +2,8 @@
 
 An IPFS-backed package manager proxy cache, packaged up as an electron menu bar app.
 
+⚠️ This project is early development and some things may not work and there will be frequent breaking changes ⚠️
+
 ## How it works
 
 Forest proxies package manager http requests and caches requested packages onto IPFS then announces the CID of newly cached packages on the IPFS public DHT.
