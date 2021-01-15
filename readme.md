@@ -2,7 +2,7 @@
 
 An IPFS-backed package manager proxy cache, packaged up as an electron menu bar app.
 
-⚠️ This project is early development and some things may not work and there will be frequent breaking changes ⚠️
+⚠️ This project is early development, things may not work and there will be frequent breaking changes ⚠️
 
 ## How it works
 
