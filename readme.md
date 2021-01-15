@@ -115,7 +115,7 @@ You can help seed packages without running a proxy:
 forest seed
 ```
 
-### watch
+### Watch
 
 You can watch for all new packages and publish them to IPFS:
 

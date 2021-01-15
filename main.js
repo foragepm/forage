@@ -15,9 +15,9 @@ app.setAboutPanelOptions({
   iconPath: path.join(assetsDirectory, 'forest.png')
 })
 
-let tray = undefined
-let win = undefined
-let started = false
+var tray = undefined
+var win = undefined
+var started = false
 
 if(os.platform() === 'darwin'){
   // Don't show the app in the doc
