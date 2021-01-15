@@ -205,6 +205,7 @@ forest reset
 - ~republish command should use `async.queue`~
 - ~import command should use `async.queue`~
 - store file sizes of tarballs in db
+- tests!
 - start IPFS (with pubsub experiment and init) if there's not already one running on startup
 - package list UI
 - lots more error handling
