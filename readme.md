@@ -232,6 +232,7 @@ forest reset
 - breaks if IPFS isn't running
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
+- changes-stream doesn't handle being disconnected gracefully
 
 ## IPFS notes
 
