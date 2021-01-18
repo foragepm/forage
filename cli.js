@@ -39,4 +39,7 @@ yargs(hideBin(process.argv))
   .command('reset', 'empty the forest database', () => {}, (argv) => {
     require('./lib/commands/reset')
   })
+  .command('sizes', 'calculate sizes of tarballs', () => {}, (argv) => {
+    require('./lib/commands/sizes')
+  })
   .argv
