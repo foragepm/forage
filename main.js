@@ -26,6 +26,7 @@ if(os.platform() === 'darwin'){
 
 app.on('ready', () => {
   console.log('ready')
+  forest.connectDB()
   createTray()
   startServer()
 })
