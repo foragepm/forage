@@ -70,15 +70,6 @@ npm config set strict-ssl false
 npm run unconfig
 ```
 
-Ensure IPFS is running locally with pubsub enabled:
-
-```shell
-npm run ipfs
-
-# or
-ipfs daemon --enable-pubsub-experiment
-```
-
 Start the electon app:
 
 ```shell
@@ -229,7 +220,6 @@ forest reset
 
 - broken: node-gyp http requests not proxied (node-sass install)
 - broken: electron-builder - requests incorrectly proxied
-- breaks if IPFS isn't running
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
 - changes-stream doesn't handle being disconnected gracefully

@@ -19,7 +19,6 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
-    "ipfs": "ipfs daemon --enable-pubsub-experiment",
     "config": "node cli.js config",
     "unconfig": "node cli.js unconfig"
   },
