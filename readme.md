@@ -215,6 +215,7 @@ forest reset
 - option to start app on boot (https://www.electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows)
 - allow opening the electron app from the CLI
 - work as well as possible when offline (handle dns errors gracefully for example)
+- allow customisation of ipfs options (bin path, port, .ipfs dir etc) 
 
 ## BUGS
 
