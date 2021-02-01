@@ -45,7 +45,4 @@ yargs(hideBin(process.argv))
   .command('sizes', 'calculate sizes of tarballs', () => {}, (argv) => {
     require('./lib/commands/sizes')
   })
-  .command('go', 'go proxy server', () => {}, (argv) => {
-    require('./lib/commands/go')
-  })
   .argv
