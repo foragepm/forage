@@ -56,16 +56,18 @@
     function packageToString({ name, version }) {
       return `${name}@${version}`
     }
-
-    // lo:  45 (-)
-    // mid: 97 (a)
-    // hi: 122 (z)
-    // foo => [102, 111, 111] => [57, 66, 66] => []
-    // aa => 10, 10
-    // aaa => 11, 10
-    // aaaa => 11, 11
-    // aaaaaa => 11.1, 11.1
-    // xyxyxy
+  
+    // Convert a package name string to x,y coords, such that similar names huddle together.
+    // Initial impl scales the first 2 chars ascii code points to 0 to 9 and maps them to the
+    // most significan digit of the x and y postions.
+    //
+    // "ab" => [a] [b] => [1] [2] => {x: 10%, y: 20%}
+    //
+    // then we repeat for the units colum, and so on down the significance.
+    //
+    // For example, with the scaling fudged for illustrative purpose:
+    // "abxy" => [a,x] [b,y] => [1,8] [2,9] => {x: 18%, y: 29%}
+    // "abxycd" => [a,x,c] [b,y,d] => [1,8,3] [2,9,4] => {x: 18.3%, y: 29.4%}
     function packageToCoords(str) {
       if (str.startsWith('@')) {
         // trim @ from groups
@@ -85,6 +87,10 @@
       return `${tens}${units}.${rest.join('')}%`
     }
 
+    // lo:  45 (-)
+    // mid: 97 (a)
+    // hi: 122 (z)
+    // unless we force all to uppercase to reduce the source range...
     function remap(value, min = 45, max = 95, targetMin = 0, targetMax = 9) {
       return targetMin + ((value - min) / (max - min)) * (targetMax - targetMin);
     }
