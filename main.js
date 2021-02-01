@@ -67,8 +67,8 @@ const contextMenu = Menu.buildFromTemplate([
   { id: 'start', label: 'Start', type: 'normal', click: startServer },
   { id: 'stop', label: 'Stop', type: 'normal', click: stopServer },
   { label: 'Settings', submenu: [
-    { id: 'config', label: 'Apply proxy config', type: 'normal', click: forest.setConfig },
-    { id: 'unconfig', label: 'Remove proxy config', type: 'normal', click: forest.removeConfig }
+    { id: 'config', label: 'Apply proxy config', type: 'normal', click: forest.npm.setConfig },
+    { id: 'unconfig', label: 'Remove proxy config', type: 'normal', click: forest.npm.removeConfig }
   ] },
   { label: 'About', type: 'normal', role: 'about' },
   { label: 'Help', type: 'normal', click: openGitHub },
