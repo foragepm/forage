@@ -6,6 +6,9 @@ yargs(hideBin(process.argv))
   .command(['server', '$0'], 'start the forest proxy server', () => {}, (argv) => {
     require('./lib/commands/server')
   })
+  .command('browse', 'open the forest UI', () => {}, (argv) => {
+    require('./lib/commands/browse')
+  })
   .command('seed', 'reseed any packages announced on IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')
   })

@@ -107,6 +107,14 @@ Run just the http server directly in the command line:
 forest server
 ```
 
+### Browse
+
+Open the UI dashboard in your browser (http://localhost:8005/):
+
+```shell
+forest browse
+```
+
 ### Seed
 
 You can help seed packages without running a proxy:
