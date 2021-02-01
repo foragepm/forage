@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="courier">
+
+<head>
+  <meta charset="utf-8">
+  <title>Forest - Packages over IPFS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+  <style>
+    .night {
+      background-color: black;
+      color: white;
+      border-color: white;
+    }
+
+    .fade-in {
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 3;
+      animation-timing-function: ease-in;
+      animation-duration: 2s;
+      animation-fill-mode: both;
+      animation-direction: alternate;
+    }
+
+    @keyframes fadeInOpacity {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body style="height:100vh" class="pa0 ma0 night">
+  <header class="flex items-center ma4">
+    <h1 class="fw1 white avenir ma0">FOREST</h1>
+    <div class="flex-auto fw1 ml3">╪ ╪ ╪</div>
+    <button class="button br-100 bg-white w2 h2"></button>
+  </header>
+  <div class="b--white ba pa4 mh4">
+    <p>▶ An IPFS-backed package manager proxy cache</p>
+  </div>
+  <div id="app" class="ma4"></div>
+  <script type="module">
+    import { h, Component, render } from 'https://unpkg.com/preact@latest?module';
+    import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module';
+    import htm from 'https://unpkg.com/htm?module';
+
+    // Initialize htm with Preact
+    const html = htm.bind(h);
+
+    function packageToString({ name, version }) {
+      return `${name}@${version}`
+    }
+
+    // lo:  45 (-)
+    // mid: 97 (a)
+    // hi: 122 (z)
+    // foo => [102, 111, 111] => [57, 66, 66] => []
+    // aa => 10, 10
+    // aaa => 11, 10
+    // aaaa => 11, 11
+    // aaaaaa => 11.1, 11.1
+    // xyxyxy
+    function packageToCoords(str) {
+      if (str.startsWith('@')) {
+        // trim @ from groups
+        str = str.substring(1)
+      }
+      // take every other character
+      const xs = str.split('').filter((_, i) => !Boolean(i % 2))
+      const ys = str.split('').filter((_, i) => Boolean(i % 2))
+      const x = toProximalPercentString(xs)
+      const y = toProximalPercentString(ys)
+      return { x, y }
+    }
+
+    // whoa
+    function toProximalPercentString(charArr) {
+      const [tens = 0, units = 0, ...rest] = charArr.map(c => Math.floor(remap(c.toUpperCase().codePointAt())))
+      return `${tens}${units}.${rest.join('')}%`
+    }
+
+    function remap(value, min = 45, max = 95, targetMin = 0, targetMax = 9) {
+      return targetMin + ((value - min) / (max - min)) * (targetMax - targetMin);
+    }
+
+    function Tree({ name, version, index }) {
+      const pkgStr = packageToString({ name, version })
+      const { x, y } = packageToCoords(pkgStr)
+      return html`
+        <li style="position:absolute; left:${x}; top:${y}; animation-delay:${index * 20}ms" class="fade-in" key="${pkgStr}">
+          <a title="${pkgStr}" href="https://www.npmjs.com/package/${name}" class="link white">╪</a>
+        </li>
+      `
+    }
+
+    function App(props) {
+      const [pkgList, setPkgList] = useState([])
+      useEffect(async () => {
+        const res = await fetch('http://localhost:8005/~/api/packages').then(r => r.json())
+        setPkgList(res)
+      }, [])
+      return html`
+        <ul class="lh-copy list relative w100" style="height:500px">
+          ${pkgList.map((pkg, index) => html`
+            <${Tree} name=${pkg.name} version=${pkg.version} index=${index} />
+          `)}
+        </ul>
+      `;
+    }
+
+    render(html`<${App} name="World" />`, document.querySelector('#app'));
+  </script>
+</body>
+
+</html>
