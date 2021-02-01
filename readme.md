@@ -181,32 +181,6 @@ forest reset
 
 ## TODO
 
-- ~tray menu (start, stop, about etc)~
-- ~connect to IPFS on startup~
-- ~store package tarballs in ipfs~
-- ~announce stored packages on DHT (pubsub)~
-- ~listen for package announcements on DHT (pubsub)~
-- ~extract core proxy server as separate module~
-- ~download and verify announced package versions via IPFS~
-- ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
-- ~seeding mode~
-- ~watch mode~
-- ~export/import~
-- ~CLI~
-- ~check for new versions from upstream~
-- ~cache downloaded package metadata~
-- ~store package metadata in a database~
-- ~preload function - search for locally installed packages and load them into ipfs~
-- ~add goals of the project to readme~
-- ~command to check for updates to all cached packages~
-- ~use https://github.com/Level/party to allow cli usage whilst server is running~
-- ~verify command to check stored cids~
-- ~record all announced package cids~
-- ~republish command should use `async.queue`~
-- ~import command should use `async.queue`~
-- ~store file sizes of tarballs in db~
-- ~start IPFS (with pubsub experiment and init) if there's not already one running on startup~
-- ~support for proxying go modules~
 - tests!
 - package list UI
 - lots more error handling
@@ -233,9 +207,11 @@ forest reset
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
 - changes-stream doesn't handle being disconnected gracefully
+- doesn't properly handle go modules with capital letters in the name
 
 ## IPFS notes
 
 - starting ipfs desktop with pubsub enabled is hard
 - pubsub can only be enabled with flag, not in config
 - adding js-ipfs as a dependency adds 500 extra dependencies
+- ipfs pubsub in go-ipfs uses a lot of cpu
