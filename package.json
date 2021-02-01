@@ -37,6 +37,7 @@
     "level-party": "^4.0.0",
     "node-fetch": "^2.6.1",
     "node-stream-zip": "^1.12.0",
+    "open": "^7.4.0",
     "ssri": "^8.0.0",
     "stream-to-it": "^0.2.2",
     "tmp-promise": "^3.0.2",
