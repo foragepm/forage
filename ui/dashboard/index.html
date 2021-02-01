@@ -53,10 +53,19 @@
     // Initialize htm with Preact
     const html = htm.bind(h);
 
-    function packageToString({ name, version }) {
-      return `${name}@${version}`
+    function packageToString({ manager, name, version }) {
+      return `${manager}:${name}@${version}`
     }
-  
+
+    function packageToUrl({ manager, name, version }) {
+      if(manager === 'npm'){
+        return `https://www.npmjs.com/package/${name}`
+      }
+      if(manager === 'go'){
+        return `http://${name}`
+      }
+    }
+
     // Convert a package name string to x,y coords, such that similar names huddle together.
     // Initial impl scales the first 2 chars ascii code points to 0 to 9 and maps them to the
     // most significan digit of the x and y postions.
@@ -95,12 +104,13 @@
       return targetMin + ((value - min) / (max - min)) * (targetMax - targetMin);
     }
 
-    function Tree({ name, version, index }) {
-      const pkgStr = packageToString({ name, version })
+    function Tree({ manager, name, version, index }) {
+      const pkgStr = packageToString({ manager, name, version })
+      const pkgUrl = packageToUrl({ manager, name, version })
       const { x, y } = packageToCoords(pkgStr)
       return html`
         <li style="position:absolute; left:${x}; top:${y}; animation-delay:${index * 20}ms" class="fade-in" key="${pkgStr}">
-          <a title="${pkgStr}" href="https://www.npmjs.com/package/${name}" class="link white">╪</a>
+          <a title="${pkgStr}" href="${pkgUrl}" class="link white">╪</a>
         </li>
       `
     }
@@ -114,7 +124,7 @@
       return html`
         <ul class="lh-copy list relative w100" style="height:500px">
           ${pkgList.map((pkg, index) => html`
-            <${Tree} name=${pkg.name} version=${pkg.version} index=${index} />
+            <${Tree} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
           `)}
         </ul>
       `;
