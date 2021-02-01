@@ -195,6 +195,14 @@ List peers sharing similar packages to you:
 forest peers
 ```
 
+### Export
+
+Export all packages as a single IPFS directory:
+
+```shell
+forest export
+```
+
 ## TODO
 
 - tests!
