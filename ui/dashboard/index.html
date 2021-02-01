@@ -77,14 +77,26 @@
     // For example, with the scaling fudged for illustrative purpose:
     // "abxy" => [a,x] [b,y] => [1,8] [2,9] => {x: 18%, y: 29%}
     // "abxycd" => [a,x,c] [b,y,d] => [1,8,3] [2,9,4] => {x: 18.3%, y: 29.4%}
-    function packageToCoords(str) {
-      if (str.startsWith('@')) {
-        // trim @ from groups
-        str = str.substring(1)
+    function packageToCoords({name, version, manager}) {
+      if (manager === 'npm') {
+        if (name.startsWith('@')) {
+          // trim @ from npm orgs and reverse the order
+          name = name.substring(1)
+        }
       }
+      if (manager === 'go') {
+        // trim v from go versions
+        version = version.substring(1)
+      }
+      // put the basename at the front to get most significant digits from package name. 
+      // "github.com/google/go-cmp" => go-cmpgoogle
+      // "@npm-org/left-pad" => leftpadnpm-org
+      name = name.split('/').slice(0,2).reverse().join('')
+      const key = `${name}${version}`
+      
       // take every other character
-      const xs = str.split('').filter((_, i) => !Boolean(i % 2))
-      const ys = str.split('').filter((_, i) => Boolean(i % 2))
+      const xs = key.split('').filter((_, i) => !Boolean(i % 2))
+      const ys = key.split('').filter((_, i) => Boolean(i % 2))
       const x = toProximalPercentString(xs)
       const y = toProximalPercentString(ys)
       return { x, y }
@@ -107,7 +119,7 @@
     function Tree({ manager, name, version, index }) {
       const pkgStr = packageToString({ manager, name, version })
       const pkgUrl = packageToUrl({ manager, name, version })
-      const { x, y } = packageToCoords(pkgStr)
+      const { x, y } = packageToCoords({name, version, manager})
       return html`
         <li style="position:absolute; left:${x}; top:${y}; animation-delay:${index * 20}ms" class="fade-in" key="${pkgStr}">
           <a title="${pkgStr}" href="${pkgUrl}" class="link white">╪</a>
