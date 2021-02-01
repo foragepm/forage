@@ -4,6 +4,11 @@ An IPFS-backed package manager proxy cache, packaged up as an electron menu bar 
 
 ⚠️ This project is early development, things may not work and there will be frequent breaking changes ⚠️
 
+## Supported package managers
+
+- npm (registry.npmjs.org)
+- go modules (proxy.golang.org)
+
 ## How it works
 
 Forest proxies package manager http requests and caches requested packages onto IPFS then announces the CID of newly cached packages on the IPFS public DHT.
@@ -13,8 +18,6 @@ Forest listens for announcements of packages being cached to IPFS and stores ann
 Forest trusts other instances but also verifies that the packages downloaded from IPFS match the original copies from the upstream registry.
 
 Package metadata is also cached locally so you can use your package manager whilst offline too.
-
-Currently npm is the only supported package manager but support for others like Go, Rubygems and Homebrew are planned for the future.
 
 ## Project goals
 
@@ -55,7 +58,7 @@ cd forest
 npm install
 ```
 
-Configure npm to use forest as a proxy:
+To configure npm to use forest as a proxy:
 
 ```shell
 npm run config
@@ -68,6 +71,12 @@ npm config set strict-ssl false
 
 # restore the defaults with
 npm run unconfig
+```
+
+To configure go modules to use forest as a proxy, set the following env var in your shell:
+
+```
+GOPROXY=http://localhost:8005
 ```
 
 Start the electon app:
@@ -172,31 +181,6 @@ forest reset
 
 ## TODO
 
-- ~tray menu (start, stop, about etc)~
-- ~connect to IPFS on startup~
-- ~store package tarballs in ipfs~
-- ~announce stored packages on DHT (pubsub)~
-- ~listen for package announcements on DHT (pubsub)~
-- ~extract core proxy server as separate module~
-- ~download and verify announced package versions via IPFS~
-- ~automatically downloaded new versions of announced package if already have one or more versions downloaded locally~
-- ~seeding mode~
-- ~watch mode~
-- ~export/import~
-- ~CLI~
-- ~check for new versions from upstream~
-- ~cache downloaded package metadata~
-- ~store package metadata in a database~
-- ~preload function - search for locally installed packages and load them into ipfs~
-- ~add goals of the project to readme~
-- ~command to check for updates to all cached packages~
-- ~use https://github.com/Level/party to allow cli usage whilst server is running~
-- ~verify command to check stored cids~
-- ~record all announced package cids~
-- ~republish command should use `async.queue`~
-- ~import command should use `async.queue`~
-- ~store file sizes of tarballs in db~
-- ~start IPFS (with pubsub experiment and init) if there's not already one running on startup~
 - tests!
 - package list UI
 - lots more error handling
@@ -206,7 +190,6 @@ forest reset
 - package search
 - count how many nodes have a package
 - announce/share full package list periodically
-- support for proxying go modules
 - support alternative registries
 - allow configuring a different port to run the proxy server on
 - test with yarn + proxy setup instructions for yarn (currently broken)
@@ -215,7 +198,7 @@ forest reset
 - option to start app on boot (https://www.electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows)
 - allow opening the electron app from the CLI
 - work as well as possible when offline (handle dns errors gracefully for example)
-- allow customisation of ipfs options (bin path, port, .ipfs dir etc) 
+- allow customisation of ipfs options (bin path, port, .ipfs dir etc)
 
 ## BUGS
 
@@ -224,9 +207,11 @@ forest reset
 - silently fails if something is already running on port 8005
 - yarn only tries to load https, ignoring config (https://github.com/yarnpkg/yarn/pull/7393)
 - changes-stream doesn't handle being disconnected gracefully
+- doesn't properly handle go modules with capital letters in the name
 
 ## IPFS notes
 
 - starting ipfs desktop with pubsub enabled is hard
 - pubsub can only be enabled with flag, not in config
 - adding js-ipfs as a dependency adds 500 extra dependencies
+- ipfs pubsub in go-ipfs uses a lot of cpu
