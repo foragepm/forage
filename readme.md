@@ -187,6 +187,14 @@ Empty the forest database and remove all cached packages:
 forest reset
 ```
 
+### List peers
+
+List peers sharing similar packages to you:
+
+```shell
+forest peers
+```
+
 ## TODO
 
 - tests!

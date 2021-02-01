@@ -45,4 +45,7 @@ yargs(hideBin(process.argv))
   .command('sizes', 'calculate sizes of tarballs', () => {}, (argv) => {
     require('./lib/commands/sizes')
   })
+  .command('peers', 'list peers sharing similar packages to you', () => {}, (argv) => {
+    require('./lib/commands/peers')
+  })
   .argv
