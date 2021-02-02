@@ -212,3 +212,7 @@ Find your IPFS peer ID that forest is using:
 ```shell
 forest id
 ```
+
+## Copyright
+
+[MIT License](LICENSE) © 2021 [Andrew Nesbitt](https://github.com/andrew).
