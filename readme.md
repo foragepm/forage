@@ -204,3 +204,11 @@ Export all packages as a single IPFS directory:
 ```shell
 forest export
 ```
+
+### ID
+
+Find your IPFS peer ID that forest is using:
+
+```shell
+forest id
+```

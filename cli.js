@@ -48,7 +48,10 @@ yargs(hideBin(process.argv))
   .command('peers', 'list peers sharing similar packages to you', () => {}, (argv) => {
     require('./lib/commands/peers')
   })
-  .command('export', 'Export all packages as a single IPFS directory', () => {}, (argv) => {
+  .command('export', 'export all packages as a single IPFS directory', () => {}, (argv) => {
     require('./lib/commands/export')
+  })
+  .command('id', 'find your IPFS peer ID', () => {}, (argv) => {
+    require('./lib/commands/id')
   })
   .argv
