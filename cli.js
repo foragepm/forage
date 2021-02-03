@@ -54,4 +54,7 @@ yargs(hideBin(process.argv))
   .command('id', 'find your IPFS peer ID', () => {}, (argv) => {
     require('./lib/commands/id')
   })
+  .command('search query', 'search packages by name', () => {}, (argv) => {
+    require('./lib/commands/search')(argv)
+  })
   .argv

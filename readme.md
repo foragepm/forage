@@ -157,6 +157,14 @@ List all the packages and versions that forest has cached locally:
 forest packages
 ```
 
+### Search packages
+
+Search packages by name, example:
+
+```shell
+forest search electron
+```
+
 ### Import all packages
 
 Search the current directory for package-lock.json files and import all packages listed:
