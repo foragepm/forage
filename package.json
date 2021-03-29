@@ -27,7 +27,7 @@
     "async": "^3.2.0",
     "env-paths": "^2.2.0",
     "fs-extra": "^8.1.0",
-    "go-ipfs": "^0.7.0",
+    "go-ipfs": "^0.8.0",
     "http-proxy": "^1.18.1",
     "ipfs-http-client": "^48.2.0",
     "ipfs-http-response": "^0.6.1",
