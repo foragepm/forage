@@ -1,22 +1,23 @@
 const os = require('os')
 const {app, Menu, Tray, shell} = require('electron')
 const path = require('path')
-const server = require('./lib/server')
+const createServer = require('./lib/server')
 const forest = require('./lib/forest')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
 app.setAboutPanelOptions({
   applicationName: 'Forest',
-  applicationVersion: forest.version(),
+  applicationVersion: forest.core.forestVersion(),
   copyright: 'Andrew Nesbitt',
-  version: forest.version(),
+  version: forest.core.forestVersion(),
   website: 'http://forest.pm',
   iconPath: path.join(assetsDirectory, 'forest.png')
 })
 
 var tray = undefined
 var win = undefined
+var db
 var started = false
 
 if(os.platform() === 'darwin'){
@@ -26,15 +27,16 @@ if(os.platform() === 'darwin'){
 
 app.on('ready', () => {
   console.log('ready')
-  forest.connectDB()
+  db = forest.connectDB()
   createTray()
-  startServer()
+  startServer(db)
 })
 
 async function startServer() {
-  var ipfsID = await forest.connectIPFS();
+  var ipfsID = await forest.connectIPFS(db);
   if (ipfsID) {
-    server.listen(8005);
+    server = await createServer(db)
+    server.listen(8005)
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
     forest.subscribePackageAnnoucements()
     forest.watchKnown();
@@ -47,7 +49,7 @@ async function startServer() {
 function stopServer() {
   console.log('stopping')
   server.close();
-  forest.unsubscribePackageAnnoucements()
+  forest.core.unsubscribePackageAnnoucements(forest.packageAnnoucementsTopic)
   started = false
   updateStatusMenu()
   tray.setImage(path.join(assetsDirectory, 'forestoffTemplate.png'))
