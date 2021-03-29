@@ -10,6 +10,10 @@ const forest = require('./lib/forest');
   version = '7.8.3'
   url = 'https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.8.3.tgz'
 
+  var cid = await forest.fetchAndAddtoIPFS(manager, name, version, url)
+
+  console.log('actual cid', cid)
+
   // > 1mb working npm after timeout
   // manager = 'npm'
   // name = '7zip-bin'
@@ -17,11 +21,11 @@ const forest = require('./lib/forest');
   // url = "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz"
 
   // go
-  // manager = 'go'
-  // name = 'github.com/stretchr/testify'
-  // version = 'v1.6.1'
-  // url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
-  //
+  manager = 'go'
+  name = 'github.com/stretchr/testify'
+  version = 'v1.6.1'
+  url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
+  
   var cid = await forest.fetchAndAddtoIPFS(manager, name, version, url)
 
   console.log('actual cid', cid)
