@@ -1,10 +1,14 @@
 # Forest
 
-An IPFS-backed package manager proxy cache, packaged up as an electron menu bar app.
+An IPFS-backed package manager proxy cache, packaged up as an electron menu bar app and command line interface..
 
 ⚠️ This project is early development, things may not work and there will be frequent breaking changes ⚠️
 
 If you'd like to contribute to the project, check out the existing issues, add your own feature requests or report bugs: https://github.com/forestpm/forest/issues
+
+[![Video Introduction to Forest on YouTube](https://img.youtube.com/vi/uNuPJHP2lfU/0.jpg)](https://www.youtube.com/watch?v=uNuPJHP2lfU)
+
+Want to learn more? Check out the [docs folder](docs/index.md) for all the details.
 
 ## Supported package managers
 
