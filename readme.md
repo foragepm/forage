@@ -8,7 +8,7 @@ If you'd like to contribute to the project, check out the existing issues, add y
 
 [![Video Introduction to Forest on YouTube](https://img.youtube.com/vi/uNuPJHP2lfU/0.jpg)](https://www.youtube.com/watch?v=uNuPJHP2lfU)
 
-Want to learn more? Check out the [docs folder](docs/index.md) for all the details.
+Want to learn more? Check out the [docs folder](docs/readme.md) for all the details.
 
 ## Supported package managers
 
