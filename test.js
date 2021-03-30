@@ -10,7 +10,7 @@ const forest = require('./lib/forest');
   version = '7.8.3'
   url = 'https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.8.3.tgz'
 
-  var cid = await forest.fetchAndAddtoIPFS(manager, name, version, url)
+  var cid = await forest.importPackage(manager, name, version, url)
 
   console.log('actual cid', cid)
 
@@ -26,7 +26,7 @@ const forest = require('./lib/forest');
   version = 'v1.6.1'
   url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
   
-  var cid = await forest.fetchAndAddtoIPFS(manager, name, version, url)
+  var cid = await forest.importPackage(manager, name, version, url)
 
   console.log('actual cid', cid)
 
