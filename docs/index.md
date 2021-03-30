@@ -45,7 +45,7 @@ Forest should not require any new pieces of centralised infrastructure, relying 
 A published draft of a v0.1 of the content addressed package management protocol specification
 
 A standardized package metadata format can enable the future development of projects such as:
-* a content addressable, public transparency log for all package managers, similar to the ]certificate transparency project](https://certificate.transparency.dev/)
+* a content addressable, public transparency log for all package managers, similar to the [certificate transparency project](https://certificate.transparency.dev/)
 * package maintainers could publish signed nfts of each release of their packages, enabling alternative sources of funding for open source
 
 ## Roadmap
