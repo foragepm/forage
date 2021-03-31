@@ -20,7 +20,8 @@
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "config": "node cli.js config",
-    "unconfig": "node cli.js unconfig"
+    "unconfig": "node cli.js unconfig",
+    "test": "mocha"
   },
   "dependencies": {
     "@npmcorp/changes-stream": "^3.1.1",
@@ -48,7 +49,8 @@
   },
   "devDependencies": {
     "electron": "^12.0.2",
-    "electron-builder": "^22.10.5"
+    "electron-builder": "^22.10.5",
+    "mocha": "^8.3.2"
   },
   "repository": {
     "type": "git",
