@@ -14,14 +14,13 @@
     }
   },
   "scripts": {
-    "test": "node cli.js packages",
+    "test": "mocha",
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "config": "node cli.js config",
-    "unconfig": "node cli.js unconfig",
-    "test": "mocha"
+    "unconfig": "node cli.js unconfig"
   },
   "dependencies": {
     "@npmcorp/changes-stream": "^3.1.1",
@@ -48,6 +47,8 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "electron": "^12.0.2",
     "electron-builder": "^22.10.5",
     "mocha": "^8.3.2"

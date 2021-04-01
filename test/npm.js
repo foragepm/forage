@@ -3,10 +3,10 @@ const forest = require('../lib/forest');
 
 describe('importPackage', async function() {
   it('should import npm packages larger than 1mb', async () => {
-    manager = 'npm'
-    name = '7zip-bin'
-    version = '5.0.3'
-    url = "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz"
+    var manager = 'npm'
+    var name = '7zip-bin'
+    var version = '5.0.3'
+    var url = "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz"
 
     var cid = await forest.npm.importPackage(db, manager, name, version, url)
 
@@ -14,10 +14,10 @@ describe('importPackage', async function() {
   });
 
   it('should import npm packages smaller than 1mb', async () => {
-      manager = 'npm'
-      name = '@babel/code-frame'
-      version = '7.8.3'
-      url = 'https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.8.3.tgz'
+    var manager = 'npm'
+    var name = '@babel/code-frame'
+    var version = '7.8.3'
+    var url = 'https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.8.3.tgz'
 
     var cid = await forest.npm.importPackage(db, manager, name, version, url)
 
