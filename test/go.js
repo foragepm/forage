@@ -1,6 +1,5 @@
 var assert = require('assert');
 const forest = require('../lib/forest');
-const createServer = require('../lib/server');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -85,14 +84,6 @@ describe('getLatestVersion', async function() {
 })
 
 describe('serverHandler', async function() {
-
-  let server
-
-  before(async () => {
-    server = await createServer(db)
-    server.listen(8005)
-  })
-
   it('respond to list requests', async () => {
     var name = 'github.com/stretchr/testify'
     var path = `/${name}/@v/list`
