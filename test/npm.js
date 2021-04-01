@@ -43,7 +43,11 @@ describe('getLatestVersion', async function() {
 
 describe('verify', async function() {
   it('should do the thing', async () => {
-
+    var name = '@babel/code-frame'
+    var version = '7.8.3'
+    var cid = 'bafkrgqdl3ay2mz2xwwiqrhsasioueqzmozkqmbxviewshbwlhbyph7o4iw53h24c4w4kiej5vxaec5zjl652ynxfexey3pjupnkjpi5j3wbnu'
+    var res = await forest.npm.verify(db, name, version, cid)
+    assert.equal(res, true)
   })
 })
 
