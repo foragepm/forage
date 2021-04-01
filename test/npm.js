@@ -2,14 +2,6 @@ var assert = require('assert');
 const forest = require('../lib/forest');
 
 describe('importPackage', async function() {
-
-  let db
-
-  before(async () => {
-    db = forest.connectDB()
-    await forest.connectIPFS(db)
-  })
-
   it('should import npm packages larger than 1mb', async () => {
     manager = 'npm'
     name = '7zip-bin'
