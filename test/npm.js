@@ -1,6 +1,11 @@
 var assert = require('assert');
 const forest = require('../lib/forest');
 
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let should = chai.should();
+chai.use(chaiHttp);
+
 describe('importPackage', async function() {
   it('should import npm packages larger than 1mb', async () => {
     var name = '7zip-bin'
@@ -52,7 +57,30 @@ describe('verify', async function() {
 })
 
 describe('serverHandler', async function() {
-  it('should do the thing', async () => {
+  it('respond to tarball requests', (done) => {
+    var name = '@babel/code-frame'
+    var version = '7.8.3'
+    var path = `/${name}/-/code-frame-${version}.tgz`
+    chai.request(server)
+            .get(path)
+            .set('user-agent', 'npm')
+            .end((err, res) => {
+                  chai.expect(err).to.not.exist;
+                  res.should.have.status(200);
+                  done()
+                })
+  })
 
+  it('respond to metadata requests', (done) => {
+    var name = '@babel/code-frame'
+    var path = `/${name}`
+    chai.request(server)
+            .get(path)
+            .set('user-agent', 'npm')
+            .end((err, res) => {
+                  chai.expect(err).to.not.exist;
+                  res.should.have.status(200);
+                  done()
+                })
   })
 })
