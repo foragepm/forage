@@ -1,1 +1,2 @@
 require: 'test/hooks.js'
+timeout: 5000
