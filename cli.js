@@ -57,4 +57,7 @@ yargs(hideBin(process.argv))
   .command('search query', 'search packages by name', () => {}, (argv) => {
     require('./lib/commands/search')(argv)
   })
+  .command('add manager name', 'add a package to forest', () => {}, (argv) => {
+    require('./lib/commands/add')(argv)
+  })
   .argv

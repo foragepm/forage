@@ -6,6 +6,14 @@ let chaiHttp = require('chai-http');
 let should = chai.should();
 chai.use(chaiHttp);
 
+describe('importLatest', async () => {
+  it('should import latest version of a package', async () => {
+    var name = '@babel/code-frame'
+    var res = await forest.npm.importLatest(db, name)
+    assert.equal(res, '7.12.13');
+  })
+})
+
 describe('importPackage', async function() {
   it('should import npm packages larger than 1mb', async () => {
     var name = '7zip-bin'

@@ -6,11 +6,19 @@ let chaiHttp = require('chai-http');
 let should = chai.should();
 chai.use(chaiHttp);
 
+describe('importLatest', async () => {
+  it('should import latest version of a package', async () => {
+    var name = 'github.com/stretchr/testify'
+    var res = await forest.go.importLatest(db, name)
+    assert.equal(res, 'v1.7.0');
+  })
+})
+
 describe('importPackage', async () => {
   it('should import go packages', async () => {
-    name = 'github.com/stretchr/testify'
-    version = 'v1.6.1'
-    url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
+    var name = 'github.com/stretchr/testify'
+    var version = 'v1.6.1'
+    var url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
 
     var pkg = await forest.go.importPackage(db, name, version, url)
 

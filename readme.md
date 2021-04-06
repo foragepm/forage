@@ -153,6 +153,15 @@ Read a forest.lock file and download+verify each package via IPFS:
 forest import
 ```
 
+### Add
+
+Add a package direct to forest by name:
+
+```shell
+forest add go github.com/libp2p/go-libp2p-peerstore
+forest add npm ipfs-http-client
+```
+
 ### List packages
 
 List all the packages and versions that forest has cached locally:
