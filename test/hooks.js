@@ -7,5 +7,9 @@ exports.mochaHooks = {
     await forest.connectIPFS(db)
     server = await createServer(db)
     server.listen(8005)
+  },
+  afterAll: async function(){
+    server.close();
+    await db.close()
   }
 };
