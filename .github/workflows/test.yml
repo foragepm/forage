@@ -13,7 +13,7 @@ jobs:
 
     services:
       ipfs:
-        image: ipfs/go-ipfs:latest
+        image: ipfs/go-ipfs:v0.8.0
         env:
           IPFS_PROFILE: server
         ports:
