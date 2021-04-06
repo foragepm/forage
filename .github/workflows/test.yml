@@ -14,7 +14,7 @@ jobs:
     services:
       ipfs:
         image: ipfs/go-ipfs:latest
-        environment:
+        env:
           - IPFS_PROFILE=server
         ports:
           - "5001:5001"
