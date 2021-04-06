@@ -61,7 +61,7 @@ Build from source on mac:
 ```shell
 git clone https://github.com/forestpm/forest.git
 cd forest
-npm install
+npm ci
 ```
 
 To configure npm to use forest as a proxy:
