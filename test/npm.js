@@ -10,7 +10,8 @@ describe('importLatest', async () => {
   it('should import latest version of a package', async () => {
     var name = '@babel/code-frame'
     var res = await forest.npm.importLatest(db, name)
-    assert.equal(res, '7.12.13');
+    assert.equal(res.version, '7.12.13');
+    assert.equal(res.cid, 'bafkreifv7lv2dsngentbpfdzuvzlbgujrj4olvg5a7qgzgbrrjenvqbdn4');
   })
 })
 

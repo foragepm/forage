@@ -10,7 +10,8 @@ describe('importLatest', async () => {
   it('should import latest version of a package', async () => {
     var name = 'github.com/stretchr/testify'
     var res = await forest.go.importLatest(db, name)
-    assert.equal(res, 'v1.7.0');
+    assert.equal(res.version, 'v1.7.0');
+    assert.equal(res.cid, 'bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq');
   })
 })
 
