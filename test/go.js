@@ -21,9 +21,7 @@ describe('importPackage', async () => {
     var version = 'v1.6.1'
     var url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
 
-    var pkg = await forest.go.importPackage(db, name, version, url)
-
-    var cid = pkg.cid.toString()
+    var cid = await forest.go.importPackage(db, name, version, url)
 
     assert.equal(cid, 'bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae');
   });
