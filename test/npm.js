@@ -11,7 +11,7 @@ describe('importLatest', async () => {
     var name = '@babel/code-frame'
     var res = await forest.npm.importLatest(db, name)
     assert.equal(res.version, '7.12.13');
-    assert.equal(res.cid, 'bafkreifv7lv2dsngentbpfdzuvzlbgujrj4olvg5a7qgzgbrrjenvqbdn4');
+    assert.equal(res.cid, 'bafkrgqa5lvbjwrbxm25eer655wiwhgek4yeibpczlwivkg3fmav6gak2guvgko5ho3vfw7y5tjo2vv53bzfkhfumoi5utanuvtrpkbqffzx6u');
   })
 })
 
