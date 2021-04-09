@@ -54,185 +54,63 @@ HTTP API - control forest over http
 
 Javascript API - integrate forest into other javascript applications
 
-## Setup
+## Installation
 
-Build from source on mac:
-
-```shell
-git clone https://github.com/forestpm/forest.git
-cd forest
-npm ci
-```
-
-To configure npm to use forest as a proxy:
-
-```shell
-npm run config
-
-# or manually set the following in your .npmrc
-npm config set proxy http://0.0.0.0:8005/
-npm config set https-proxy http://0.0.0.0:8005/
-npm config set registry http://registry.npmjs.org/
-npm config set strict-ssl false
-
-# restore the defaults with
-npm run unconfig
-```
-
-To configure go modules to use forest as a proxy, set the following env var in your shell:
+To install the command line app:
 
 ```
-GOPROXY=http://localhost:8005
+npm install -g forest
 ```
 
-Start the electon app:
-
-```shell
-npm start
-```
-
-or compile the electron app into `./dist`:
-
-```shell
-npm run pack
-```
-
-and link the command line interface:
-
-```shell
-npm link
-```
+To install the electron app, you'll currently need to build from source, follow the [development documentation](docs/development.md).
 
 ## Commands
 
-### Server
+```
+$ forest --help
+forest
 
-Run just the http server directly in the command line:
+start the forest proxy server
 
-```shell
-forest server
+Commands:
+  forest server            start the forest proxy server               [default]
+  forest browse            open the forest UI
+  forest seed              reseed any packages announced on IPFS
+  forest import            load packages listed in forest.lock from IPFS
+  forest republish         add local packages to IPFS and write to forest.lock
+  forest watch             watch for new packages published upstream
+  forest packages          list all cached packages
+  forest config            set package managers proxy config
+  forest unconfig          remove package managers proxy config
+  forest preload           import packages from all package-lock.json files
+  forest update            check for updates to all cached packages
+  forest verify            validate cids of all cached packages
+  forest reset             empty the forest database
+  forest sizes             calculate sizes of tarballs
+  forest peers             list peers sharing similar packages to you
+  forest export            export all packages as a single IPFS directory
+  forest id                find your IPFS peer ID
+  forest search query      search packages by name
+  forest add manager name  add a package to forest
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
 ```
 
-### Browse
+## Development
 
-Open the UI dashboard in your browser (http://localhost:8005/):
+Forest needs your help!  There are a few things you can do right now to help out:
 
-```shell
-forest browse
-```
+Read the [Development documentation](docs/development.md), [Code of Conduct](docs/code-of-conduct.md) and [Contributing Guidelines](docs/contributing.md).
 
-### Seed
-
-You can help seed packages without running a proxy:
-
-```shell
-forest seed
-```
-
-### Watch
-
-You can watch for all new packages and publish them to IPFS:
-
-```shell
-forest watch
-```
-
-### Republish
-
-Import all packages from a package-lock.json file and import and record in a forest.lock file:
-
-```shell
-forest republish
-```
-
-### Import
-
-Read a forest.lock file and download+verify each package via IPFS:
-
-```shell
-forest import
-```
-
-### Add
-
-Add a package direct to forest by name:
-
-```shell
-forest add go github.com/libp2p/go-libp2p-peerstore
-forest add npm ipfs-http-client
-```
-
-### List packages
-
-List all the packages and versions that forest has cached locally:
-
-```shell
-forest packages
-```
-
-### Search packages
-
-Search packages by name, example:
-
-```shell
-forest search electron
-```
-
-### Import all packages
-
-Search the current directory for package-lock.json files and import all packages listed:
-
-```shell
-forest preload
-```
-
-### Update all packages
-
-Check for updates to all cached packages and download any missing ones:
-
-```shell
-forest update
-```
-
-### Verify all packages
-
-Validate the CID of each cached package version:
-
-```shell
-forest verify
-```
-
-### Reset forest
-
-Empty the forest database and remove all cached packages:
-
-```shell
-forest reset
-```
-
-### List peers
-
-List peers sharing similar packages to you:
-
-```shell
-forest peers
-```
-
-### Export
-
-Export all packages as a single IPFS directory:
-
-```shell
-forest export
-```
-
-### ID
-
-Find your IPFS peer ID that forest is using:
-
-```shell
-forest id
-```
+- **Check out existing issues** The [issue list](https://github.com/forestpm/forest/issues) has many that are marked as ['help wanted'](https://github.com/forestpm/forest/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22help+wanted%22) which make great starting points for development, many of which can be tackled with no prior IPFS knowledge
+- **Look at the [Roadmap](roadmap)** This are the high priority items being worked on right now
+- **Perform code reviews** More eyes will help
+  a. speed the project along
+  b. ensure quality, and
+  c. reduce possible future bugs.
+- **Add tests**. There can never be enough tests.
 
 ## Copyright
 
