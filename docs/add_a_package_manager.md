@@ -14,3 +14,4 @@ Note: This document isn't quite finished yet!
   - readLockfile
   - lockfileExists
   - lockfileName
+  - watchKnown
