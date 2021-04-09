@@ -3,13 +3,14 @@ const createServer = require('../lib/server');
 
 exports.mochaHooks = {
   beforeAll: async function(){
-    db = forest.connectDB()
+    db = forest.connectDB('forest-test')
     await forest.connectIPFS(db)
     server = await createServer(db)
     server.listen(8005)
   },
   afterAll: async function(){
     server.close();
+    await db.clear()
     await db.close()
   }
 };
