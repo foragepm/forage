@@ -49,10 +49,10 @@ Package metadata is also cached locally so you can use your package manager whil
 
 ## Installation
 
-To install the command line app:
+To install the command line [npm package](https://www.npmjs.com/package/forestpm):
 
 ```
-npm install -g forest
+npm install -g forestpm
 ```
 
 To install the electron app, you'll currently need to build from source, follow the [development documentation](docs/development.md).
