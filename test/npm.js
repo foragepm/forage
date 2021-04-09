@@ -93,3 +93,11 @@ describe('serverHandler', async function() {
                 })
   })
 })
+
+describe('updatePackage', async function() {
+  it('should do the thing', async () => {
+    var name = 'base62'
+    var res = await forest.npm.updatePackage(db, name)
+    assert.equal(res, true)
+  })
+})
