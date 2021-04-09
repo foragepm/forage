@@ -1,5 +1,5 @@
 var assert = require('assert');
-const forest = require('../lib/forest');
+const go = require('../lib/managers/go');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('importLatest', async () => {
   it('should import latest version of a package', async () => {
     var name = 'github.com/stretchr/testify'
-    var res = await forest.go.importLatest(db, name)
+    var res = await go.importLatest(db, name)
     assert.equal(res.version, 'v1.7.0');
     assert.equal(res.cid, 'bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq');
   })
@@ -21,7 +21,7 @@ describe('importPackage', async () => {
     var version = 'v1.6.1'
     var url = "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip"
 
-    var cid = await forest.go.importPackage(db, name, version, url)
+    var cid = await go.importPackage(db, name, version, url)
 
     assert.equal(cid, 'bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae');
   });
@@ -30,7 +30,7 @@ describe('importPackage', async () => {
 describe('parseGoSum', async function() {
   it('should parse a go.sum file', async () => {
     var filepath = "./test/fixtures/go.sum"
-    var pkgs = forest.go.parseGoSum(filepath)
+    var pkgs = go.parseGoSum(filepath)
     assert.equal(pkgs.length, 139)
     assert.deepEqual(pkgs[0], {
       manager: 'go',
@@ -45,7 +45,7 @@ describe('parseGoSum', async function() {
 describe('escape', async function() {
   it('should replace capital letters with !lower', async () => {
     var url = 'github.com/BurntSushi/toml'
-    var res = forest.go.escape(url)
+    var res = go.escape(url)
     assert.equal(res, 'github.com/!burnt!sushi/toml')
   })
 })
@@ -55,7 +55,7 @@ describe('verify', async function() {
     var name = 'github.com/stretchr/testify'
     var version = 'v1.6.1'
     var cid = 'bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae'
-    var res = await forest.go.verify(db, name, version, cid)
+    var res = await go.verify(db, name, version, cid)
     assert.equal(res, true)
   })
 })
@@ -63,7 +63,7 @@ describe('verify', async function() {
 describe('fetchVersionsList', async function() {
   it('should do the thing', async () => {
     var name = 'github.com/stretchr/testify'
-    var res = await forest.go.fetchVersionsList(db, name)
+    var res = await go.fetchVersionsList(db, name)
     assert.equal(res, `v1.3.0
 v1.7.0
 v1.5.1
@@ -85,7 +85,7 @@ v1.6.1
 describe('getLatestVersion', async function() {
   it('should fetch latest version for a module', async () => {
     var name = 'github.com/stretchr/testify'
-    var res = await forest.go.getLatestVersion(db, name)
+    var res = await go.getLatestVersion(db, name)
     assert.equal(res, 'v1.7.0')
   })
 })
