@@ -10,3 +10,7 @@ Note: This document isn't quite finished yet!
   - watchImporter
   - updatePackage
   - serverHandler
+  - isLockfilepath
+  - readLockfile
+  - lockfileExists
+  - lockfileName
