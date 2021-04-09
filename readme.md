@@ -98,7 +98,7 @@ Forest needs your help!  There are a few things you can do right now to help out
 Read the [Development documentation](docs/development.md), [Code of Conduct](docs/code-of-conduct.md) and [Contributing Guidelines](docs/contributing.md).
 
 - **Check out existing issues** The [issue list](https://github.com/forestpm/forest/issues) has many that are marked as ['help wanted'](https://github.com/forestpm/forest/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22help+wanted%22) which make great starting points for development, many of which can be tackled with no prior IPFS knowledge
-- **Look at the [Roadmap](docs/roadmap.md)** This are the high priority items being worked on right now
+- **Look at the [Roadmap](docs/roadmap.md)** These are the high priority items being worked on right now
 - **Perform code reviews** More eyes will help
   a. speed the project along
   b. ensure quality, and
