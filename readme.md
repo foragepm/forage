@@ -8,7 +8,7 @@ If you'd like to contribute to the project, check out the existing issues, add y
 
 [![Video Introduction to Forest on YouTube](https://img.youtube.com/vi/uNuPJHP2lfU/0.jpg)](https://www.youtube.com/watch?v=uNuPJHP2lfU)
 
-Want to learn more? Check out the [docs folder](docs/readme.md) for all the details.
+Want to learn more? Check out the [docs folder](docs) for all the details.
 
 ## Supported package managers
 
@@ -34,25 +34,18 @@ Package metadata is also cached locally so you can use your package manager whil
 
 ## Features
 
-Headless CLI - run forest as a daemon, ideal for usage on a server or in CI
-
-Republish local packages - republish all packages and their dependencies found in local metadata for resilient offline usage
-
-Seeding mode - Republish copies of all packages announced on the IPFS public DHT
-
-Export/import - easily share multiple packages cached instantly with other instances via IPFS
-
-Watch mode - watch for new package releases and seed each one to IPFS
+- **Headless CLI** - run forest as a daemon, ideal for usage on a server or in CI
+- **Republish local packages** - republish all packages and their dependencies found in local metadata for resilient offline usage
+- **Seeding mode** - Republish copies of all packages announced on the IPFS public DHT
+- **Export/import** - easily share multiple packages cached instantly with other instances via IPFS
+- **Watch mode** - watch for new package releases and seed each one to IPFS
 
 ## Coming soon
 
-Package index UI - see which packages have been proxied, cached and stored on IPFS
-
-Local package search - search through locally available packages
-
-HTTP API - control forest over http
-
-Javascript API - integrate forest into other javascript applications
+- **Package index UI** - see which packages have been proxied, cached and stored on IPFS
+- **Local package search** - search through locally available packages
+- **HTTP API** - control forest over http
+- **Javascript API** - integrate forest into other javascript applications
 
 ## Installation
 
