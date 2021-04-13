@@ -15,3 +15,5 @@ Note: This document isn't quite finished yet!
   - lockfileExists
   - lockfileName
   - watchKnown
+  - setConfig
+  - unsetConfig
