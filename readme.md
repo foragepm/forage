@@ -57,6 +57,24 @@ npm install -g forestpm
 
 To install the electron app, you'll currently need to build from source, follow the [development documentation](docs/development.md).
 
+To configure npm to use forest as a proxy:
+
+```shell
+forest config
+
+# or manually set the following in ~/.npmrc
+npm config set registry=http://0.0.0.0:8005/
+
+# restore the defaults with
+forest unconfig
+```
+
+To configure go modules to use forest as a proxy, set the following env var in your shell:
+
+```
+GOPROXY=http://localhost:8005
+```
+
 ## Commands
 
 ```
