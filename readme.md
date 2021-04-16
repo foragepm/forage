@@ -63,7 +63,10 @@ To configure npm to use forest as a proxy:
 forest config
 
 # or manually set the following in ~/.npmrc
-npm config set registry=http://0.0.0.0:8005/
+npm config set proxy http://0.0.0.0:8005/
+npm config set https-proxy http://0.0.0.0:8005/
+npm config set registry http://registry.npmjs.org/
+npm config set strict-ssl false
 
 # restore the defaults with
 forest unconfig
