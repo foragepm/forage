@@ -4,6 +4,16 @@ Forest is project that aspires to make package management content addressable, t
 
 The current implementation is an IPFS-backed package manager proxy server and cache, packaged up as an electron menu bar app and command line interface.
 
+## Index
+
+- [Contributing Guidelines](contributing.md)
+- [Code of Conduct](code-of-conduct.md)
+- [Roadmap](roadmap.md)
+- [Developer Guide](development.md)
+  - [Go modules](go.md)
+  - [npm](npm.md)
+  - [Adding another package manager](add-a-package-manager.md)
+
 ## Introduction
 
 [![Video Introduction to Forest on YouTube](https://img.youtube.com/vi/uNuPJHP2lfU/0.jpg)](https://www.youtube.com/watch?v=uNuPJHP2lfU)

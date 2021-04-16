@@ -1,4 +1,4 @@
-# Go modules in forest
+# Go modules support in forest
 
 When it comes to fetching go modules from IPFS, we can use the integrity hashes provided by sum.golang.org as a content address, but rather than the hashes providing a content address directly to an archive of source code (a zip in go's case), we get a metafile which contains a list of hashes for ever file contained in the archive. Let's look at an example:
 

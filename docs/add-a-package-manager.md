@@ -1,4 +1,4 @@
-# Adding support for a Package Manager to Forest
+# Adding support for another Package Manager to Forest
 
 Note: This document isn't quite finished yet!
 
