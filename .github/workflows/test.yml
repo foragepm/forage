@@ -8,20 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    services:
-      ipfs:
-        image: ipfs/go-ipfs:v0.8.0
-        env:
-          IPFS_PROFILE: server
-        ports:
-          - "4001:4001"
-          - "4003:4003"
-          - "8080:8080"
-          - "8081:8081"
-          - "5001:5001"
 
     steps:
     - uses: actions/checkout@v2
