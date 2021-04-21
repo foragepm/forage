@@ -1,5 +1,5 @@
 var assert = require('assert');
-const core = require('../lib/managers/core');
+const core = require('../lib/core');
 
 describe('guessCID', async function() {
   it('should return a cid for a sha2-256', async () => {
