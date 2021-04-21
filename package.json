@@ -2,7 +2,7 @@
   "name": "foragepm",
   "description": "An IPFS-backed package manager proxy cache",
   "main": "main.js",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "author": "Andrew Nesbitt",
   "bin": {
     "forage": "cli.js"
