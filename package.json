@@ -1,15 +1,15 @@
 {
-  "name": "forestpm",
+  "name": "foragepm",
   "description": "An IPFS-backed package manager proxy cache",
   "main": "main.js",
   "version": "0.0.11",
   "author": "Andrew Nesbitt",
   "bin": {
-    "forest": "cli.js"
+    "forage": "cli.js"
   },
   "build": {
     "mac": {
-      "icon": "./assets/forest.icns",
+      "icon": "./assets/forage.icns",
       "category": "your.app.category.type"
     }
   },
@@ -58,11 +58,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/forestpm/forest.git"
+    "url": "git+https://github.com/foragepm/forage.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/forestpm/forest/issues"
+    "url": "https://github.com/foragepm/forage/issues"
   },
-  "homepage": "https://github.com/forestpm/forest#readme"
+  "homepage": "https://github.com/foragepm/forage#readme"
 }

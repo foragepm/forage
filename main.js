@@ -2,17 +2,17 @@ const os = require('os')
 const {app, Menu, Tray, shell} = require('electron')
 const path = require('path')
 const createServer = require('./lib/server')
-const forest = require('./lib/forest')
+const forage = require('./lib/forage')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
 app.setAboutPanelOptions({
-  applicationName: 'Forest',
-  applicationVersion: forest.core.forestVersion(),
+  applicationName: 'Forage',
+  applicationVersion: forage.core.forageVersion(),
   copyright: 'Andrew Nesbitt',
-  version: forest.core.forestVersion(),
-  website: 'http://forest.pm',
-  iconPath: path.join(assetsDirectory, 'forest.png')
+  version: forage.core.forageVersion(),
+  website: 'http://forage.pm',
+  iconPath: path.join(assetsDirectory, 'forage.png')
 })
 
 var tray = undefined
@@ -27,32 +27,32 @@ if(os.platform() === 'darwin'){
 
 app.on('ready', () => {
   console.log('ready')
-  db = forest.connectDB()
+  db = forage.connectDB()
   createTray()
   startServer(db)
 })
 
 async function startServer() {
-  var ipfsID = await forest.connectIPFS(db);
+  var ipfsID = await forage.connectIPFS(db);
   if (ipfsID) {
     server = await createServer(db)
     server.listen(8005)
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
-    forest.subscribePackageAnnoucements()
-    forest.watchKnown();
+    forage.subscribePackageAnnoucements()
+    forage.watchKnown();
     started = true
     updateStatusMenu()
-    tray.setImage(path.join(assetsDirectory, 'forestTemplate.png'))
+    tray.setImage(path.join(assetsDirectory, 'forageTemplate.png'))
   }
 }
 
 function stopServer() {
   console.log('stopping')
   server.close();
-  forest.core.unsubscribePackageAnnoucements(forest.packageAnnoucementsTopic)
+  forage.core.unsubscribePackageAnnoucements(forage.packageAnnoucementsTopic)
   started = false
   updateStatusMenu()
-  tray.setImage(path.join(assetsDirectory, 'forestoffTemplate.png'))
+  tray.setImage(path.join(assetsDirectory, 'forageoffTemplate.png'))
 }
 
 function updateStatusMenu() {
@@ -69,8 +69,8 @@ const contextMenu = Menu.buildFromTemplate([
   { id: 'start', label: 'Start', type: 'normal', click: startServer },
   { id: 'stop', label: 'Stop', type: 'normal', click: stopServer },
   { label: 'Settings', submenu: [
-    { id: 'config', label: 'Apply proxy config', type: 'normal', click: forest.setConfig },
-    { id: 'unconfig', label: 'Remove proxy config', type: 'normal', click: forest.unsetConfig }
+    { id: 'config', label: 'Apply proxy config', type: 'normal', click: forage.setConfig },
+    { id: 'unconfig', label: 'Remove proxy config', type: 'normal', click: forage.unsetConfig }
   ] },
   { label: 'About', type: 'normal', role: 'about' },
   { label: 'Help', type: 'normal', click: openGitHub },
@@ -78,14 +78,14 @@ const contextMenu = Menu.buildFromTemplate([
 ])
 
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'forestoffTemplate.png'))
+  tray = new Tray(path.join(assetsDirectory, 'forageoffTemplate.png'))
 
-  tray.setToolTip('Forest Package Manager Proxy')
+  tray.setToolTip('Forage Package Manager Proxy')
   tray.setContextMenu(contextMenu)
 }
 
 function openGitHub() {
-  shell.openExternal('https://github.com/forestpm/forest')
+  shell.openExternal('https://github.com/foragepm/forage')
 }
 
 // function createWindow () {

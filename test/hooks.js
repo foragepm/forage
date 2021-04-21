@@ -1,10 +1,10 @@
-const forest = require('../lib/forest');
+const forage = require('../lib/forage');
 const createServer = require('../lib/server');
 
 exports.mochaHooks = {
   beforeAll: async function(){
-    db = forest.connectDB('forest-test')
-    await forest.connectIPFS(db)
+    db = forage.connectDB('forage-test')
+    await forage.connectIPFS(db)
     server = await createServer(db)
     server.listen(8006)
   },

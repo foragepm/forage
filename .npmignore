@@ -1,6 +1,6 @@
 assets
 Dockerfile
 .dockerignore
-forest.lock
+forage.lock
 main.js
 dist

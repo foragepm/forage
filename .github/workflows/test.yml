@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  DEBUG: forest,core,go,npm,ipfs-*
+  DEBUG: forage,core,go,npm,ipfs-*
 
 on:
   push:

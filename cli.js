@@ -3,19 +3,19 @@ const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 
 yargs(hideBin(process.argv))
-  .command(['server', '$0'], 'start the forest proxy server', () => {}, (argv) => {
+  .command(['server', '$0'], 'start the forage proxy server', () => {}, (argv) => {
     require('./lib/commands/server')
   })
-  .command('browse', 'open the forest UI', () => {}, (argv) => {
+  .command('browse', 'open the forage UI', () => {}, (argv) => {
     require('./lib/commands/browse')
   })
   .command('seed', 'reseed any packages announced on IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')
   })
-  .command('import', 'load packages listed in forest.lock from IPFS', () => {}, (argv) => {
+  .command('import', 'load packages listed in forage.lock from IPFS', () => {}, (argv) => {
     require('./lib/commands/import')
   })
-  .command('republish', 'add local packages to IPFS and write to forest.lock', () => {}, (argv) => {
+  .command('republish', 'add local packages to IPFS and write to forage.lock', () => {}, (argv) => {
     require('./lib/commands/republish')
   })
   .command('watch', 'watch for new packages published upstream', () => {}, (argv) => {
@@ -39,7 +39,7 @@ yargs(hideBin(process.argv))
   .command('verify', 'validate cids of all cached packages', () => {}, (argv) => {
     require('./lib/commands/verify')
   })
-  .command('reset', 'empty the forest database', () => {}, (argv) => {
+  .command('reset', 'empty the forage database', () => {}, (argv) => {
     require('./lib/commands/reset')
   })
   .command('sizes', 'calculate sizes of tarballs', () => {}, (argv) => {
@@ -57,7 +57,7 @@ yargs(hideBin(process.argv))
   .command('search query', 'search packages by name', () => {}, (argv) => {
     require('./lib/commands/search')(argv)
   })
-  .command('add manager name', 'add a package to forest', () => {}, (argv) => {
+  .command('add manager name', 'add a package to forage', () => {}, (argv) => {
     require('./lib/commands/add')(argv)
   })
   .argv

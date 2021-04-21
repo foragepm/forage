@@ -1,3 +1,3 @@
-# npm support in forest
+# npm support in forage
 
 Note: This document isn't quite finished yet!

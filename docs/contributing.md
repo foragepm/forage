@@ -1,6 +1,6 @@
-# Contributing to Forest
+# Contributing to Forage
 
-Want to contribute to Forest? That's great! Here are a couple of guidelines that will help you contribute. Before we get started: Please note that this project is released with a [Contributor Code of Conduct](code-of-conduct.md) to ensure that this project is a welcoming place for **everyone** to contribute to. By participating in this project you agree to abide by its terms.
+Want to contribute to Forage? That's great! Here are a couple of guidelines that will help you contribute. Before we get started: Please note that this project is released with a [Contributor Code of Conduct](code-of-conduct.md) to ensure that this project is a welcoming place for **everyone** to contribute to. By participating in this project you agree to abide by its terms.
 
 #### Overview
 
@@ -21,11 +21,11 @@ Want to contribute to Forest? That's great! Here are a couple of guidelines that
 
 ## Setup instructions
 
-You can find in-depth instructions to setup forest for local development in our [Development Documentation](development.md).
+You can find in-depth instructions to setup forage for local development in our [Development Documentation](development.md).
 
 ## Reporting a bug
 
-So you've found a bug, and want to help us fix it? Before filing a bug report, please double-check the bug hasn't already been reported. You can do so [on our issue tracker](https://github.com/forestpm/forest/issues?q=is%3Aissue+is%3Aopen+label%3Abug). If something hasn't been raised, you can go ahead and create a new issue with the following information:
+So you've found a bug, and want to help us fix it? Before filing a bug report, please double-check the bug hasn't already been reported. You can do so [on our issue tracker](https://github.com/foragepm/forage/issues?q=is%3Aissue+is%3Aopen+label%3Abug). If something hasn't been raised, you can go ahead and create a new issue with the following information:
 
 * On which page did the error happen?
 * How can the error be reproduced?
@@ -39,7 +39,7 @@ It goes without saying that you're welcome to help investigate further and/or fi
 
 ### Finding an issue to work on
 
-We've got a few open issues and are always glad to get help on that front. You can view the list of issues [here](https://github.com/forestpm/forest/issues). Most of the issues are labelled, so you can use the labels to get an idea of which issue could be a good fit for you. (Here's [a good article](https://medium.freecodecamp.com/finding-your-first-open-source-project-or-bug-to-work-on-1712f651e5ba) on how to find your first bug to fix).
+We've got a few open issues and are always glad to get help on that front. You can view the list of issues [here](https://github.com/foragepm/forage/issues). Most of the issues are labelled, so you can use the labels to get an idea of which issue could be a good fit for you. (Here's [a good article](https://medium.freecodecamp.com/finding-your-first-open-source-project-or-bug-to-work-on-1712f651e5ba) on how to find your first bug to fix).
 
 Before getting to work, take a look at the issue and at the conversation around it. Has someone already offered to work on the issue? Has someone been assigned to the issue? If so, you might want to check with them to see whether they're still actively working on it.
 

@@ -1,14 +1,14 @@
-# Developing Forest
+# Developing Forage
 
 Build from source on mac:
 
 ```shell
-git clone https://github.com/forestpm/forest.git
-cd forest
+git clone https://github.com/foragepm/forage.git
+cd forage
 npm ci
 ```
 
-To configure npm to use forest as a proxy:
+To configure npm to use forage as a proxy:
 
 ```shell
 npm run config
@@ -23,7 +23,7 @@ npm config set strict-ssl false
 npm run unconfig
 ```
 
-To configure go modules to use forest as a proxy, set the following env var in your shell:
+To configure go modules to use forage as a proxy, set the following env var in your shell:
 
 ```
 GOPROXY=http://localhost:8005

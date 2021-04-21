@@ -1,4 +1,4 @@
-# Go modules support in forest
+# Go modules support in forage
 
 When it comes to fetching go modules from IPFS, we can use the integrity hashes provided by sum.golang.org as a content address, but rather than the hashes providing a content address directly to an archive of source code (a zip in go's case), we get a metafile which contains a list of hashes for ever file contained in the archive. Let's look at an example:
 
@@ -34,7 +34,7 @@ The reason that the go modules designers decided to do this rather than just has
 
 If we assume that the almost all the individual files will be smaller than 1mb (max ipfs block size), then we can use the hashes in the metafile to be able to load each file directly from IPFS without needing to know it's CID up front.
 
-Similarly, when a go module if first added to IPFS by forest it needs to take a different approach than just `ipfs add module.zip`, instead we download the zip file from [proxy.golang.org](https://proxy.golang.org/github.com/libp2p/go-libp2p-blankhost/@v/v0.2.0.zip), extract the files and hash each one of them with sha2-256, then combine them together to create a metafile of that module, which we add to ipfs. We then also add each individual file to IPFS as well.
+Similarly, when a go module if first added to IPFS by forage it needs to take a different approach than just `ipfs add module.zip`, instead we download the zip file from [proxy.golang.org](https://proxy.golang.org/github.com/libp2p/go-libp2p-blankhost/@v/v0.2.0.zip), extract the files and hash each one of them with sha2-256, then combine them together to create a metafile of that module, which we add to ipfs. We then also add each individual file to IPFS as well.
 
 The zip file can then be reconstructed by other users over IPFS purely from the integrity hash of the metafile from sum.golang.org.
 
