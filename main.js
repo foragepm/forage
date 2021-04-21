@@ -40,6 +40,7 @@ async function startServer() {
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
     forage.subscribePackageAnnoucements()
     forage.watchKnown();
+    forage.periodicUpdate();
     started = true
     updateStatusMenu()
     tray.setImage(path.join(assetsDirectory, 'forageTemplate.png'))
