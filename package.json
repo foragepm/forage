@@ -18,7 +18,6 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps",
     "config": "node cli.js config",
     "unconfig": "node cli.js unconfig"
   },
