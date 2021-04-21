@@ -567,5 +567,6 @@
   "npm:yargs-unparser:2.0.0": "bafkrgqhosrjsad2qonlruz2g3hurmeizwhe3meswxgur76ljq4vuvvlyxeg25mnbp2djwbgxnz52shja2i5k7ce752dsv5na76p3y4bi45ztq",
   "npm:yargs:16.2.0": "bafkrgqaplgx35ugg2c7f7n7yyznef2i3l6tndzbrhh3idpjtiqxlnfupnwyesvimlmlfjpmibfq4fipkggdceqsfqr7aqzhuefdyjsvfz4tao",
   "npm:yauzl:2.10.0": "bafkreicvb4yygxl3mqahgcidhx5tgvyyew2mz7ms2mlss5erhg2qjqtmwe",
-  "npm:yocto-queue:0.1.0": "bafkrgqfnlewl5sonbhjh7iqrttvrqd6den6huf4cy3eiwm6jwg4e73p6mok2rf5qh3r3lgrc5fghiisgatfarn5rf6br4acvlkbnwoy6mnm5s"
+  "npm:yocto-queue:0.1.0": "bafkrgqfnlewl5sonbhjh7iqrttvrqd6den6huf4cy3eiwm6jwg4e73p6mok2rf5qh3r3lgrc5fghiisgatfarn5rf6br4acvlkbnwoy6mnm5s",
+  "npm:zipdigest:1.0.0": "bafkrgqefxj2ewjjjtgxwknz26zirglzcyoxxlsoex6m3rigc6uwqj53hxhbcps256ejvcurlahd5az63jpywg4nsowhe3ycc7wgvtboyvlego"
 }
