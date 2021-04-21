@@ -88,12 +88,12 @@
         // trim v from go versions
         version = version.substring(1)
       }
-      // put the basename at the front to get most significant digits from package name. 
+      // put the basename at the front to get most significant digits from package name.
       // "github.com/google/go-cmp" => go-cmpgoogle
       // "@npm-org/left-pad" => leftpadnpm-org
       name = name.split('/').slice(0,2).reverse().join('')
       const key = `${name}${version}`
-      
+
       // take every other character
       const xs = key.split('').filter((_, i) => !Boolean(i % 2))
       const ys = key.split('').filter((_, i) => Boolean(i % 2))
@@ -130,7 +130,7 @@
     function App(props) {
       const [pkgList, setPkgList] = useState([])
       useEffect(async () => {
-        const res = await fetch('http://localhost:8005/~/api/packages').then(r => r.json())
+        const res = await fetch('/~/api/packages').then(r => r.json())
         setPkgList(res)
       }, [])
       return html`
