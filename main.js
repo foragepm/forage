@@ -38,7 +38,6 @@ async function startServer() {
     server = createServer(db)
     server.listen(8005)
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
-    forage.subscribePackageAnnoucements()
     forage.watchKnown();
     forage.periodicUpdate();
     started = true
