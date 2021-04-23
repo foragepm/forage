@@ -35,7 +35,7 @@ app.on('ready', () => {
 async function startServer() {
   var ipfsID = await forage.connectIPFS(db);
   if (ipfsID) {
-    server = await createServer(db)
+    server = createServer(db)
     server.listen(8005)
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
     forage.subscribePackageAnnoucements()

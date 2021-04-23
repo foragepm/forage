@@ -5,7 +5,7 @@ exports.mochaHooks = {
   beforeAll: async function(){
     db = forage.connectDB('forage-test')
     ipfsID = await forage.connectIPFS(db)
-    server = await createServer(db)
+    server = createServer(db)
     server.listen(8006)
   },
   afterAll: async function(){

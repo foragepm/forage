@@ -97,6 +97,7 @@ describe('serverHandler', async function() {
 
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
 
                   res.should.have.status(200);
@@ -124,6 +125,7 @@ v1.6.1
     var path = `/${name}/@latest`
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
                   chai.expect(err).to.not.exist;
                   res.should.have.status(200);
@@ -138,6 +140,7 @@ v1.6.1
     var path = `/${name}/@v/${version}.info`
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
                   chai.expect(err).to.not.exist;
                   res.should.have.status(200);
@@ -152,6 +155,7 @@ v1.6.1
     var path = `/${name}/@v/${version}.mod`
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
                   chai.expect(err).to.not.exist;
                   res.should.have.status(200);
@@ -176,6 +180,7 @@ require (
     var path = `/${name}/@v/${version}.zip`
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
                   chai.expect(err).to.not.exist;
                   res.should.have.status(200);
@@ -189,6 +194,7 @@ require (
     var path = `/sumdb/sum.golang.org/lookup/${name}@${version}`
     chai.request(server)
             .get(path)
+            .set('user-agent', 'Go-http-client/1.1')
             .end((err, res) => {
                   chai.expect(err).to.not.exist;
                   res.should.have.status(200);
