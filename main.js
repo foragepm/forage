@@ -6,6 +6,10 @@ const forage = require('./lib/forage')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
+const log = require('electron-log');
+
+log.catchErrors()
+
 app.setAboutPanelOptions({
   applicationName: 'Forage',
   applicationVersion: forage.core.forageVersion(),
