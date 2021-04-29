@@ -414,6 +414,7 @@
   "npm:open:8.0.7": "bafkrgqfkrsdness5nfswql4telatiuc25djhmk7qatub6lnhkui5u3de2hhcwx5ea34zlnfwdwawv7a3q4qanen5zwwf5tt6uph2ht3vaw44m",
   "npm:p-cancelable:1.1.0": "bafkrgqftxxl4jztyz2nxk6owlbttxynik25lv5a4236bi22cwqc5wsdgaqgabgh5eg3zwh7cmsakmxhwd6a5he6kdszzhf4gumnvazrwwvmzo",
   "npm:p-defer:3.0.0": "bafkrgqf2azy3ggnnjzm7vu4mtzq53piqnlgyllgn3jola6w45evbpzscgw7vjgnbuq4zm3rf72duzs7rl52uorixsilpokwt43fk6t3hbxngg",
+  "npm:p-event:4.2.0": "bafkrgqbjo2wtumerlv4re6ht3pknnywstutpubaayhmvxbrogbaketzdkhwdcbf5qpskvj3khzahzyr6x3pgbheomxvxzx5cvaoektgwnqhk2",
   "npm:p-fifo:1.0.0": "bafkrgqbchibmk5ny6lnj3nbropu7vkhgvvkhyvldrvlf54jqwvarpzn42ue3jv6ckioe4uyorq4vmyim7dviklg43oweu5xifq5v5ye3g547q",
   "npm:p-finally:1.0.0": "bafkreihp7wcobhqtgbkcvbfcipy7jwrbu4aniwnyg5q6vsqwa4hld64iie",
   "npm:p-limit:3.1.0": "bafkrgqcnqonjztpqdmbunmmtozyvjwb4blyohhrrtv4ptktfqxk3ckabzy7hct7is6yzlb52dv5pr2oukndxnyo43stey4cxn3cu4v3tvoeuk",
