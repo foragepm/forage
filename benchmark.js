@@ -5,13 +5,13 @@ async function benchmark(desc, command, before, after) {
   if(before && before.length){
     execa.commandSync(before, {shell: true})
   }
-  var before = new Date
+  var start = new Date
 	const {stdout} = execa.commandSync(command, {shell: true});
-  var after = new Date
+  var end = new Date
   if(after && after.length){
     execa.commandSync(after, {shell: true})
   }
-  console.log(' -', after - before, 'ms')
+  console.log(' -', end - start, 'ms')
 }
 
 (async () => {
