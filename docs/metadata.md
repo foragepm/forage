@@ -1,6 +1,6 @@
-# Content Addressing Package Manager Metadata
+# Content Addressing Package Metadata
 
-Notes on storing+sharing package manager metadata over ipfs+pubsub in Forage
+Notes on storing+sharing package metadata over ipfs+pubsub in Forage
 
 We are storing http responses rather than abstract metadata and rebuilding http responses as that method should work across more package managers with less fragility if registry response formats change in future.
 
