@@ -2,28 +2,28 @@
 
 Notes on storing+sharing package manager metadata over ipfs+pubsub in Forage
 
+We are storing http responses rather than abstract metadata and rebuilding http responses as that method should work across more package managers with less fragility if registry response formats change in future.
+
 The main piece of work is to store individual http response bodies of proxied requests on ipfs so that they can be shared and exported
 
 This will require further trusting of other instances as metadata includes integrity hashes that are currently used to confirm if a package is the same as upstream. This could come in the form of signing, checking responses via comparing etags may also be possible.
 
 ## Data:
 
-for a package (manager, name):
-- list of version numbers
-- http response body for list of versions for proxy
-  - key: `pkg:${manager}:${name}`
+Existing data:
 
-
-for each version (manager, name, version):
-- cid for archive
-  - `cid:${manager}:${name}:${version}`
-- http response bodies for proxy
-  extras for go:
-    - `mod:go:${name}:${version}`
-    - `latest:go:${name}`
-    - `info:go:${name}:${version}`
-
-etag could possibly serve as a lightweight integrity check, depending on server implementation
+- for a package (manager, name):
+  - list of version numbers
+  - http response body for list of versions for proxy
+    - key: `pkg:${manager}:${name}`
+  - for each version (manager, name, version):
+    - cid for archive
+      - `cid:${manager}:${name}:${version}`
+    - http response bodies for proxy
+      extras for go:
+        - `mod:go:${name}:${version}`
+        - `latest:go:${name}`
+        - `info:go:${name}:${version}`
 
 Example json:
 
@@ -77,5 +77,6 @@ Example json:
 
 ## Things to consider
 
+- etag could possibly serve as a lightweight integrity check, depending on server implementation
 - not all versions of a package will be imported but all versions will be known
 - versions shouldn't change or be removed, only new ones added

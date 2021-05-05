@@ -12,6 +12,7 @@ The current implementation is an IPFS-backed package manager proxy server and ca
 - [Developer Guide](development.md)
   - [Go modules](go.md)
   - [npm](npm.md)
+  - [Metadata](metadata.md)
   - [Adding another package manager](add-a-package-manager.md)
 
 ## Introduction
