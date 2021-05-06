@@ -70,8 +70,8 @@ Example json:
 
 ## Steps to implement
 
-- save/read responses to ipfs and save cids to leveldb
-- construct json object representing a version
+- save/read responses to ipfs and save cids to leveldb ✅
+- construct json object representing a version ✅
 - construct json object representing whole package
 - introduce signing to data
 
