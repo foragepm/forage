@@ -101,3 +101,22 @@ describe('updatePackage', async function() {
     assert.equal(res, true)
   })
 })
+
+describe('versionAsJson', async function() {
+  it('should return a json representation of a version', async () => {
+    var name = 'base62'
+    var version = '2.0.1'
+    var json = await npm.versionAsJson(db, name, version)
+
+    assert.deepEqual(json, {
+      manager: 'npm',
+      registry: 'https://registry.npmjs.org/',
+      name: 'base62',
+      number: '2.0.1',
+      url: "https://registry.npmjs.org/base62/-/base62-2.0.1.tgz",
+      integrity: 'sha512-4t4WQK7mdbcWzqEBiq6tfo2qDCeIZGXvjifJZyxHIVcjQkZJxpFtu/pa2Va69OouCkg6izZ08hKnPxroeDyzew==',
+      cid: 'bafkrgqhc3yleblxgow3rntvbagfk5ll6rwvayj4imrs67drhzftsyrzbk4ruersjy2iw3o72llmvnoxu5ixausb2rm3hj4qsu47rv2dyhszxw',
+      responses: []
+    })
+  })
+})

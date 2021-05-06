@@ -203,3 +203,31 @@ require (
                 })
   })
 })
+
+describe('versionAsJson', async function() {
+  it('should return a json representation of a version', async () => {
+    var name = 'github.com/stretchr/testify'
+    var version = 'v1.7.0'
+    var json = await go.versionAsJson(db, name, version)
+
+    assert.deepEqual(json, {
+      manager: 'go',
+      registry: 'https://proxy.golang.org/',
+      name: 'github.com/stretchr/testify',
+      number: 'v1.7.0',
+      url: "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.zip",
+      integrity: 'nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=',
+      cid: 'bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq',
+      responses: [
+        {
+          "body": "bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm",
+          "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.info"
+        },
+        {
+          "body": "bafkreih77ali3ghgubyvnrcuug3osjkqt4yxp2lmcvkrnv7znnahttfdx4",
+          "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.mod"
+        }
+      ]
+    })
+  })
+})

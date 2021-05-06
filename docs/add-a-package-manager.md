@@ -18,3 +18,5 @@ Note: This document isn't quite finished yet!
   - setConfig
   - unsetConfig
   - setupWatcher
+  - matchesUseragent
+  - versionAsJson
