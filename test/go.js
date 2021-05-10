@@ -61,7 +61,7 @@ describe('verify', async function() {
 })
 
 describe('fetchVersionsList', async function() {
-  it('should do the thing', async () => {
+  it('load list of versions for a package', async () => {
     var name = 'github.com/stretchr/testify'
     var res = await go.fetchVersionsList(db, name)
     assert.equal(res, `v1.3.0

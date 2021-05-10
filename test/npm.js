@@ -38,7 +38,7 @@ describe('importPackage', async function() {
 })
 
 describe('getLatestVersion', async function() {
-  it('should do the thing', async () => {
+  it('get the latest version number from a change doc', async () => {
     var change = {time:
       {modified:"2019-03-06T15:06:44.330Z",
       created:"2012-02-24T18:04:05.588Z",
@@ -56,7 +56,7 @@ describe('getLatestVersion', async function() {
 })
 
 describe('verify', async function() {
-  it('should do the thing', async () => {
+  it('verify that a cid matches the integrity hash of a version', async () => {
     var name = '@babel/code-frame'
     var version = '7.8.3'
     var cid = 'bafkrgqdl3ay2mz2xwwiqrhsasioueqzmozkqmbxviewshbwlhbyph7o4iw53h24c4w4kiej5vxaec5zjl652ynxfexey3pjupnkjpi5j3wbnu'
@@ -95,7 +95,7 @@ describe('serverHandler', async function() {
 })
 
 describe('updatePackage', async function() {
-  it('should do the thing', async () => {
+  it('update a package', async () => {
     var name = 'base62'
     var res = await npm.updatePackage(db, name)
     assert.equal(res, true)
