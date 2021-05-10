@@ -218,20 +218,20 @@ describe('versionAsJson', async function() {
       url: "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.zip",
       integrity: 'nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=',
       cid: 'bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq',
-      responses: [
-        {
+      responses: {
+        info: {
           "body": "bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm",
           "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.info"
         },
-        {
+        mod: {
           "body": "bafkreih77ali3ghgubyvnrcuug3osjkqt4yxp2lmcvkrnv7znnahttfdx4",
           "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.mod"
         },
-        {
-          "body": "bafkreifous5wj7fiebsotzzcmt32d76ivslvuy46m346bbw5a56qhp525m",
+        sum: {
+          "body": "bafkreigkrdw4gkp6kx4jdokdvewzz65nnzy2hreekxrcddd3zgsx2xznw4",
           "url": "https://sum.golang.org/lookup/github.com/stretchr/testify@v1.7.0"
         }
-      ]
+      }
     })
   })
 })

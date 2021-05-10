@@ -21,9 +21,9 @@ Existing data:
       - `cid:${manager}:${name}:${version}`
     - http response bodies for proxy
       extras for go:
-        - `mod:go:${name}:${version}`
-        - `latest:go:${name}`
-        - `info:go:${name}:${version}`
+        - `response:go:mod:${name}:${version}`
+        - `response:go:sum:${name}`
+        - `response:go:info:${name}:${version}`
 
 Example json:
 
