@@ -65,3 +65,17 @@ describe('fetchResponse', async function() {
     assert.equal(body, false)
   })
 })
+
+describe('exportPackages', async function() {
+  it('adds all packages to an mfs directory', async () => {
+    await db.clear()
+
+    await core.addUrltoIPFS(db, 'go', 'github.com/mr-tron/base58', 'v1.0.0', `https://proxy.golang.org/github.com/mr-tron/base58/@v/v1.0.0.zip`)
+
+    var stats = await core.exportPackages(db)
+
+    assert.equal(stats.blocks, 1)
+    assert.equal(stats.cumulativeSize, 13221)
+    assert.equal(stats.cid.toString(), 'bafybeigryrrcydhinskpju3vrsdnl7r57nakusl54cm6snc4o37djjhdu4')
+  })
+})
