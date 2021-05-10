@@ -17,5 +17,6 @@ Note: This document isn't quite finished yet!
   - watchKnown
   - setConfig
   - unsetConfig
-  - getLatestVersion
   - setupWatcher
+  - matchesUseragent
+  - versionAsJson
