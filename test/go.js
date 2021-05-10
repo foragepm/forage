@@ -226,10 +226,6 @@ describe('versionAsJson', async function() {
         mod: {
           "body": "bafkreih77ali3ghgubyvnrcuug3osjkqt4yxp2lmcvkrnv7znnahttfdx4",
           "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.mod"
-        },
-        sum: {
-          "body": "bafkreigkrdw4gkp6kx4jdokdvewzz65nnzy2hreekxrcddd3zgsx2xznw4",
-          "url": "https://sum.golang.org/lookup/github.com/stretchr/testify@v1.7.0"
         }
       }
     })
