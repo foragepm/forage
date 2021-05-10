@@ -231,3 +231,296 @@ describe('versionAsJson', async function() {
     })
   })
 })
+
+describe('packageAsJson', async function() {
+  it('should return a json representation of a package', async () => {
+    var name = 'github.com/stretchr/testify'
+    var json = await go.packageAsJson(db, name)
+
+    console.log(JSON.stringify(json, null, 4))
+
+    assert.deepEqual(json, {
+      "manager": "go",
+      "registry": "https://proxy.golang.org/",
+      "name": "github.com/stretchr/testify",
+      "versions": {
+          "v1.3.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.3.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.3.0.zip",
+              "integrity": "TivCn/peBQ7UY8ooIcPgZFpTNSz0Q2U6UrFlUfqbe0Q=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.3.0.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.3.0.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.7.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.7.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.zip",
+              "integrity": "nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=",
+              "cid": "bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq",
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.info",
+                      "body": "bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm"
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.7.0.mod",
+                      "body": "bafkreih77ali3ghgubyvnrcuug3osjkqt4yxp2lmcvkrnv7znnahttfdx4"
+                  }
+              }
+          },
+          "v1.5.1": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.5.1",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.1.zip",
+              "integrity": "nOGnQDM7FYENwehXlg/kFVnos3rEvtKTjRvOWSzb6H4=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.1.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.1.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.6.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.6.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.0.zip",
+              "integrity": "jlIyCplCJFULU/01vCkhKuTyc3OorI3bJFuw6obfgho=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.0.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.0.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.1.1": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.1.1",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.1.zip",
+              "integrity": "/Box+ZZJaXnWRh0iQMXTpvCvCp4jJBdkbAUOqWmg/qI=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.1.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.1.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.5.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.5.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.0.zip",
+              "integrity": "DMOzIV76tmoDNE9pX6RSN0aDtCYeCg5VueieJaAo1uw=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.0.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.5.0.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.1.3": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.1.3",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.3.zip",
+              "integrity": "76sIvNG1I8oBerx/MvuVHh5HBWBW7oxfsi3snKIsz5w=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.3.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.3.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.1.2": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.1.2",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.2.zip",
+              "integrity": "QFDOepAvHBWiCBkOcExyHwJmxDzp/jJvBL3X9KaAdRI=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.2.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.2.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.2.1": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.2.1",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.1.zip",
+              "integrity": "52QO5WkIUcHGIR7EnGagH88x1bUzqGXTC5/1bDTUQ7U=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.1.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.1.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.4.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.4.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.4.0.zip",
+              "integrity": "2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.4.0.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.4.0.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.1.4": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.1.4",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.4.zip",
+              "integrity": "ToftOQTytwshuOSj6bDSolVUa3GINfJP/fg3OkkOzQQ=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.4.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.1.4.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.2.0": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.2.0",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.0.zip",
+              "integrity": "LThGCOvhuJic9Gyd1VBCkhyUXmO8vKaBFvBsJ2k03rg=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.0.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.0.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.2.2": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.2.2",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.2.zip",
+              "integrity": "bSDNvY7ZPG5RlJ8otE/7V6gMiyenm9RtJ7IUVIAoJ1w=",
+              "cid": null,
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.2.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.2.2.mod",
+                      "body": null
+                  }
+              }
+          },
+          "v1.6.1": {
+              "manager": "go",
+              "registry": "https://proxy.golang.org/",
+              "name": "github.com/stretchr/testify",
+              "number": "v1.6.1",
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.zip",
+              "integrity": "hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=",
+              "cid": "bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae",
+              "responses": {
+                  "info": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.info",
+                      "body": null
+                  },
+                  "mod": {
+                      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.6.1.mod",
+                      "body": null
+                  }
+              }
+          }
+      },
+      "responses": {
+          "versions": {
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/list",
+              "body": "bafkreidhrrlegp6ppbq53o3mgeqmtsetm5mq3rxummfiknonfeijj4rv4y"
+          },
+          "latest": {
+              "url": "https://proxy.golang.org/github.com/stretchr/testify/@latest",
+              "body": "bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm"
+          }
+      }
+    })
+  })
+})

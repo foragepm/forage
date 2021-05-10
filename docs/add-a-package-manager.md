@@ -20,3 +20,4 @@ Note: This document isn't quite finished yet!
   - setupWatcher
   - matchesUseragent
   - versionAsJson
+  - packageAsJson

@@ -116,7 +116,188 @@ describe('versionAsJson', async function() {
       url: "https://registry.npmjs.org/base62/-/base62-2.0.1.tgz",
       integrity: 'sha512-4t4WQK7mdbcWzqEBiq6tfo2qDCeIZGXvjifJZyxHIVcjQkZJxpFtu/pa2Va69OouCkg6izZ08hKnPxroeDyzew==',
       cid: 'bafkrgqhc3yleblxgow3rntvbagfk5ll6rwvayj4imrs67drhzftsyrzbk4ruersjy2iw3o72llmvnoxu5ixausb2rm3hj4qsu47rv2dyhszxw',
-      responses: []
+      responses: {}
+    })
+  })
+})
+
+describe('packageAsJson', async function() {
+  it('should return a json representation of a package', async () => {
+    var name = 'base62'
+    var json = await npm.packageAsJson(db, name)
+
+    assert.deepEqual(json, {
+        "manager": "npm",
+        "registry": "https://registry.npmjs.org/",
+        "name": "base62",
+        "versions": {
+            "0.1.0": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "0.1.0",
+                "url": "https://registry.npmjs.org/base62/-/base62-0.1.0.tgz",
+                "integrity": "sha1-A7i95xR38JXf80VczV+OD9a/kfo=",
+                "cid": null,
+                "responses": {}
+            },
+            "0.1.1": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "0.1.1",
+                "url": "https://registry.npmjs.org/base62/-/base62-0.1.1.tgz",
+                "integrity": "sha1-e0F0wvlESXU7EcJlHAg9qEGnsIQ=",
+                "cid": null,
+                "responses": {}
+            },
+            "0.1.2": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "0.1.2",
+                "url": "https://registry.npmjs.org/base62/-/base62-0.1.2.tgz",
+                "integrity": "sha1-bw0bcdfLwYI0+m+GkowI05I/VHs=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.0.0": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.0.0",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.0.0.tgz",
+                "integrity": "sha1-R+JeQOhBWXh3gHo6RZprHz+KiKE=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.1.0": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.1.0",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.1.0.tgz",
+                "integrity": "sha1-RlnehmVYkG1D/sYeB6vUOX2nTBk=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.1.1": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.1.1",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.1.1.tgz",
+                "integrity": "sha1-l06CwRvV4AgWtQin7Zx7kIbJ22s=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.1.2": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.1.2",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.1.2.tgz",
+                "integrity": "sha1-Is7WpJkTVlvAuNmhFWOkZcCEEkw=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.0": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.0",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.0.tgz",
+                "integrity": "sha1-MeflYNyEbJ9EwaUx32UU2jVHQVc=",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.1": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.1",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.1.tgz",
+                "integrity": "sha512-xVtfFHNPUzpCNHygpXFGMlDk3saxXLQcOOQzAAk6ibvlAHgT6WKXLv9rMFhcyEK1n9LuDmp/LxyGW/Fm9L8++g==",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.4": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.4",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.4.tgz",
+                "integrity": "sha512-O4pCb20Z0YXcVWCQbna/q6P9Dq86OOCfXRveyL7ECiKKvProrPUIt4aXG6SUzdsbJa69WGKKzFEotTLaum7nbg==",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.5": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.5",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.5.tgz",
+                "integrity": "sha512-Dq8/KtIxvQmU0Wml7DFNx/04f0g3wtFaKmUwhDjdKUSuHkftP4PWZo5WdWpVgIPjZsfZwtDGQ24m52koq8dtjA==",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.6": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.6",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.6.tgz",
+                "integrity": "sha512-HxRh87vRHaLnPkeNMsj3x4qbil8Hm0sG6h2PCeDOT0+5cmEX59z1Eu9WyzE9dOplH91QQl09Ram/f+cygm8mSA==",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.7": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.7",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.7.tgz",
+                "integrity": "sha512-ck0nDbXLEq2nD5jIcEzdpk07sYQ5P6z4NMTIgeQCFr5CCRZzmgUPlOes4o0k5pvEUQJnKO/D079ybzjpjIKf2Q==",
+                "cid": null,
+                "responses": {}
+            },
+            "1.2.8": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "1.2.8",
+                "url": "https://registry.npmjs.org/base62/-/base62-1.2.8.tgz",
+                "integrity": "sha512-V6YHUbjLxN1ymqNLb1DPHoU1CpfdL7d2YTIp5W3U4hhoG4hhxNmsFDs66M9EXxBiSEke5Bt5dwdfMwwZF70iLA==",
+                "cid": null,
+                "responses": {}
+            },
+            "2.0.0": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "2.0.0",
+                "url": "https://registry.npmjs.org/base62/-/base62-2.0.0.tgz",
+                "integrity": "sha512-s3DXUcvJVW9vd9L/iahft3cxsrBQsXfG0ktX/uzkKOO7ZHHE8Lw3mP+rSXb7YzVavX+fB1jX1GFHDfI/NX8/SQ==",
+                "cid": null,
+                "responses": {}
+            },
+            "2.0.1": {
+                "manager": "npm",
+                "registry": "https://registry.npmjs.org/",
+                "name": "base62",
+                "number": "2.0.1",
+                "url": "https://registry.npmjs.org/base62/-/base62-2.0.1.tgz",
+                "integrity": "sha512-4t4WQK7mdbcWzqEBiq6tfo2qDCeIZGXvjifJZyxHIVcjQkZJxpFtu/pa2Va69OouCkg6izZ08hKnPxroeDyzew==",
+                "cid": "bafkrgqhc3yleblxgow3rntvbagfk5ll6rwvayj4imrs67drhzftsyrzbk4ruersjy2iw3o72llmvnoxu5ixausb2rm3hj4qsu47rv2dyhszxw",
+                "responses": {}
+            }
+        },
+        "responses": {
+            "versions": {
+                "url": "https://registry.npmjs.org/base62",
+                "body": "bafkreihemsz2zf3gkfkz3yigbj4b7pryc4nl7e4ekygdtoyzqpotvrwmbe"
+            }
+        }
     })
   })
 })
