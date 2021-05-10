@@ -237,8 +237,6 @@ describe('packageAsJson', async function() {
     var name = 'github.com/stretchr/testify'
     var json = await go.packageAsJson(db, name)
 
-    console.log(JSON.stringify(json, null, 4))
-
     assert.deepEqual(json, {
       "manager": "go",
       "registry": "https://proxy.golang.org/",

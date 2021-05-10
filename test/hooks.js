@@ -7,6 +7,9 @@ exports.mochaHooks = {
     ipfsID = await forage.connectIPFS(db)
     server = createServer(db)
     server.listen(8006)
+
+    const log = require('electron-log');
+    log.transports.console.level = false;
   },
   afterAll: async function(){
     server.close();
