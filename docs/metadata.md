@@ -13,9 +13,10 @@ This will require further trusting of other instances as metadata includes integ
 Existing data:
 
 - for a package (manager, name):
-  - list of version numbers
-  - http response body for list of versions for proxy
+  - list of versions
     - key: `pkg:${manager}:${name}`
+  - http response body for list of versions for proxy
+    - key: `response:${manager}:versions:${name}`
   - for each version (manager, name, version):
     - cid for archive
       - `cid:${manager}:${name}:${version}`
