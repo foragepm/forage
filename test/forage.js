@@ -8,15 +8,14 @@ describe('seed', async function() {
     var cid = 'bafybgqde7kfgk4ub2rcr3nyukuy3q5b35nb4bxwvgwlg42uu7cyqv2ihryzurlwt2ozhyly3auysnl4idwnt5ii3jzgul7vb5756nzxuqg2c6'
 
     var json = {
-      action: 'republish',
+      action: 'have',
       forage: forage.core.forageVersion(),
       package: {
         url: "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz",
         manager: 'npm',
         name: '7zip-bin',
         version: '5.0.3',
-        cid: cid,
-        size: '100000'
+        cid: cid
       }
     }
 
@@ -31,7 +30,7 @@ describe('seed', async function() {
 
   it('should skip a non-republish pubsub message', async () => {
     var json = {
-      action: 'request',
+      action: 'want',
       forage: forage.core.forageVersion(),
       package: {
         url: "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz",
@@ -52,15 +51,14 @@ describe('seed', async function() {
 
   it('should skip a pubsub messages from itself', async () => {
     var json = {
-      action: 'republish',
+      action: 'have',
       forage: forage.core.forageVersion(),
       package: {
         url: "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz",
         manager: 'npm',
         name: '7zip-bin',
         version: '5.0.3',
-        cid: 'bafffy',
-        size: '100000'
+        cid: 'bafffy'
       }
     }
 
