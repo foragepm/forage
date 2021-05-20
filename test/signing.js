@@ -103,3 +103,103 @@ describe('publicKeyKnown', async () => {
     assert.equal(res, false)
   })
 })
+
+
+describe('signWithPrivateKey', async () => {
+  it('should sign a cid with the private key', async () => {
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var signature = await signing.signWithPrivateKey(db, cid)
+
+    assert.equal(signature.payload, "YmFmeXJlaWVqa3ZzdmRxNHNtejQ0eXV3aGZ5bWN1dnF6YXZ2ZW9qMmF0M3V0dWp3cWxsbHNwc3FyNnE")
+    assert.equal(signature.signatures.length, 1)
+  })
+})
+
+describe('sign', async () => {
+  it('should sign a cid with a key', async () => {
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var key = await createKey()
+
+    var signature = await signing.sign(key, cid)
+
+    assert.equal(signature.payload, "YmFmeXJlaWVqa3ZzdmRxNHNtejQ0eXV3aGZ5bWN1dnF6YXZ2ZW9qMmF0M3V0dWp3cWxsbHNwc3FyNnE")
+    assert.equal(signature.signatures.length, 1)
+  })
+})
+
+describe('verify', async () => {
+  it('should verify a signature signed by private key', async () => {
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var key = await signing.fetchPrivateKey(db)
+
+    var signature = await signing.signWithPrivateKey(db, cid)
+
+    var res = await signing.verify(signature, key)
+
+    assert.deepEqual(res.header, {
+      alg: 'ES256',
+      kid: key.kid
+    })
+  })
+
+  it('should not verify a signature with an incorrect key', async () => {
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var wrongKey = await createKey()
+
+    var signature = await signing.signWithPrivateKey(db, cid)
+
+    var res = await signing.verify(signature, wrongKey)
+
+    assert.equal(res, false)
+  })
+})
+
+describe('trusted', async () => {
+  it('should return true if a trusted key has signed the signature', async () => {
+    var publicKey = await createKey()
+
+    await signing.savePublicKey(db, publicKey)
+
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var signature = await signing.sign(publicKey, cid)
+
+    var res = await signing.trusted(db, signature)
+
+    assert.deepEqual(res.header, {
+      alg: 'ES256',
+      kid: publicKey.kid
+    })
+  })
+
+  it('should return true if a private key has signed the signature', async () => {
+    var privateKey = await signing.fetchPrivateKey(db)
+
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var signature = await signing.sign(privateKey, cid)
+
+    var res = await signing.trusted(db, signature)
+
+    assert.deepEqual(res.header, {
+      alg: 'ES256',
+      kid: privateKey.kid
+    })
+  })
+
+  it('should return false if no trusted key has signed the signature', async () => {
+    var publicKey = await createKey()
+
+    var cid = 'bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q'
+
+    var signature = await signing.sign(publicKey, cid)
+
+    var res = await signing.trusted(db, signature)
+
+    assert.equal(res, false)
+  })
+})
