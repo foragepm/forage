@@ -89,3 +89,14 @@ describe('packageAsJson', async () => {
     assert.equal(Object.keys(res.versions).length, 44)
   })
 })
+
+describe('announceHave', async () => {
+  it('should do a thing', async () => {
+    var manager = 'npm'
+    var name = '7zip-bin'
+    var res = await forage.announceHave(manager, name)
+
+    assert.equal(res.action, 'have')
+    assert.equal(res.signature.signatures.length, 1)
+  })
+})
