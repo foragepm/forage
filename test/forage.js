@@ -71,3 +71,21 @@ describe('seed', async function() {
     assert.equal(res, false)
   })
 })
+
+describe('packageAsJson', async () => {
+  it('should return a go package as json', async () => {
+    var res = await forage.packageAsJson('go', 'github.com/stretchr/testify')
+    assert.equal(res.manager, 'go')
+    assert.equal(res.name, 'github.com/stretchr/testify')
+    assert.equal(res.registry, 'https://proxy.golang.org/')
+    assert.equal(Object.keys(res.versions).length, 14)
+  })
+
+  it('should return a npm package as json', async () => {
+    var res = await forage.packageAsJson('npm', '7zip-bin')
+    assert.equal(res.manager, 'npm')
+    assert.equal(res.name, '7zip-bin')
+    assert.equal(res.registry, 'https://registry.npmjs.org/')
+    assert.equal(Object.keys(res.versions).length, 44)
+  })
+})
