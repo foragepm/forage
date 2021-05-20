@@ -1,5 +1,6 @@
 var assert = require('assert');
 const forage = require('../lib/forage');
+const signing = require('../lib/signing')
 const uint8ArrayFromString = require('uint8arrays/from-string')
 
 describe('seed', async function() {
@@ -98,5 +99,30 @@ describe('announceHave', async () => {
 
     assert.equal(res.action, 'have')
     assert.equal(res.signature.signatures.length, 1)
+  })
+})
+
+describe('defaultAnnounceCb', async () => {
+  it('should verify and trust msgs signed by itself', async () => {
+    var manager = 'npm'
+    var name = '7zip-bin'
+
+    var payload = await forage.packageAsJson(manager, name)
+
+    var signature = await signing.signWithPrivateKey(db, JSON.stringify(payload))
+
+    var json = {
+      action: 'have',
+      forage: forage.core.forageVersion(),
+      signature: signature
+    }
+
+    var msg = {
+      from: 'somepeerid',
+      data: uint8ArrayFromString(JSON.stringify(json))
+    }
+
+    var res = await forage.defaultAnnounceCb(msg)
+    assert.equal(res, 'have')
   })
 })
