@@ -69,7 +69,7 @@ describe('removePublicKey', async function() {
   })
 })
 
-describe('listPublicKeys', async () => {
+describe('listPublicKeysIds', async () => {
   it('should list array of trusted public key ids', async () => {
     var key1 = await createKey()
 
@@ -79,7 +79,7 @@ describe('listPublicKeys', async () => {
 
     await signing.savePublicKey(db, key2)
 
-    var list = await signing.listPublicKeys(db)
+    var list = await signing.listPublicKeysIds(db)
 
     assert.notEqual(-1, list.indexOf(key1.kid))
     assert.notEqual(-1, list.indexOf(key2.kid))

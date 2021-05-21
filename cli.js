@@ -60,7 +60,16 @@ yargs(hideBin(process.argv))
   .command('add manager name', 'add a package to forage', () => {}, (argv) => {
     require('./lib/commands/add')(argv)
   })
-  .command('key rotate', 'generate a new public+private key pair', () => {}, (argv) => {
+  .command('rotate', 'generate a new public+private key pair', () => {}, (argv) => {
     require('./lib/commands/rotate')(argv)
+  })
+  .command('trust publickey', 'trust a public key', () => {}, (argv) => {
+    require('./lib/commands/trust')(argv)
+  })
+  .command('untrust publickey', 'stop trusting a public key', () => {}, (argv) => {
+    require('./lib/commands/untrust')(argv)
+  })
+  .command('trusted', 'list trusted public keys', () => {}, (argv) => {
+    require('./lib/commands/trusted')(argv)
   })
   .argv
