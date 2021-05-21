@@ -81,7 +81,7 @@ GOPROXY=http://localhost:8005
 ## Commands
 
 ```
-$ forage help
+$ forage --help
 forage
 
 start the forage proxy server

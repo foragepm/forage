@@ -51,7 +51,7 @@ yargs(hideBin(process.argv))
   .command('export', 'export all packages as a single IPFS directory', () => {}, (argv) => {
     require('./lib/commands/export')
   })
-  .command('id', 'find your IPFS peer ID', () => {}, (argv) => {
+  .command('id', 'find your IPFS peer ID and public key', () => {}, (argv) => {
     require('./lib/commands/id')
   })
   .command('search query', 'search packages by name', () => {}, (argv) => {
