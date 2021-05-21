@@ -21,3 +21,4 @@ Note: This document isn't quite finished yet!
   - matchesUseragent
   - versionAsJson
   - packageAsJson
+  - importMetadata

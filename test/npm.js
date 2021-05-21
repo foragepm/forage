@@ -301,3 +301,25 @@ describe('packageAsJson', async function() {
     })
   })
 })
+
+describe('importMetadata', async () => {
+  it('should save package and version level metadata', async () => {
+    var name = 'base62'
+    var metadata = await npm.packageAsJson(db, name)
+
+    var res = await npm.importMetadata(db, name, metadata)
+
+    assert.deepEqual(res,
+      [
+        [
+          'response:npm:versions:base62',
+          'bafkreihemsz2zf3gkfkz3yigbj4b7pryc4nl7e4ekygdtoyzqpotvrwmbe'
+        ],
+        [
+          'cid:npm:base62:2.0.1',
+          'bafkrgqhc3yleblxgow3rntvbagfk5ll6rwvayj4imrs67drhzftsyrzbk4ruersjy2iw3o72llmvnoxu5ixausb2rm3hj4qsu47rv2dyhszxw'
+        ]
+      ]
+    )
+  })
+})
