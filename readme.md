@@ -106,6 +106,7 @@ Commands:
   forage id                find your IPFS peer ID
   forage search query      search packages by name
   forage add manager name  add a package to forage
+  forage key rotate        generate a new public+private key pair
 
 Options:
   --help     Show help                                                 [boolean]

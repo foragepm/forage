@@ -60,4 +60,7 @@ yargs(hideBin(process.argv))
   .command('add manager name', 'add a package to forage', () => {}, (argv) => {
     require('./lib/commands/add')(argv)
   })
+  .command('key rotate', 'generate a new public+private key pair', () => {}, (argv) => {
+    require('./lib/commands/rotate')(argv)
+  })
   .argv
