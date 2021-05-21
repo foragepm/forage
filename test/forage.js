@@ -98,7 +98,7 @@ describe('announceHave', async () => {
     var res = await forage.announceHave(manager, name)
 
     assert.equal(res.action, 'have')
-    assert.equal(res.signature.signatures.length, 1)
+    assert.equal(res.metadata.signatures.length, 1)
   })
 })
 
@@ -114,7 +114,14 @@ describe('defaultAnnounceCb', async () => {
     var json = {
       action: 'have',
       forage: forage.core.forageVersion(),
-      signature: signature
+      metadata: signature,
+      package: {
+        url: "https://registry.npmjs.org/7zip-bin/-/7zip-bin-5.0.3.tgz",
+        manager: 'npm',
+        name: '7zip-bin',
+        version: '5.0.3',
+        cid: 'bafffy'
+      }
     }
 
     var msg = {
