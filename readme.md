@@ -87,25 +87,29 @@ forage
 start the forage proxy server
 
 Commands:
-  forage server            start the forage proxy server               [default]
-  forage browse            open the forage UI
-  forage seed              reseed any packages announced on IPFS
-  forage import            load packages listed in forage.lock from IPFS
-  forage republish         add local packages to IPFS and write to forage.lock
-  forage watch             watch for new packages published upstream
-  forage packages          list all cached packages
-  forage config            set package managers proxy config
-  forage unconfig          remove package managers proxy config
-  forage preload           import packages from all package-lock.json files
-  forage update            check for updates to all cached packages
-  forage verify            validate cids of all cached packages
-  forage reset             empty the forage database
-  forage sizes             calculate sizes of tarballs
-  forage peers             list peers sharing similar packages to you
-  forage export            export all packages as a single IPFS directory
-  forage id                find your IPFS peer ID
-  forage search query      search packages by name
-  forage add manager name  add a package to forage
+  forage server             start the forage proxy server              [default]
+  forage browse             open the forage UI
+  forage seed               reseed any packages announced on IPFS
+  forage import             load packages listed in forage.lock from IPFS
+  forage republish          add local packages to IPFS and write to forage.lock
+  forage watch              watch for new packages published upstream
+  forage packages           list all cached packages
+  forage config             set package managers proxy config
+  forage unconfig           remove package managers proxy config
+  forage preload            import packages from all package-lock.json files
+  forage update             check for updates to all cached packages
+  forage verify             validate cids of all cached packages
+  forage reset              empty the forage database
+  forage sizes              calculate sizes of tarballs
+  forage peers              list peers sharing similar packages to you
+  forage export             export all packages as a single IPFS directory
+  forage id                 find your IPFS peer ID
+  forage search query       search packages by name
+  forage add manager name   add a package to forage
+  forage rotate             generate a new public+private key pair
+  forage trust publickey    trust a public key
+  forage untrust publickey  stop trusting a public key
+  forage trusted            list trusted public keys
 
 Options:
   --help     Show help                                                 [boolean]

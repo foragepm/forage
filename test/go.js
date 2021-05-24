@@ -522,3 +522,41 @@ describe('packageAsJson', async function() {
     })
   })
 })
+
+describe('importMetadata', async () => {
+  it('should save package and version level metadata', async () => {
+    var name = 'github.com/stretchr/testify'
+    var metadata = await go.packageAsJson(db, name)
+
+    var res = await go.importMetadata(db, name, metadata)
+
+    assert.deepEqual(res,
+      [
+        [
+          'response:go:versions:github.com/stretchr/testify',
+          'bafkreidhrrlegp6ppbq53o3mgeqmtsetm5mq3rxummfiknonfeijj4rv4y'
+        ],
+        [
+          'response:go:latest:github.com/stretchr/testify',
+          'bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm'
+        ],
+        [
+          'cid:go:github.com/stretchr/testify:v1.7.0',
+          'bafkreihexap2rcgvwe6wqrxdpoz4a37ovhnvhar3nwox4rmu25sumvt2aq'
+        ],
+        [
+          'response:go:info:github.com/stretchr/testify:v1.7.0',
+          'bafkreiexbc7j6lumu5vxqocijqmqesah6uatux4yk5wjtkqn65zwef7kdm'
+        ],
+        [
+          'response:go:mod:github.com/stretchr/testify:v1.7.0',
+          'bafkreih77ali3ghgubyvnrcuug3osjkqt4yxp2lmcvkrnv7znnahttfdx4'
+        ],
+        [
+          'cid:go:github.com/stretchr/testify:v1.6.1',
+          'bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae'
+        ]
+      ]
+    )
+  })
+})
