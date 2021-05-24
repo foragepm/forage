@@ -26,10 +26,12 @@ describe('packageAsJson', async () => {
 })
 
 describe('announceHave', async () => {
-  it('should do a thing', async () => {
+  it('should send have pubsub message', async () => {
     var manager = 'npm'
     var name = '7zip-bin'
-    var res = await forage.announceHave(manager, name)
+    var version = '5.1.1'
+    var cid = 'bafybgqead4fgscx3ok377pgj32iaaixwoslj7m6o6db4wy7howckfgybzazezfuxsfiwgfvlghssj426joxg535d7pdltgg6r3kudlnithvji'
+    var res = await forage.announceHave(manager, name, version, cid)
 
     assert.equal(res.action, 'have')
     assert.equal(res.metadata.signatures.length, 1)
