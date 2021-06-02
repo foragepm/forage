@@ -23,6 +23,8 @@ var tray = undefined
 var win = undefined
 var db
 var started = false
+var topic = 'forage'
+var port = 8005
 
 if(os.platform() === 'darwin'){
   // Don't show the app in the doc
@@ -37,10 +39,10 @@ app.on('ready', () => {
 })
 
 async function startServer() {
-  var ipfsID = await forage.connectIPFS(db);
+  var ipfsID = await forage.connectIPFS(db, topic);
   if (ipfsID) {
     server = createServer(db)
-    server.listen(8005)
+    server.listen(port)
     // TODO decide on which packages to download via IPFS when announced (all or only versions of existing ones)
     forage.watchKnown();
     forage.periodicUpdate();
@@ -53,7 +55,7 @@ async function startServer() {
 function stopServer() {
   console.log('stopping')
   server.close();
-  forage.core.unsubscribePackageAnnoucements(forage.packageAnnoucementsTopic)
+  forage.core.unsubscribePackageAnnoucements(topic)
   started = false
   updateStatusMenu()
   tray.setImage(path.join(assetsDirectory, 'forageoffTemplate.png'))

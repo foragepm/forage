@@ -4,7 +4,7 @@ const createServer = require('../lib/server');
 exports.mochaHooks = {
   beforeAll: async function(){
     db = forage.connectDB('forage-test')
-    ipfsID = await forage.connectIPFS(db)
+    ipfsID = await forage.connectIPFS(db, 'forage-test')
     server = createServer(db)
     server.listen(8006)
 

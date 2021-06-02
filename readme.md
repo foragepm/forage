@@ -115,6 +115,7 @@ Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
   --port                                                         [default: 8005]
+  --topic                                                    [default: "forage"]
 ```
 
 ## Development

@@ -73,4 +73,5 @@ yargs(hideBin(process.argv))
     require('./lib/commands/trusted')(argv)
   })
   .default('port', 8005)
+  .default('topic', 'forage')
   .argv
