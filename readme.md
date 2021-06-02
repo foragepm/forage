@@ -103,7 +103,7 @@ Commands:
   forage sizes              calculate sizes of tarballs
   forage peers              list peers sharing similar packages to you
   forage export             export all packages as a single IPFS directory
-  forage id                 find your IPFS peer ID
+  forage id                 find your IPFS peer ID and public key
   forage search query       search packages by name
   forage add manager name   add a package to forage
   forage rotate             generate a new public+private key pair
@@ -114,6 +114,7 @@ Commands:
 Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
+  --port                                                         [default: 8005]
 ```
 
 ## Development
