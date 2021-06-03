@@ -3,10 +3,6 @@ const forage = require('../lib/forage');
 const signing = require('../lib/signing')
 const uint8ArrayFromString = require('uint8arrays/from-string')
 
-describe('seed', async function() {
-
-})
-
 describe('packageAsJson', async () => {
   it('should return a go package as json', async () => {
     var res = await forage.packageAsJson('go', 'github.com/stretchr/testify')
