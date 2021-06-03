@@ -10,12 +10,6 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Forage</a>
-    </div>
-  </nav>
-
   <div id="app"></div>
 
   <script type="module">
@@ -37,22 +31,52 @@
       `
     }
 
-    function App(props) {
-      const [pkgList, setPkgList] = useState([])
-      useEffect(async () => {
+    class App extends Component {
+      state = { value: '', packages: [] }
+
+      componentDidMount = async ev => {
         const res = await fetch('/~/api/packages').then(r => r.json())
-        setPkgList(res)
-      }, [])
-      return html`
-        <ul class="list-group list-group-flush">
-          ${pkgList.map((pkg, index) => html`
-            <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
-          `)}
-        </ul>
-      `;
+        this.setState({ packages: res });
+      }
+
+      onInput = ev => {
+        // This will schedule a state update. Once updated the component
+        // will automatically re-render itself.
+        this.setState({ value: ev.target.value });
+      }
+
+      // Add a submit handler that updates the `name` with the latest input value
+      onSubmit = ev => {
+        // Prevent default browser behavior (aka don't submit the form here)
+        ev.preventDefault();
+
+        this.setState({ value: this.state.value });
+      }
+
+      render() {
+        var query = this.state.value
+        return (
+          html`
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Forage</a>
+              <form class="d-flex" onSubmit=${this.onSubmit}>
+                <input id='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${this.state.value} onInput=${this.onInput}  />
+              </form>
+            </div>
+          </nav>
+          <ul class="list-group list-group-flush">
+            ${this.state.packages.filter(function (pkg) { return pkg.name.indexOf(query) > -1; }).map((pkg, index) => html`
+              <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
+            `)}
+          </ul>
+          `
+        );
+      }
     }
 
-    render(html`<${App} name="World" />`, document.querySelector('#app'));
+    render(html`<${App}/>`, document.querySelector('#app'));
   </script>
 </body>
 
