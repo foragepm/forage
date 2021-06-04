@@ -13,10 +13,7 @@
   <div id="app"></div>
 
   <script type="module">
-    import { h, Component, render } from 'https://unpkg.com/preact@latest?module';
-    import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module';
-    import Router from 'https://unpkg.com/preact-router@latest?module';
-    import htm from 'https://unpkg.com/htm?module';
+    import {  h, Component, render , useState, useEffect, Router, htm } from 'https://npm.reversehttp.com/preact,preact/hooks,preact-router,htm';
 
     // Initialize htm with Preact
     const html = htm.bind(h);
@@ -36,7 +33,7 @@
       return html`
         <li class="list-group-item">
 
-          <a href='/~/${manager}/${name}' class='link-dark text-decoration-none'>
+          <a href='/packages/${manager}/${name}' class='link-dark text-decoration-none'>
           <img src='icons/${manager}.png' width="20" height="20" class='me-2'/>
           <strong class='pl-3 ml-3'>${name}</strong> <span class='small text-muted'>${version}</span>
           </a>
@@ -48,6 +45,21 @@
       return (
         html `
           <${PackageList} packages=${packages} />
+        `
+      )
+    }
+
+    function PackageDetails({manager, name}) {
+      const [pkg, setPkg] = useState({});
+
+      useEffect(async () => {
+         const res = await fetch(`/~/api/packages/${manager}/${name}`).then(r => r.json())
+         setPkg(res)
+       }, [manager, name])
+
+      return (
+        html `
+          ${manager} ${name} - ${pkg.registry}
         `
       )
     }
@@ -72,7 +84,7 @@
       return html`
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Forage</a>
+          <a class="navbar-brand" href="/">Forage</a>
           <form class="d-flex" action="/" method="get" autoComplete="off" onSubmit=${onSubmit}>
             <input name='query' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${searchQuery} onInput=${e => setSearchQuery(e.target.value)} />
           </form>
@@ -98,6 +110,7 @@
       <${Header} searchQuery=${searchQuery} setSearchQuery=${setSearchQuery} />
     	<${Router}>
         <${Home} path='/' packages=${filteredPackages} />
+        <${PackageDetails} path='/packages/:manager/:name+' pkg= />
     	</${Router}>
       `
     }
