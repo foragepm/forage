@@ -14,65 +14,92 @@
 
   <script type="module">
     import { h, Component, render } from 'https://unpkg.com/preact@latest?module';
+    import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module';
+    import Router from 'https://unpkg.com/preact-router@latest?module';
     import htm from 'https://unpkg.com/htm?module';
 
     // Initialize htm with Preact
     const html = htm.bind(h);
 
+    const filterPackages = (packages, query) => {
+        if (!query) {
+            return packages;
+        }
+
+        return packages.filter((pkg) => {
+            const pkgName = pkg.name.toLowerCase();
+            return pkgName.includes(query);
+        });
+    };
+
     function Package({ manager, name, version, index }) {
       return html`
         <li class="list-group-item">
+
+          <a href='/~/${manager}/${name}' class='link-dark text-decoration-none'>
           <img src='icons/${manager}.png' width="20" height="20" class='me-2'/>
-          <a>
           <strong class='pl-3 ml-3'>${name}</strong> <span class='small text-muted'>${version}</span>
           </a>
         </li>
       `
     }
 
-    class App extends Component {
-      state = { value: '', packages: [] }
+    function Home({packages}) {
+      return (
+        html `
+          <${PackageList} packages=${packages} />
+        `
+      )
+    }
 
-      componentDidMount = async ev => {
-        const res = await fetch('/~/api/packages').then(r => r.json())
-        this.setState({ packages: res });
+    function PackageList({packages}) {
+      return (
+        html`
+        <ul class="list-group list-group-flush">
+          ${packages.map((pkg, index) => html`
+            <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
+          `)}
+        </ul>
+        `
+      );
+    }
+
+    function Header({searchQuery, setSearchQuery}) {
+      const onSubmit = e => {
+          e.preventDefault()
       }
 
-      onInput = ev => {
-        // This will schedule a state update. Once updated the component
-        // will automatically re-render itself.
-        this.setState({ value: ev.target.value });
-      }
+      return html`
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Forage</a>
+          <form class="d-flex" action="/" method="get" autoComplete="off" onSubmit=${onSubmit}>
+            <input name='query' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${searchQuery} onInput=${e => setSearchQuery(e.target.value)} />
+          </form>
+        </div>
+      </nav>
+      `
+    }
 
-      // Add a submit handler that updates the `name` with the latest input value
-      onSubmit = ev => {
-        // Prevent default browser behavior (aka don't submit the form here)
-        ev.preventDefault();
+    function App() {
+      var query = new URLSearchParams(window.location.search).get('query');
 
-        this.setState({ value: this.state.value });
-      }
+      const [searchQuery, setSearchQuery] = useState(query || '');
+      const [packages, setPackages] = useState([]);
 
-      render() {
-        var query = this.state.value
-        return (
-          html`
+      useEffect(async () => {
+         const res = await fetch('/~/api/packages').then(r => r.json())
+         setPackages(res)
+       }, [])
 
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Forage</a>
-              <form class="d-flex" onSubmit=${this.onSubmit}>
-                <input id='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${this.state.value} onInput=${this.onInput}  />
-              </form>
-            </div>
-          </nav>
-          <ul class="list-group list-group-flush">
-            ${this.state.packages.filter(function (pkg) { return pkg.name.indexOf(query) > -1; }).map((pkg, index) => html`
-              <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
-            `)}
-          </ul>
-          `
-        );
-      }
+      var filteredPackages = filterPackages(packages, searchQuery)
+
+      return html`
+      <${Header} searchQuery=${searchQuery} setSearchQuery=${setSearchQuery} />
+    	<${Router}>
+        <${Home} path='/' packages=${filteredPackages} />
+    	</${Router}>
+      `
     }
 
     render(html`<${App}/>`, document.querySelector('#app'));
