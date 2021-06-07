@@ -9,7 +9,7 @@
   <link href="/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style='padding-top:56px;'>
   <div id="app"></div>
 
   <script type="module">
@@ -128,7 +128,7 @@
       }
 
       return html`
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Forage</a>
           <form class="d-flex" action="/" method="get" autoComplete="off" onSubmit=${onSubmit}>
