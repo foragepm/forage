@@ -29,12 +29,39 @@
         });
     };
 
-    function Package({ manager, name, version, index }) {
+    function truncateString(str, num) {
+      if(!str){ return str }
+      if (str.length <= num) { return str }
+      return str.slice(0, num) + '...'
+    }
+
+
+    function Version({ version }) {
       return html`
         <li class="list-group-item">
+          ${version.number} <small class='text-muted' title=${version.cid}>${truncateString(version.cid, 20)}</small>
+        </li>
+      `
+    }
 
+    function VersionList({versions}) {
+      return (
+        html`
+        <h4>Versions</h4>
+        <ul class="list-group list-group-flush">
+          ${Object.entries(versions).map(([number, version]) => html`
+            <${Version} version=${version} />
+          `)}
+        </ul>
+        `
+      );
+    }
+
+    function Package({ manager, name, version }) {
+      return html`
+        <li class="list-group-item">
           <a href='/packages/${manager}/${name}' class='link-dark text-decoration-none'>
-          <img src='icons/${manager}.png' width="20" height="20" class='me-2'/>
+          <img src='/icons/${manager}.png' width="20" height="20" class='me-2'/>
           <strong class='pl-3 ml-3'>${name}</strong> <span class='small text-muted'>${version}</span>
           </a>
         </li>
@@ -59,7 +86,20 @@
 
       return (
         html `
-          ${manager} ${name} - ${pkg.registry}
+          <div class="container-fluid">
+            <div class='row'>
+              <div class='col'>
+                <h2>
+                  <img src='/icons/${manager}.png' width="30" height="30" class='me-3'/>
+                  ${name}
+                </h2>
+                <p>
+                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a>
+                </p>
+              </div>
+            </div>
+            ${pkg.versions && html`<${VersionList} versions=${pkg.versions} />`}
+          </div>
         `
       )
     }
@@ -69,7 +109,7 @@
         html`
         <ul class="list-group list-group-flush">
           ${packages.map((pkg, index) => html`
-            <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
+            <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} />
           `)}
         </ul>
         `
