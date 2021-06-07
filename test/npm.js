@@ -130,6 +130,7 @@ describe('packageAsJson', async function() {
         "manager": "npm",
         "registry": "https://registry.npmjs.org/",
         "name": "base62",
+        "publicUrl": "https://www.npmjs.com/package/base62",
         "versions": {
             "0.1.0": {
                 "manager": "npm",

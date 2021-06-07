@@ -241,6 +241,7 @@ describe('packageAsJson', async function() {
       "manager": "go",
       "registry": "https://proxy.golang.org/",
       "name": "github.com/stretchr/testify",
+      "publicUrl": 'https://pkg.go.dev/github.com/stretchr/testify',
       "versions": {
           "v1.3.0": {
               "manager": "go",
