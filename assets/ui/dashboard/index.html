@@ -13,7 +13,7 @@
   <div id="app"></div>
 
   <script type="module">
-    import {  h, Component, render , useState, useEffect, Router, htm } from 'https://npm.reversehttp.com/preact,preact/hooks,preact-router,htm';
+    import {  h, Component, render , useState, useEffect, Router, route, htm } from 'https://npm.reversehttp.com/preact,preact/hooks,preact-router,htm';
 
     // Initialize htm with Preact
     const html = htm.bind(h);
@@ -119,6 +119,12 @@
     function Header({searchQuery, setSearchQuery}) {
       const onSubmit = e => {
           e.preventDefault()
+          route('/')
+      }
+
+      const onInput = e => {
+        setSearchQuery(e.target.value)
+        route('/')
       }
 
       return html`
@@ -126,7 +132,7 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Forage</a>
           <form class="d-flex" action="/" method="get" autoComplete="off" onSubmit=${onSubmit}>
-            <input name='query' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${searchQuery} onInput=${e => setSearchQuery(e.target.value)} />
+            <input name='query' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${searchQuery} onInput=${onInput} />
           </form>
         </div>
       </nav>
