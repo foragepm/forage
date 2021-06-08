@@ -30,7 +30,7 @@
     "fs-extra": "^10.0.0",
     "go-ipfs": "^0.8.0",
     "http-proxy": "^1.18.1",
-    "ipfs-http-client": "^50.1.0",
+    "ipfs-http-client": "^50.1.1",
     "ipfsd-ctl": "^8.0.2",
     "it-all": "^1.0.5",
     "it-pipe": "^1.1.0",
@@ -55,9 +55,9 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
-    "electron": "^13.0.1",
+    "electron": "^13.1.1",
     "electron-builder": "^22.11.5",
-    "mocha": "^8.3.2"
+    "mocha": "^9.0.0"
   },
   "repository": {
     "type": "git",
