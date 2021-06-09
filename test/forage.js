@@ -87,3 +87,15 @@ describe('defaultAnnounceCb', async () => {
     assert.equal(res, false)
   })
 })
+
+describe('downloadVersion', async () => {
+  it('should download a specific version of a package', async () => {
+    var manager = 'npm'
+    var name = '7zip-bin'
+    var version = '5.1.1'
+    var cid = 'bafybgqead4fgscx3ok377pgj32iaaixwoslj7m6o6db4wy7howckfgybzazezfuxsfiwgfvlghssj426joxg535d7pdltgg6r3kudlnithvji'
+    var res = await forage.downloadVersion(manager, name, version)
+
+    assert.equal(res, cid)
+  })
+})
