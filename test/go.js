@@ -241,6 +241,7 @@ describe('packageAsJson', async function() {
       "manager": "go",
       "registry": "https://proxy.golang.org/",
       "name": "github.com/stretchr/testify",
+      "publicUrl": 'https://pkg.go.dev/github.com/stretchr/testify',
       "versions": {
           "v1.3.0": {
               "manager": "go",
@@ -558,5 +559,17 @@ describe('importMetadata', async () => {
         ]
       ]
     )
+  })
+})
+
+describe('downloadVersion', async () => {
+  it('should download a specific version of a package', async () => {
+    var manager = 'go'
+    var name = 'github.com/stretchr/testify'
+    var version = 'v1.6.1'
+    var cid = 'bafkreia4pesx6qj2mi77eqkfe4pommjukwf3lomgmczwnytqz6xy4gf7ae'
+    var res = await go.downloadVersion(db, name, version)
+
+    assert.equal(res, cid)
   })
 })

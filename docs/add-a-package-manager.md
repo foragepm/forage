@@ -22,3 +22,4 @@ Note: This document isn't quite finished yet!
   - versionAsJson
   - packageAsJson
   - importMetadata
+  - downloadVersion

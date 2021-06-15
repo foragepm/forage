@@ -1,148 +1,222 @@
-<!doctype html>
-<html class="courier">
+<!DOCTYPE html>
+<html>
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Forage - Packages over IPFS</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
-  <style>
-    .night {
-      background-color: black;
-      color: white;
-      border-color: white;
-    }
-
-    .fade-in {
-      animation-name: fadeInOpacity;
-      animation-iteration-count: 3;
-      animation-timing-function: ease-in;
-      animation-duration: 2s;
-      animation-fill-mode: both;
-      animation-direction: alternate;
-    }
-
-    @keyframes fadeInOpacity {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-  </style>
+  <link href="/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
-<body style="height:100vh" class="pa0 ma0 night">
-  <header class="flex items-center ma4">
-    <h1 class="fw1 white avenir ma0">FOREST</h1>
-    <div class="flex-auto fw1 ml3">╪ ╪ ╪</div>
-    <button class="button br-100 bg-white w2 h2"></button>
-  </header>
-  <div class="b--white ba pa4 mh4">
-    <p>▶ An IPFS-backed package manager proxy cache</p>
-  </div>
-  <div id="app" class="ma4"></div>
+<body style='padding-top:56px;'>
+  <div id="app"></div>
+
   <script type="module">
-    import { h, Component, render } from 'https://unpkg.com/preact@latest?module';
-    import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module';
-    import htm from 'https://unpkg.com/htm?module';
+    import {  h, Component, render , useState, useEffect, Router, route, htm } from 'https://npm.reversehttp.com/preact,preact/hooks,preact-router,htm';
 
     // Initialize htm with Preact
     const html = htm.bind(h);
 
-    function packageToString({ manager, name, version }) {
-      return `${manager}:${name}@${version}`
-    }
-
-    function packageToUrl({ manager, name, version }) {
-      if(manager === 'npm'){
-        return `https://www.npmjs.com/package/${name}`
-      }
-      if(manager === 'go'){
-        return `http://${name}`
-      }
-    }
-
-    // Convert a package name string to x,y coords, such that similar names huddle together.
-    // Initial impl scales the first 2 chars ascii code points to 0 to 9 and maps them to the
-    // most significan digit of the x and y postions.
-    //
-    // "ab" => [a] [b] => [1] [2] => {x: 10%, y: 20%}
-    //
-    // then we repeat for the units colum, and so on down the significance.
-    //
-    // For example, with the scaling fudged for illustrative purpose:
-    // "abxy" => [a,x] [b,y] => [1,8] [2,9] => {x: 18%, y: 29%}
-    // "abxycd" => [a,x,c] [b,y,d] => [1,8,3] [2,9,4] => {x: 18.3%, y: 29.4%}
-    function packageToCoords({name, version, manager}) {
-      if (manager === 'npm') {
-        if (name.startsWith('@')) {
-          // trim @ from npm orgs and reverse the order
-          name = name.substring(1)
+    const filterPackages = (packages, query) => {
+        if (!query) {
+            return packages;
         }
-      }
-      if (manager === 'go') {
-        // trim v from go versions
-        version = version.substring(1)
-      }
-      // put the basename at the front to get most significant digits from package name.
-      // "github.com/google/go-cmp" => go-cmpgoogle
-      // "@npm-org/left-pad" => leftpadnpm-org
-      name = name.split('/').slice(0,2).reverse().join('')
-      const key = `${name}${version}`
 
-      // take every other character
-      const xs = key.split('').filter((_, i) => !Boolean(i % 2))
-      const ys = key.split('').filter((_, i) => Boolean(i % 2))
-      const x = toProximalPercentString(xs)
-      const y = toProximalPercentString(ys)
-      return { x, y }
+        return packages.filter((pkg) => {
+            const pkgName = pkg.name.toLowerCase();
+            return pkgName.includes(query);
+        });
+    };
+
+    function truncateString(str, num) {
+      if(!str){ return str }
+      if (str.length <= num) { return str }
+      return str.slice(0, num) + '...'
     }
 
-    // whoa
-    function toProximalPercentString(charArr) {
-      const [tens = 0, units = 0, ...rest] = charArr.map(c => Math.floor(remap(c.toUpperCase().codePointAt())))
-      return `${tens}${units}.${rest.join('')}%`
-    }
-
-    // lo:  45 (-)
-    // mid: 97 (a)
-    // hi: 122 (z)
-    // unless we force all to uppercase to reduce the source range...
-    function remap(value, min = 45, max = 95, targetMin = 0, targetMax = 9) {
-      return targetMin + ((value - min) / (max - min)) * (targetMax - targetMin);
-    }
-
-    function Tree({ manager, name, version, index }) {
-      const pkgStr = packageToString({ manager, name, version })
-      const pkgUrl = packageToUrl({ manager, name, version })
-      const { x, y } = packageToCoords({name, version, manager})
+    function Version({ version }) {
       return html`
-        <li style="position:absolute; left:${x}; top:${y}; animation-delay:${index * 20}ms" class="fade-in" key="${pkgStr}">
-          <a title="${pkgStr}" href="${pkgUrl}" class="link white">╪</a>
+        <li class="list-group-item">
+          ${version.number}
+          <${VersionCID} version=${version} />
         </li>
       `
     }
 
-    function App(props) {
-      const [pkgList, setPkgList] = useState([])
-      useEffect(async () => {
-        const res = await fetch('/~/api/packages').then(r => r.json())
-        setPkgList(res)
-      }, [])
-      return html`
-        <ul class="lh-copy list relative w100" style="height:500px">
-          ${pkgList.map((pkg, index) => html`
-            <${Tree} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} index=${index} />
-          `)}
-        </ul>
-      `;
+    function PackageUpdate({pkg, setPkg}) {
+      const [loading, setLoading] = useState(false);
+      const onClick = async (e) => {
+        setLoading(true)
+
+        var res = await fetch(`/~/api/packages/${pkg.manager}/${pkg.name}?action=update`,{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST"})
+        var json = await res.json()
+
+        setLoading(false)
+        setPkg({...pkg, versions: json.versions})
+      }
+
+      if(loading){
+        return html`<div class="ms-2 spinner-border spinner-border-sm" title='Updating' role="status"><span class="visually-hidden">Loading...</span></div>`
+      } else {
+        return html`<i role="button" class="ms-2 bi-arrow-repeat" title='Check for update' onClick=${onClick}></i>`
+      }
     }
 
-    render(html`<${App} name="World" />`, document.querySelector('#app'));
+    function VersionCID({version}) {
+      const [cid, setCid] = useState(version.cid);
+      const [loading, setLoading] = useState(false);
+
+      const onClick = async (e) => {
+        setLoading(true)
+
+        var res = await fetch(`/~/api/packages/${version.manager}/${version.name}?version=${version.number}&action=download`,{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST"})
+        var cid = await res.json()
+        setCid(cid)
+        setLoading(false)
+      }
+
+      if(loading){
+        return html`<div class="ms-2 spinner-border spinner-border-sm" title='Updating' role="status"><span class="visually-hidden">Loading...</span></div>`
+      } else {
+        if(cid){
+          return html`<small class='ms-2 text-muted' title=${cid}>${truncateString(cid, 30)}</small>`
+        } else {
+          return html`<i role="button" class="ms-2 bi-download" title='Download this version locally' onClick=${onClick}></i>`
+        }
+      }
+    }
+
+    function VersionList({versions}) {
+      return (
+        html`
+        <h4>Versions</h4>
+        <ul class="list-group list-group-flush">
+          ${Object.entries(versions).map(([number, version]) => html`
+            <${Version} version=${version} />
+          `)}
+        </ul>
+        `
+      );
+    }
+
+    function Package({ manager, name, version }) {
+      return html`
+        <li class="list-group-item">
+          <a href='/packages/${manager}/${name}' class='link-dark text-decoration-none'>
+          <img src='/icons/${manager}.png' width="20" height="20" class='me-2'/>
+          <strong class='pl-3 ml-3'>${name}</strong> <span class='small text-muted'>${version}</span>
+          </a>
+        </li>
+      `
+    }
+
+    function Home({packages}) {
+      return (
+        html `
+          <${PackageList} packages=${packages} />
+        `
+      )
+    }
+
+    function PackageDetails({manager, name}) {
+      const [pkg, setPkg] = useState({publicUrl: '', versions: {}, name: name, manager: manager});
+
+      useEffect(async () => {
+         const res = await fetch(`/~/api/packages/${manager}/${name}`).then(r => r.json())
+         setPkg(res)
+       }, [manager, name])
+
+      return (
+        html `
+          <div class="container-fluid">
+            <div class='row'>
+              <div class='col'>
+                <h2>
+                  <img src='/icons/${pkg.manager}.png' width="30" height="30" class='me-3'/>
+                  ${pkg.name}
+
+                </h2>
+                <p>
+                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a> <${PackageUpdate} pkg=${pkg} setPkg=${setPkg}/>
+                </p>
+              </div>
+            </div>
+            ${pkg.versions && html`<${VersionList} versions=${pkg.versions} />`}
+          </div>
+        `
+      )
+    }
+
+    function PackageList({packages}) {
+      return (
+        html`
+        <ul class="list-group list-group-flush">
+          ${packages.map((pkg, index) => html`
+            <${Package} manager=${pkg.manager} name=${pkg.name} version=${pkg.version} />
+          `)}
+        </ul>
+        `
+      );
+    }
+
+    function Header({searchQuery, setSearchQuery}) {
+      const onSubmit = e => {
+          e.preventDefault()
+          route('/')
+      }
+
+      const onInput = e => {
+        setSearchQuery(e.target.value)
+        route('/')
+      }
+
+      return html`
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Forage</a>
+          <form class="d-flex" action="/" method="get" autoComplete="off" onSubmit=${onSubmit}>
+            <input name='query' class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value=${searchQuery} onInput=${onInput} />
+          </form>
+        </div>
+      </nav>
+      `
+    }
+
+    function App() {
+      var query = new URLSearchParams(window.location.search).get('query');
+
+      const [searchQuery, setSearchQuery] = useState(query || '');
+      const [packages, setPackages] = useState([]);
+
+      useEffect(async () => {
+         const res = await fetch('/~/api/packages').then(r => r.json())
+         setPackages(res)
+       }, [])
+
+      var filteredPackages = filterPackages(packages, searchQuery)
+
+      return html`
+      <${Header} searchQuery=${searchQuery} setSearchQuery=${setSearchQuery} />
+    	<${Router}>
+        <${Home} path='/' packages=${filteredPackages} />
+        <${PackageDetails} path='/packages/:manager/:name+' pkg= />
+    	</${Router}>
+      `
+    }
+
+    render(html`<${App}/>`, document.querySelector('#app'));
   </script>
 </body>
 
