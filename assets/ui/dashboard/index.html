@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
 <body style='padding-top:56px;'>
@@ -35,13 +36,66 @@
       return str.slice(0, num) + '...'
     }
 
-
     function Version({ version }) {
       return html`
         <li class="list-group-item">
-          ${version.number} <small class='text-muted' title=${version.cid}>${truncateString(version.cid, 20)}</small>
+          ${version.number}
+          <${VersionCID} version=${version} />
         </li>
       `
+    }
+
+    function PackageUpdate({pkg, setPkg}) {
+      const [loading, setLoading] = useState(false);
+      const onClick = async (e) => {
+        setLoading(true)
+
+        var res = await fetch(`/~/api/packages/${pkg.manager}/${pkg.name}?action=update`,{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST"})
+        var json = await res.json()
+
+        setLoading(false)
+        setPkg({...pkg, versions: json.versions})
+      }
+
+      if(loading){
+        return html`<div class="ms-2 spinner-border spinner-border-sm" title='Updating' role="status"><span class="visually-hidden">Loading...</span></div>`
+      } else {
+        return html`<i role="button" class="ms-2 bi-arrow-repeat" title='Check for update' onClick=${onClick}></i>`
+      }
+    }
+
+    function VersionCID({version}) {
+      const [cid, setCid] = useState(version.cid);
+      const [loading, setLoading] = useState(false);
+
+      const onClick = async (e) => {
+        setLoading(true)
+
+        var res = await fetch(`/~/api/packages/${version.manager}/${version.name}?version=${version.number}&action=download`,{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST"})
+        var cid = await res.json()
+        setCid(cid)
+        setLoading(false)
+      }
+
+      if(loading){
+        return html`<div class="ms-2 spinner-border spinner-border-sm" title='Updating' role="status"><span class="visually-hidden">Loading...</span></div>`
+      } else {
+        if(cid){
+          return html`<small class='ms-2 text-muted' title=${cid}>${truncateString(cid, 30)}</small>`
+        } else {
+          return html`<i role="button" class="ms-2 bi-download" title='Download this version locally' onClick=${onClick}></i>`
+        }
+      }
     }
 
     function VersionList({versions}) {
@@ -77,7 +131,7 @@
     }
 
     function PackageDetails({manager, name}) {
-      const [pkg, setPkg] = useState({});
+      const [pkg, setPkg] = useState({publicUrl: '', versions: {}, name: name, manager: manager});
 
       useEffect(async () => {
          const res = await fetch(`/~/api/packages/${manager}/${name}`).then(r => r.json())
@@ -90,11 +144,12 @@
             <div class='row'>
               <div class='col'>
                 <h2>
-                  <img src='/icons/${manager}.png' width="30" height="30" class='me-3'/>
-                  ${name}
+                  <img src='/icons/${pkg.manager}.png' width="30" height="30" class='me-3'/>
+                  ${pkg.name}
+
                 </h2>
                 <p>
-                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a>
+                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a> <${PackageUpdate} pkg=${pkg} setPkg=${setPkg}/>
                 </p>
               </div>
             </div>
