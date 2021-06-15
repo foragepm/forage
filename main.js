@@ -71,7 +71,7 @@ function updateStatusMenu() {
 }
 
 const contextMenu = Menu.buildFromTemplate([
-  { id: 'running', label: 'Status: Running', type: 'normal', enabled: false },
+  { id: 'running', label: 'Status: Running', type: 'normal', enabled: false, visible: false },
   { id: 'stopped', label: 'Status: Stopped', type: 'normal', enabled: false },
   { label: `Port: ${port}`, type: 'normal', enabled: false, },
   { label: `Pubsub: ${topic}`, type: 'normal', enabled: false, },
