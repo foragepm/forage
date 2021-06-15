@@ -10,8 +10,8 @@ describe('importLatest', async () => {
   it('should import latest version of a package', async () => {
     var name = '@babel/code-frame'
     var res = await npm.importLatest(db, name)
-    assert.equal(res.version, '7.12.13');
-    assert.equal(res.cid, 'bafkrgqa5lvbjwrbxm25eer655wiwhgek4yeibpczlwivkg3fmav6gak2guvgko5ho3vfw7y5tjo2vv53bzfkhfumoi5utanuvtrpkbqffzx6u');
+    assert.equal(res.version, '7.14.5');
+    assert.equal(res.cid, 'bafkrgqhwttb2wjz2hcynvkppwnwabiawi35hziyndoqi43fkm5qxbikgzpmbwii5ooyibwawvj4ogpv45nbexgo5tcmjypeyjibqmejduupro');
   })
 })
 
@@ -34,6 +34,16 @@ describe('importPackage', async function() {
     var cid = await npm.importPackage(db, name, version, url)
 
     assert.equal(cid, 'bafkrgqdl3ay2mz2xwwiqrhsasioueqzmozkqmbxviewshbwlhbyph7o4iw53h24c4w4kiej5vxaec5zjl652ynxfexey3pjupnkjpi5j3wbnu');
+  });
+
+  it('should import other npm packages', async () => {
+    var name = 'base62'
+    var version = '2.0.1'
+    var url = "https://registry.npmjs.org/base62/-/base62-2.0.1.tgz"
+
+    var cid = await npm.importPackage(db, name, version, url)
+
+    assert.equal(cid, 'bafkrgqhc3yleblxgow3rntvbagfk5ll6rwvayj4imrs67drhzftsyrzbk4ruersjy2iw3o72llmvnoxu5ixausb2rm3hj4qsu47rv2dyhszxw');
   });
 })
 
@@ -98,7 +108,7 @@ describe('updatePackage', async function() {
   it('update a package', async () => {
     var name = 'base62'
     var res = await npm.updatePackage(db, name)
-    assert.equal(res, true)
+    assert.equal(res, false)
   })
 })
 
