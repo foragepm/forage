@@ -149,11 +149,11 @@
 
                 </h2>
                 <p>
-                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a> <${PackageUpdate} pkg=${pkg} setPkg=${setPkg}/>
+                <a href='${pkg.publicUrl}' class='text-decoration-none text-muted'>${pkg.publicUrl}</a> ${pkg.publicUrl && html`<${PackageUpdate} pkg=${pkg} setPkg=${setPkg}/>`}
                 </p>
               </div>
             </div>
-            ${pkg.versions && html`<${VersionList} versions=${pkg.versions} />`}
+            ${pkg.publicUrl && html`<${VersionList} versions=${pkg.versions} />`}
           </div>
         `
       )
