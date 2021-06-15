@@ -35,7 +35,6 @@ if(os.platform() === 'darwin'){
 }
 
 app.on('ready', () => {
-  console.log('ready')
   db = forage.connectDB()
   createTray()
   startServer(db)
@@ -56,7 +55,7 @@ async function startServer() {
 }
 
 function stopServer() {
-  console.log('stopping')
+  log.info('stopping server')
   server.close();
   forage.core.unsubscribePackageAnnoucements(topic)
   started = false
