@@ -3,6 +3,7 @@ const {app, Menu, Tray, shell} = require('electron')
 const path = require('path')
 const createServer = require('./lib/server')
 const forage = require('./lib/forage')
+const { hideBin, Parser } = require('yargs/helpers')
 
 const assetsDirectory = path.join(__dirname, 'assets')
 
@@ -23,8 +24,10 @@ var tray = undefined
 var win = undefined
 var db
 var started = false
-var topic = 'forage'
-var port = 8005
+
+var argv = Parser(hideBin(process.argv), {default: {port: 8005, topic: 'forage'}})
+var port = argv.port
+var topic = argv.topic
 
 if(os.platform() === 'darwin'){
   // Don't show the app in the doc
