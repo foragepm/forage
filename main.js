@@ -75,6 +75,7 @@ const contextMenu = Menu.buildFromTemplate([
   { id: 'running', label: 'Status: Running', type: 'normal', enabled: false },
   { id: 'stopped', label: 'Status: Stopped', type: 'normal', enabled: false },
   { label: `Port: ${port}`, type: 'normal', enabled: false, },
+  { label: `Pubsub: ${topic}`, type: 'normal', enabled: false, },
   { id: 'start', label: 'Start', type: 'normal', click: startServer },
   { id: 'stop', label: 'Stop', type: 'normal', click: stopServer },
   { label: 'Settings', submenu: [
