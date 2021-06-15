@@ -28,7 +28,7 @@
     "electron-log": "^4.3.4",
     "env-paths": "^2.2.0",
     "fs-extra": "^10.0.0",
-    "go-ipfs": "^0.8.0",
+    "go-ipfs": "0.9.0-rc2",
     "http-proxy": "^1.18.1",
     "ipfs-http-client": "^50.1.1",
     "ipfsd-ctl": "^8.0.2",
