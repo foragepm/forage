@@ -27,7 +27,6 @@ describe('http api', async function() {
       chai.request(server)
           .get(path)
           .end((err, res) => {
-            console.log(err)
             expect(err).to.be.null;
             expect(res).to.be.json;
             expect(res).to.have.status(200);
