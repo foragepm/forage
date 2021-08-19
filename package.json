@@ -31,7 +31,7 @@
     "fs-extra": "^10.0.0",
     "go-ipfs": "^0.9.1",
     "http-proxy": "^1.18.1",
-    "ipfs-http-client": "^52.0.0",
+    "ipfs-http-client": "^52.0.1",
     "ipfsd-ctl": "^10.0.3",
     "it-all": "^1.0.5",
     "it-pipe": "^1.1.0",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
-    "electron": "^13.1.9",
+    "electron": "^13.2.1",
     "electron-builder": "^22.11.7",
     "mocha": "^9.0.2"
   },
