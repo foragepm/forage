@@ -12,6 +12,9 @@ yargs(hideBin(process.argv))
   .command('seed', 'reseed any packages announced on IPFS', () => {}, (argv) => {
     require('./lib/commands/seed')(argv)
   })
+  .command('install', 'fetch and install all local packages', () => {}, (argv) => {
+    require('./lib/commands/install')(argv)
+  })
   .command('import', 'load packages listed in forage.lock from IPFS', () => {}, (argv) => {
     require('./lib/commands/import')(argv)
   })

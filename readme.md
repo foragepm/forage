@@ -39,11 +39,11 @@ Package metadata is also cached locally so you can use your package manager whil
 - **Seeding mode** - Republish copies of all packages announced on the IPFS public DHT
 - **Export/import** - easily share multiple packages cached instantly with other instances via IPFS
 - **Watch mode** - watch for new package releases and seed each one to IPFS
+- **Package index UI** - see which packages have been proxied, cached and stored on IPFS
+- **Local package search** - search through locally available packages
 
 ## Coming soon
 
-- **Package index UI** - see which packages have been proxied, cached and stored on IPFS
-- **Local package search** - search through locally available packages
 - **HTTP API** - control forage over http
 - **Javascript API** - integrate forage into other javascript applications
 
@@ -90,6 +90,7 @@ Commands:
   forage server             start the forage proxy server              [default]
   forage browse             open the forage UI
   forage seed               reseed any packages announced on IPFS
+  forage install            fetch and install all local packages
   forage import             load packages listed in forage.lock from IPFS
   forage republish          add local packages to IPFS and write to forage.lock
   forage watch              watch for new packages published upstream
