@@ -32,7 +32,7 @@
     "go-ipfs": "^0.10.0",
     "http-proxy": "^1.18.1",
     "ipfs-http-client": "^52.0.1",
-    "ipfsd-ctl": "^10.0.3",
+    "ipfsd-ctl": "^12.2.1",
     "it-all": "^1.0.5",
     "it-pipe": "^1.1.0",
     "it-to-stream": "^1.0.0",
