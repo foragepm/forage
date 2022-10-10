@@ -47,7 +47,7 @@
     "ssri": "^8.0.0",
     "stream-to-it": "^0.2.4",
     "tmp-promise": "^3.0.2",
-    "uint8arrays": "^2.1.8",
+    "uint8arrays": "^3.1.1",
     "validate-npm-package-name": "^3.0.0",
     "yargs": "^16.2.0",
     "zipdigest": "^1.0.0"
